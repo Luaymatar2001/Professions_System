@@ -45,7 +45,11 @@ class AdminController extends Controller
     public function updateProfile()
     {
     }
-    public function logout()
+    public function logout(Request $request)
     {
+        Auth::guard('admin')->logout(); // Logs out the authenticated user
+        $request->session()->invalidate(); // Invalidates the session
+        $request->session()->regenerateToken(); // Regenerates the CSRF token
+        return redirect('/admin/login');
     }
 }
