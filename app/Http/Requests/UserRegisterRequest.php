@@ -27,7 +27,7 @@ class UserRegisterRequest extends FormRequest
             "name" => ["required", "string"],
             "email" => ['required', 'unique:users,email'],
             "password" => ['required', 'min:8', 'confirmed'],
-            'image' => ['nullable', 'base64image'],
+            // 'image' => ['nullable', 'base64image'],
         ];
     }
     public function messages()
@@ -39,7 +39,7 @@ class UserRegisterRequest extends FormRequest
             "password.required" => "<PASSWORD> is required.",
             "password.min" => "The password must be at least 8",
             "password.confirmed" => "must confirmed the password",
-            'image.base64image' => "the image must store Base64",
+            // 'image.base64image' => "the image must store Base64",
         ];
     }
 }
