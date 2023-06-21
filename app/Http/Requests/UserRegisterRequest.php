@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\base64image;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UserRegisterRequest extends FormRequest
@@ -27,7 +28,7 @@ class UserRegisterRequest extends FormRequest
             "name" => ["required", "string"],
             "email" => ['required', 'unique:users,email'],
             "password" => ['required', 'min:8', 'confirmed'],
-            // 'image' => ['nullable', 'base64image'],
+            'image' => ['nullable', new base64image],
         ];
     }
     public function messages()
