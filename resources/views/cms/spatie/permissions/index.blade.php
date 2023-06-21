@@ -150,7 +150,7 @@
     <script>
         function deleteDel(id){
     
-    fetch(`http://127.0.0.1:8000/admin/permission/delete/${id}` ).then(data => {
+    fetch(`https://phplaravel-1025967-3619615.cloudwaysapps.com/admin/permission/delete/${id}` ).then(data => {
 data.json().then(response =>{
              
         if (status == 404) {

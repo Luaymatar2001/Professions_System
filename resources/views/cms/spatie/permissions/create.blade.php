@@ -168,7 +168,7 @@ guards: document.getElementById('guards').value,
 };
 
 
-fetch('http://127.0.0.1:8000/admin/permission',
+fetch('https://phplaravel-1025967-3619615.cloudwaysapps.com/admin/permission',
 {   
     method: 'POST',
     headers: {  

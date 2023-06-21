@@ -127,7 +127,7 @@
           permission_id : $permissionId
           };
       
-         fetch('http://127.0.0.1:8000/admin/role/'+$roleId+'/permissions',
+         fetch('https://phplaravel-1025967-3619615.cloudwaysapps.com/admin/role/'+$roleId+'/permissions',
          {
         method: 'POST',
         headers: {

@@ -168,7 +168,7 @@ guards: document.getElementById('guards').value,
 };
 
 
-fetch('http://127.0.0.1:8000/api/role/update/'+id,
+fetch('https://phplaravel-1025967-3619615.cloudwaysapps.com/api/role/update/'+id,
 {   
     method: 'POST',
     headers: {  

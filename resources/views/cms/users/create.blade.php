@@ -17,7 +17,7 @@
 <section class="content">
 
     <script>
-        const roleStoreRoute = 'http://127.0.0.1:8000/api/role/store';
+        const roleStoreRoute = 'https://phplaravel-1025967-3619615.cloudwaysapps.com/api/role/store';
         // var $j = jQuery.noConflict();
         //   $j(document).ready(function() {
         //     $j('#mySelect').select2();
