@@ -48,7 +48,7 @@ class base64image implements Rule
         $maxWidth = 5000;
         $maxHeight = 4000;
         $minWidth = 400;
-        $minHeight = 300;
+        $minHeight = 600;
         if ($info[0] > $maxWidth || $info[1] > $maxHeight) {
             return false;
         }

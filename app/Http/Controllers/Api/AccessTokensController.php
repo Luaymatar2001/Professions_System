@@ -114,8 +114,9 @@ class AccessTokensController extends Controller
         // if (!$validator->fails()) {
         //     return response()->json($validator->getMessageBag()->first(), 422);
         // }
-        $request['password'] = Hash::make($request['password']);
+        // $request['password'] = Hash::make($request['password']);
         $data_request['image'] = $path . $name;
+        $data_request['password'] = Hash::make($data_request['password']);
 
         $result = $user->create($data_request);
 
