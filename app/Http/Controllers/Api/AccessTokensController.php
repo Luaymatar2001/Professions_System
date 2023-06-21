@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRegisterRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Sanctum\PersonalAccessToken;
-use App\Rules\Base64image;
+// use App\Rules\Base64image;
 
 class AccessTokensController extends Controller
 {
@@ -80,22 +81,22 @@ class AccessTokensController extends Controller
             'success' => $user
         ], 201);
     }
-    public function register(Request $request, User $user)
+    public function register(UserRegisterRequest $request, User $user)
     {
-        $validator = Validator::make($request->all(), [
-            "name" => ["required", "string"],
-            "email" => ['required', 'unique:users,email'],
-            "password" => ['required', 'min:8', 'confirmed'],
-            'image' => ['nullable', new Base64image],
-        ], [
-            "name.required" => "Name is required.",
-            "email.required" => "Email is required.",
-            "email.unique" => "This email already exists in our database!",
-            "password.required" => "<PASSWORD> is required.",
-            "password.min" => "The password must be at least 8",
-            "password.confirmed" => "must confirmed the password",
-            'image.base64image' => "the image must store Base64",
-        ]);
+        // $validator = Validator::make($request->all(), [
+        //     "name" => ["required", "string"],
+        //     "email" => ['required', 'unique:users,email'],
+        //     "password" => ['required', 'min:8', 'confirmed'],
+        //     'image' => ['nullable', new Base64image],
+        // ], [
+        //     "name.required" => "Name is required.",
+        //     "email.required" => "Email is required.",
+        //     "email.unique" => "This email already exists in our database!",
+        //     "password.required" => "<PASSWORD> is required.",
+        //     "password.min" => "The password must be at least 8",
+        //     "password.confirmed" => "must confirmed the password",
+        //     'image.base64image' => "the image must store Base64",
+        // ]);
         $data_request = $request->all();
         $base64 = $data_request['image'];
         if (!$base64) {
@@ -110,9 +111,9 @@ class AccessTokensController extends Controller
         $name = time() + rand(1, 1000) . "." . explode("/", $imageSize['mime'])[1];
         Storage::disk('local')->put($path . $name,  $data);
 
-        if (!$validator->fails()) {
-            return response()->json($validator->getMessageBag()->first(), 422);
-        }
+        // if (!$validator->fails()) {
+        //     return response()->json($validator->getMessageBag()->first(), 422);
+        // }
         $request['password'] = Hash::make($request['password']);
         $data_request['image'] = $path . $name;
 

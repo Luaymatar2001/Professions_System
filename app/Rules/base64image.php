@@ -4,7 +4,7 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class Base64image implements Rule
+class base64image implements Rule
 {
     /**
      * Create a new rule instance.
