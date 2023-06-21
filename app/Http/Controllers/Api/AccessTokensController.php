@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Sanctum\PersonalAccessToken;
+use App\Rules\Base64image;
 
 class AccessTokensController extends Controller
 {
@@ -85,7 +86,7 @@ class AccessTokensController extends Controller
             "name" => ["required", "string"],
             "email" => ['required', 'unique:users,email'],
             "password" => ['required', 'min:8', 'confirmed'],
-            'image' => 'nullable|base64image',
+            'image' => ['nullable', new Base64image],
         ], [
             "name.required" => "Name is required.",
             "email.required" => "Email is required.",
