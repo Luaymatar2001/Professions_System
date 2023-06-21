@@ -29,7 +29,7 @@ class WorkerController extends Controller
             $results->cover_image
                 = storage_path('app/' . $results->cover_image);
             // . Storage::url($results->cover_image);
-        }
+        }    
         return response()->json(["Worker data" => $result], 200);
     }
 
@@ -47,7 +47,9 @@ class WorkerController extends Controller
         // $name = time() + rand(1, 1000) . "." . $image->getClientOriginalExtension();
         // Storage::disk('local')->put($path . $name,  file_get_contents($image));
         //-------Base 64-------------
-
+        //    why use Base64
+        // Compatibility: Base64-encoded data can be easily transmitted over protocols that only support text, such as HTTP, SMTP, or JSON-based APIs. It ensures that the image data is not lost or corrupted during transmission.
+         
         $base64 = $request['cover_image'];
         if (!$base64) {
             return response()->json(['error' => 'Please enter a base64 image string.']);

@@ -42,6 +42,8 @@ Route::group(['middleware' => ['XSS', 'lang']], function () {
     // Route::post('/permission/update/{id}', [PermissionController::class, 'update']);
 
     Route::get('/user/delete/{id}', [UserController::class, 'destroy']);
+
+    Route::Post('auth/register', [AccessTokensController::class, 'register']);
     Route::post('auth/access-tokens', [AccessTokensController::class, 'store'])->middleware('guest');
     Route::get('auth/logout/{token?}', [AccessTokensController::class, 'destroy'])->middleware('auth:sanctum');;
 });
