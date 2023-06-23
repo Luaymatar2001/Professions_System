@@ -6,6 +6,7 @@ use App\Http\Requests\PostProjectRequest;
 use App\Models\Image;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
@@ -16,8 +17,34 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::where('accept', true)->latest('date')->paginator(20);
-        if (!count($projects) === 0) {
+        // 
+        // Filter local scope
+        $projects = Project::with('worker')
+            ->with('profession')
+            ->with('profession.specialty')
+            ->with('user')
+            ->where('accept', true)
+            ->latest('updated_at')
+            ->paginate(20);
+        if (!empty($projects) === 0) {
+            return response()->json(['message' => 'empty projects !'], 400);
+        }
+        return response()->json(['message' => 'the projects is not empty', 'data' => $projects], 200);
+    }
+
+
+    public function filter(Request $request)
+    {
+        // Filter local scope
+        $projects = Project::with('worker')
+            ->with('profession')
+            ->with('profession.specialty')
+            ->with('user')
+            ->where('accept', true)
+            ->filter($request)
+            ->latest('updated_at')
+            ->paginate(20);
+        if (!empty($projects) === 0) {
             return response()->json(['message' => 'empty projects !'], 400);
         }
         return response()->json(['message' => 'the projects is not empty', 'data' => $projects], 200);
@@ -29,9 +56,16 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PostProjectRequest $request)
+    public function store(Request $request)
     {
-        $project = new Project($request->only(['name', 'description', 'time_first', 'notes', 'time_function', 'additional_file', 'value', 'funds', 'city_id', 'description_location', 'accept', 'user_id', 'worker_id']));
+        $project = new Project($request->only([
+            'name', 'description', 'time_first',
+            'notes', 'time_function', 'additional_file',
+            'value', 'funds', 'city_id', 'description_location',
+            'accept', 'worker_id', 'profession_id'
+        ]));
+        $project->user_id = Auth::guard('sanctum')->user()->id;
+
         $result = $project->save();
         $result_image = false;
 

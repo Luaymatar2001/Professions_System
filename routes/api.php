@@ -33,7 +33,8 @@ Route::get('/user', function (Request $request) {
 // , 'auth:sanctum'
 Route::group(['middleware' => ['XSS', 'lang']], function () {
     Route::apiResource('about', AboutController::class);
-    Route::apiResource('projects', ProjectController::class)->middleware('auth:sanctum');;
+    Route::post('Filter', [ProjectController::class, 'filter'])->middleware('auth:sanctum');
+    Route::apiResource('projects', ProjectController::class)->middleware('auth:sanctum');
 
     // Route::post('/role/store', [RoleController::class, 'store']);
     // Route::get('/role/delete/{id}', [RoleController::class, 'destroy']);
@@ -49,7 +50,6 @@ Route::group(['middleware' => ['XSS', 'lang']], function () {
     //يجب أن يكون مضيف لعمل إضافة للبيانات
     Route::post('auth/access-tokens', [AccessTokensController::class, 'store'])->middleware('guest');
     Route::get('auth/logout/{token?}', [AccessTokensController::class, 'destroy'])->middleware('auth:sanctum');
-
 });
 
 // Route::Post('auth/token', [AccessTokensController::class, 'store']);

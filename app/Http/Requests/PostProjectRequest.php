@@ -35,7 +35,7 @@ class PostProjectRequest extends FormRequest
             'city_id' => 'required|exists:cities,id',
             'description_location' => 'nullable|string|max:200',
             'accept' => 'nullable|in:0,1',
-            'user_id' => 'required|integer|exists:users,id',
+            // 'user_id' => 'required|integer|exists:users,id',
             'worker_id' => 'required|integer|exists:workers,id',
             'images' => 'array',
             'images.*' => 'image'

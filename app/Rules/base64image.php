@@ -15,7 +15,6 @@ class base64image implements Rule
     {
         //
     }
-
     /**
      * Determine if the validation rule passes.
      *
