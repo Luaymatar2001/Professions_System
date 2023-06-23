@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-//anonymous class with out name
+
 return new class extends Migration
 {
     /**
@@ -11,6 +11,7 @@ return new class extends Migration
      *
      * @return void
      */
+
     public function up()
     {
         Schema::create('projects', function (Blueprint $table) {
@@ -21,16 +22,22 @@ return new class extends Migration
             // $table->unsignedBigInteger('id');
             $table->string('name');
             $table->text('description');
-            $table->dateTime('time_first');
-            $table->text('notes');
-            $table->dateTime('time_function');
-            $table->string('additional_file', 90);
+            $table->dateTime('time_first')->nullable();
+            $table->string('slug', 100);
+            $table->text('notes')->nullable();
+            $table->dateTime('time_function')->nullable();
+            $table->text('additional_file')->nullable();
             $table->integer('value');
-            $table->string('funds', 45);
+            $table->float('funds')->default(0.2);
             $table->integer('city_id');
-            $table->boolean('accept')->default(false);
+            $table->string('description_location')->nullable();
+            $table->boolean('accept')->default(true);
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('worker_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
+            // $table->foreign('worker_id')->references('id')->on('workers')->nullOnDelete();
         });
     }
 

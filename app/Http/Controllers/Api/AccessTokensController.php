@@ -83,20 +83,6 @@ class AccessTokensController extends Controller
     }
     public function register(UserRegisterRequest $request, User $user)
     {
-        // $validator = Validator::make($request->all(), [
-        //     "name" => ["required", "string"],
-        //     "email" => ['required', 'unique:users,email'],
-        //     "password" => ['required', 'min:8', 'confirmed'],
-        //     'image' => ['nullable', new Base64image],
-        // ], [
-        //     "name.required" => "Name is required.",
-        //     "email.required" => "Email is required.",
-        //     "email.unique" => "This email already exists in our database!",
-        //     "password.required" => "<PASSWORD> is required.",
-        //     "password.min" => "The password must be at least 8",
-        //     "password.confirmed" => "must confirmed the password",
-        //     'image.base64image' => "the image must store Base64",
-        // ]);
         $data_request = $request->all();
         $base64 = $data_request['image'];
         if (!$base64) {

@@ -26,16 +26,4 @@ class Worker extends Model
     {
         $this->hasOne(gallery::class, 'worker_id', 'id');
     }
-    // public function getSlugOptions(): SlugOptions
-    // {
-    //     return SlugOptions::create()
-    //         ->generateSlugsFrom(['id_number'])
-    //         ->saveSlugsTo('slug')
-    //         ->slugsShouldBeNoLongerThan(255)
-    //         ->skipGenerateWhen(fn () => $this->delete_at != null);
-    // }
-    // public function getRouteKeyName()
-    // {
-    //     return 'slug';
-    // }
 }

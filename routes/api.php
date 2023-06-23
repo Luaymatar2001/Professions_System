@@ -10,6 +10,7 @@ use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\WorkerController;
 use App\Http\Controllers\Api\AccessTokensController;
 use App\Http\Controllers\ProfessionController;
+use App\Http\Controllers\ProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,7 @@ Route::get('/user', function (Request $request) {
 // , 'auth:sanctum'
 Route::group(['middleware' => ['XSS', 'lang']], function () {
     Route::apiResource('about', AboutController::class);
+    Route::apiResource('projects', ProjectController::class)->middleware('auth:sanctum');;
 
     // Route::post('/role/store', [RoleController::class, 'store']);
     // Route::get('/role/delete/{id}', [RoleController::class, 'destroy']);
@@ -44,8 +46,10 @@ Route::group(['middleware' => ['XSS', 'lang']], function () {
     Route::get('/user/delete/{id}', [UserController::class, 'destroy']);
 
     Route::Post('auth/register', [AccessTokensController::class, 'register']);
+    //يجب أن يكون مضيف لعمل إضافة للبيانات
     Route::post('auth/access-tokens', [AccessTokensController::class, 'store'])->middleware('guest');
-    Route::get('auth/logout/{token?}', [AccessTokensController::class, 'destroy'])->middleware('auth:sanctum');;
+    Route::get('auth/logout/{token?}', [AccessTokensController::class, 'destroy'])->middleware('auth:sanctum');
+
 });
 
 // Route::Post('auth/token', [AccessTokensController::class, 'store']);

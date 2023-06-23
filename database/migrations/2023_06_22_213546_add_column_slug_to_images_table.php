@@ -13,9 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('image_likes', function (Blueprint $table) {
-            //
-            $table->foreign('image_id')->references('id')->on('images')->onDelete('cascade');
+        Schema::table('images', function (Blueprint $table) {
+            $table->string('slug', 100)->unique();
         });
     }
 
@@ -26,9 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('image_likes', function (Blueprint $table) {
-            //
-            Schema::dropForeign('image_likes_image_id_id_foreign');
+        Schema::table('images', function (Blueprint $table) {
+            $table->dropColumn('slug');
         });
     }
 };

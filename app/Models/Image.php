@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
@@ -12,10 +13,15 @@ class Image extends Model
     use HasFactory, HasSlug;
     protected $table = 'images';
     protected $primaryKey = 'id';
-    protected $appends = ['check_active'];
+    protected $appends = ['check_active', 'full_path'];
     protected $guarded = ["id"];
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
     protected $fillable = ['image_url',  'galleries_id', 'accept', 'reject_reason'];
+
+    public function imageable(): MorphTo
+    {
+        return $this->morphTo();
+    }
 
     public function gallery()
     {
@@ -45,5 +51,14 @@ class Image extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+    public function getFullPathAttribute()
+    {
+        if ($this->image) {
+            return url('project_img/projects', [
+                'image' => $this->image,
+            ]);
+        }
+        return 'http://via.placeholder.com/80x80';
     }
 }

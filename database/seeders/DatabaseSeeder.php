@@ -3,10 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-
-use App\Models\specialties;
 use Illuminate\Database\Seeder;
-use Database\Seeders\ProfessionSeeder;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,9 +21,10 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        $this->call(AboutSeeder::class);
-        $this->call(SpecialtiesSeeder::class);
-        $this->call(CitySeeder::class);
-        $this->call(ProfessionSeeder::class);
+        // $this->call(AboutSeeder::class);
+        // $this->call(SpecialtiesSeeder::class);
+        // $this->call(CitySeeder::class);
+        // $this->call(ProfessionSeeder::class);
+        // $this->call(WorkerSeeder::class);
     }
 }

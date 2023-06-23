@@ -16,10 +16,9 @@ return new class extends Migration
         Schema::create('images', function (Blueprint $table) {
             $table->id();
             $table->string('image_url', 100);
-            $table->unsignedBigInteger('works_id');
-            $table->unsignedBigInteger('galleries_id');
-            $table->boolean('accept')->default(false);
-            $table->string('reject_reason', 100);
+            $table->morphs('imageable');
+            $table->boolean('accept')->default(true);
+            $table->string('reject_reason', 100)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
