@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PostProjectRequest;
+use App\Models\City;
 use App\Models\Image;
+use App\Models\Profession;
 use App\Models\Project;
+use App\Models\specialties;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,6 +35,18 @@ class ProjectController extends Controller
         return response()->json(['message' => 'the projects is not empty', 'data' => $projects], 200);
     }
 
+    public function dataProject()
+    {
+        $city = City::all();
+        $profession = Profession::all();
+        $specialty = specialties::all();
+        return response()->json([
+            "city" => $city,
+            "profession" => $profession,
+            "specialty" => $specialty,
+            "values" => Project::values(),
+        ], 200);
+    }
 
     public function filter(Request $request)
     {
@@ -56,6 +71,7 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         $project = new Project($request->only([
@@ -93,6 +109,9 @@ class ProjectController extends Controller
         }
     }
 
+    public function filterFormData()
+    {
+    }
     /**
      * Display the specified resource.
      *

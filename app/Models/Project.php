@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
@@ -69,5 +70,27 @@ class Project extends Model
         if (isset($request['profession_id'])) {
             $query->where('profession_id', $request['profession_id']);
         }
+        if (isset($request['speciality_id'])) {
+
+            $query->whereHas('profession', function ($query) use ($request) {
+                $query->where('specialtie_id', $request['speciality_id']);
+            });
+        }
+        if (isset($request['value'])) {
+            $query->whereBetween('value', [$request['min'], $request['max']]);
+        }
+    }
+    public static function values()
+    {
+        $value = [
+            1 => 9,
+            10 => 99,
+            100 => 999,
+            1000 => 9999,
+            10000 => 99999,
+            100000 => 999999,
+            1000000 => 9999999
+        ];
+        return $value;
     }
 }

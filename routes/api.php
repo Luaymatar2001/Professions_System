@@ -33,6 +33,8 @@ Route::get('/user', function (Request $request) {
 // , 'auth:sanctum'
 Route::group(['middleware' => ['XSS', 'lang']], function () {
     Route::apiResource('about', AboutController::class);
+
+    Route::get('data_project', [ProjectController::class, 'dataProject'])->middleware('auth:sanctum');
     Route::post('Filter', [ProjectController::class, 'filter'])->middleware('auth:sanctum');
     Route::apiResource('projects', ProjectController::class)->middleware('auth:sanctum');
 

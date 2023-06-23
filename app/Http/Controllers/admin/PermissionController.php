@@ -72,11 +72,12 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
+        // check if the user has admin with store new permissions
         $this->authorize('create', Permission::class);
-
+        // validate syntax of data send
         $validator = $this->validat($request);
         // $status = permission::create($request->all());
-
+        //if validate success save the data if store in DB
         if (!$validator->fails()) {
             $permission = new Permission();
             $permission->name = $request['name'];
@@ -84,7 +85,7 @@ class PermissionController extends Controller
             $status = $permission->save();
             return response()->json(['message' => $status ? 'success for add new permission' : 'faild for add new permission'], $status ? 201 : 404);
         } else {
-
+            // return get message error if fails validation
             return response()->json(['message' => $validator->getMessageBag()], 400);
         }
     }

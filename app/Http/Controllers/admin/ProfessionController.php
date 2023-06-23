@@ -134,8 +134,7 @@ class ProfessionController extends Controller
         $profession = Profession::where('id', $professional)
             ->firstOrFail();
         $result = $profession->update(request()->all());
-        // return redirect()->back()->with('status', $result);
-        // return redirect()->route('professional.index');
+        //return number page  
         $pageNum = ceil($this->countNumRow($profession->id) / $this->elementEachPage());
         return redirect()->route('professional.index')->with(['statusEdit' => $result, 'id' => $profession->id, 'pageNumber' => $pageNum]);
     }
@@ -150,11 +149,6 @@ class ProfessionController extends Controller
     {
         $result = Profession::where('id', $professional)->delete();
         return redirect()->back()->with('status', $result);
-        // if ($result) {
-        //     return response()->json(['message' => 'success for update Process', 'data' => $result], 200);
-        // } else {
-        //     return response()->json(['message' => 'not find this specialties '], 500);
-        // }
     }
 
     public function index_restore()

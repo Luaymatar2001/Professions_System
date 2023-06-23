@@ -16,14 +16,13 @@ use Laravel\Sanctum\PersonalAccessToken;
 
 class AccessTokensController extends Controller
 {
-    //
+    // login
     public function store(AccessTokenValidatorRequest $request)
     {
-
-
-        // $password = Hash::make('123456');
+        //select the user via email
         $user = User::where('email', $request->email)->first();
         // ->orWhere('mobile', $request->username)
+        //Hash the password and check if has same in the password in DB
         if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json([
                 'message' => 'Invalid password combination',
@@ -33,15 +32,17 @@ class AccessTokensController extends Controller
         //إذا لم يتم إرجاع أسم الجهاز يتم إنشاءه من طرف الباك
         // post :return value from body of post request
         $device_name = $request->post('device_name', $request->userAgent());
+        //create token 
         $token = $user->createToken($device_name);
+        // ability is the permission of this user login
         $abilities = $request->input('abilities', ['*']);
+        //get all data get from ability and destributed from string to array
         if ($abilities && is_string($abilities)) {
             $abilities = explode('.', $abilities);
         }
         return response()->json([
             'token' => $token->plainTextToken,
             'message' => "success for login",
-
         ], 201);
     }
     public function destroy($token = null)
@@ -50,6 +51,7 @@ class AccessTokensController extends Controller
         $user = Auth::guard('sanctum')->user();
 
         if (null === $token) {
+            // damge token
             $user->currentAccessToken()->delete();
             return;
         }
@@ -57,6 +59,7 @@ class AccessTokensController extends Controller
         $personalAccessToken = PersonalAccessToken::findToken($token);
         // chech if current user equal the user token that get from DB
         //and same class model
+        //بتفحص أن من يحذف التوكن هو صاحبها وليس غيره
         if (
             $user->id == $personalAccessToken->tokenable_id &&
             $personalAccessToken->tokenable_type == get_class($user)
