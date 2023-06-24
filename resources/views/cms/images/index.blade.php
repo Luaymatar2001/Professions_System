@@ -87,13 +87,13 @@
                                 @foreach ($images as $image)
                                 <tr id="ID{{ $image->id }}">
                                     <td>{{ $image->id }}</td>
-                                    <td>{{ $image->full_path }}</td>
-                                    {{-- <img src="{{ $image->full }}" alt="nothing image"> --}}
+                                    {{-- <td>{{ $image->full_path }}</td> --}}
+                                    <img src="{{ $image->full_path }}" alt="nothing image">
                                     <td>
                                         @if ($image->accept)
-                                        <span class="badge bg-success"> {{ $image->accept }} </span>
+                                        <span class="badge bg-success"> Accept</span>
                                         @else
-                                        <span class="badge bg-danger"> {{ $image->accept }} </span>
+                                        <span class="badge bg-danger"> block </span>
                                         @endif
                                         </span>
                                     </td>

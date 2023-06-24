@@ -54,7 +54,7 @@ class Image extends Model
     }
     public function getFullPathAttribute()
     {
-        if ($this->image) {
+        if ($this->image_url) {
             return url('project_img/projects', [
                 'image' => $this->image,
             ]);
