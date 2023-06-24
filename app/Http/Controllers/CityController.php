@@ -77,7 +77,7 @@ class CityController extends Controller
     {
         $status = $city->update($request->all());
         $pageNum = ceil($this->countNumRow($city->id) / $this->elementEachPage());
-        return redirect()->route('specialities.index')->with(['statusEdit' => $status, 'id' => $city->id, 'pageNumber' => $pageNum]);
+        return redirect()->route('cities.index')->with(['status' => $status, 'id' => $city->id, 'pageNumber' => $pageNum]);
     }
 
     /**
