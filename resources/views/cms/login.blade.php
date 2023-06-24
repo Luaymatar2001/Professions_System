@@ -124,6 +124,7 @@
     };
     
     fetch('https://phplaravel-1025967-3619615.cloudwaysapps.com/admin/login',
+
      {
       method: 'POST',
       headers: {
