@@ -320,11 +320,9 @@
           </ul>
         </li>
 
-
-
         <li class="nav-item">
           <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-hammer"></i>
+            <i class="nav-icon fas fa-city"></i>
             <p>
               City
               <i class="fas fa-angle-left right"></i>
@@ -338,20 +336,18 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{route('professional.create')}}" class="nav-link">
+              <a href="{{route('cities.create')}}" class="nav-link">
                 <i class="nav-icon fas fa-plus-circle"></i>
                 <p>Create</p>
               </a>
             </li>
 
-            <li class="nav-item">
-              <a href="{{route('professional.restore')}}" class="nav-link">
-                <i class="nav-icon fas fa-trash-restore"></i>
-                <p>Restore</p>
-              </a>
-            </li>
           </ul>
         </li>
+
+
+        {{-- href="{{route('cities.index')}}" --}}
+        {{-- href="{{route('cities.create')}}" --}}
 
         <li class="nav-header">Roles and Permissions</li>
         {{-- @canany(['create_role', 'index_role']) --}}
