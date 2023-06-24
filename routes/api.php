@@ -38,14 +38,6 @@ Route::group(['middleware' => ['XSS', 'lang']], function () {
     Route::post('Filter', [ProjectController::class, 'filter'])->middleware('auth:sanctum');
     Route::apiResource('projects', ProjectController::class)->middleware('auth:sanctum');
 
-    // Route::post('/role/store', [RoleController::class, 'store']);
-    // Route::get('/role/delete/{id}', [RoleController::class, 'destroy']);
-    // Route::post('/role/update/{id}', [RoleController::class, 'update']);
-
-    // Route::post('/permission/store', [PermissionController::class, 'store']);
-    // Route::get('/permission/delete/{id}', [PermissionController::class, 'destroy']);
-    // Route::post('/permission/update/{id}', [PermissionController::class, 'update']);
-
     Route::get('/user/delete/{id}', [UserController::class, 'destroy']);
 
     Route::Post('auth/register', [AccessTokensController::class, 'register']);

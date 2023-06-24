@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CityRequest;
 use App\Models\City;
 use Illuminate\Http\Request;
 
 class CityController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +16,8 @@ class CityController extends Controller
      */
     public function index()
     {
-        //
+        $cities = City::paginate(10);
+        return view('cms.city.index')->with('cities', $cities);
     }
 
     /**
@@ -23,9 +26,10 @@ class CityController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CityRequest $request, City $city)
     {
-        //
+        $status = $city->create($request->all());
+        return redirect()->back()->with('status', $status);
     }
 
     /**
@@ -38,6 +42,12 @@ class CityController extends Controller
     {
         //
     }
+    public function edit(City $city)
+    {
+        return redirect()->back()->with('city', $city);
+    }
+
+
 
     /**
      * Update the specified resource in storage.
@@ -46,9 +56,10 @@ class CityController extends Controller
      * @param  \App\Models\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, City $city)
+    public function update(CityRequest $request, City $city)
     {
-        //
+        $status = $city->update($request->all());
+        return redirect()->back()->with('statusEdit', $status);
     }
 
     /**
@@ -59,6 +70,7 @@ class CityController extends Controller
      */
     public function destroy(City $city)
     {
-        //
+        $status = $city->delete();
+        return redirect()->back()->with('statusEdit', $status);
     }
 }

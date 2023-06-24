@@ -211,7 +211,7 @@
           </div>
         </div>
 
-        <!-- Sidebar Menu -->
+        {{-- <!-- Sidebar Menu -->
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
@@ -244,286 +244,239 @@
                   </a>
                 </li>
               </ul>
-            </li>
-
-
-            <li class="nav-header">Content Managment</li>
-            @canany(['Index-Speciality' , 'Create-Speciality' , 'Restore-Speciality'])
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-briefcase"></i>
-                <p>
-                  specialities
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                @can('Index-Speciality')
-                <li class="nav-item">
-                  <a href="{{route('specialities.index')}}" class="nav-link">
-                    <i class="nav-icon fas fa-th-list"></i>
-                    <p>Index</p>
-                  </a>
-                </li>
-                @endcan
-
-                @can('Create-Speciality')
-                <li class="nav-item">
-                  <a href="{{route('specialities.create')}}" class="nav-link">
-                    <i class="nav-icon fas fa-plus-circle"></i>
-                    <p>Create</p>
-                  </a>
-                </li>
-                @endcan
-
-                @can('Restore-Speciality')
-                <li class="nav-item">
-                  <a href="{{route('specialities.restore')}}" class="nav-link">
-                    <i class="nav-icon fas fa-trash-restore"></i>
-                    {{-- <i class=" fas fa-trash-can-arrow-up"></i> --}}
-                    <p>Restore</p>
-                  </a>
-                </li>
-                @endcan
-              </ul>
-            </li>
-            @endcanany
-
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-hammer"></i>
-                <p>
-                  professional
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="{{route('professional.index')}}" class="nav-link">
-                    <i class="nav-icon fas fa-th-list"></i>
-                    <p>Index</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{route('professional.create')}}" class="nav-link">
-                    <i class="nav-icon fas fa-plus-circle"></i>
-                    <p>Create</p>
-                  </a>
-                </li>
-
-                <li class="nav-item">
-                  <a href="{{route('professional.restore')}}" class="nav-link">
-                    <i class="nav-icon fas fa-trash-restore"></i>
-                    <p>Restore</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-
-
-
-            <li class="nav-header">Roles and Permissions</li>
-            {{-- @canany(['create_role', 'index_role']) --}}
-
-            @canany(['Create_Roles' , 'Delete_Roles' , 'Update_Roles' , 'Index_Roles'])
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-user-tag"></i>
-                <p>
-                  Roles
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                @can('Index_Roles')
-                <li class="nav-item">
-                  <a href="{{route('roles.index')}}" class="nav-link">
-                    <i class="nav-icon fas fa-th-list"></i>
-                    <p>Index</p>
-                  </a>
-                </li>
-                @endcan
-                @can('Create_Roles')
-                <li class="nav-item">
-                  <a href="{{route('roles.create')}}" class="nav-link">
-                    <i class="nav-icon fas fa-plus-circle"></i>
-
-                    <p>Create</p>
-                  </a>
-                </li>
-                @endCan
-
-              </ul>
-            </li>
-
-            @endcanany
-            @canany(['Create_Permissions' , 'Delete_Permissions' , 'Update_Permissions' , 'Index_Permissions'])
-
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-magic"></i>
-                <p>
-                  permissions
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                @can('Index_Permissions')
-                <li class="nav-item">
-                  <a href="{{route('permission.index')}}" class="nav-link">
-                    <i class="nav-icon fas fa-th-list"></i>
-                    <p>Index</p>
-                  </a>
-                </li>
-                @endcan
-                @can('Create_Permissions')
-                <li class="nav-item">
-                  <a href="{{route('permission.create')}}" class="nav-link">
-                    <i class="nav-icon fas fa-plus-circle"></i>
-                    <p>Create</p>
-                  </a>
-                </li>
-                @endcan
-
-              </ul>
-            </li>
-
-            @endcanany
-            <li class="nav-header">HR</li>
-            {{-- @canany(['create_role', 'index_role']) --}}
-
-
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-user-tag"></i>
-                <p>
-                  User
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                {{-- @can('index_role') --}}
-                <li class="nav-item">
-                  <a href="{{route('users.index')}}" class="nav-link">
-                    <i class="nav-icon fas fa-th-list"></i>
-                    <p>Index</p>
-                  </a>
-                </li>
-                {{-- @endcan --}}
-                {{-- @can('create_role') --}}
-                <li class="nav-item">
-                  <a href="{{route('users.create')}}" class="nav-link">
-                    <i class="nav-icon fas fa-plus-circle"></i>
-
-                    <p>Create</p>
-                  </a>
-                </li>
-                {{-- @endCan --}}
-
-              </ul>
-            </li>
-            {{-- @endcanany --}}
-
-
-            {{-- <li class="nav-item">
-              <a href="../calendar.html" class="nav-link">
-                <i class="nav-icon far fa-calendar-alt"></i>
-                <p>
-                  Calendar
-                  <span class="badge badge-info right">2</span>
-                </p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="../widgets.html" class="nav-link">
-                <i class="nav-icon fas fa-th"></i>
-                <p>
-                  Widgets
-                  <span class="right badge badge-danger">New</span>
-                </p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-copy"></i>
-                <p>
-                  Layout Options
-                  <i class="fas fa-angle-left right"></i>
-                  <span class="badge badge-info right">6</span>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="../layout/top-nav.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Top Navigation</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../layout/top-nav-sidebar.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Top Navigation + Sidebar</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../layout/boxed.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Boxed</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../layout/fixed-sidebar.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Fixed Sidebar</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../layout/fixed-sidebar-custom.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Fixed Sidebar <small>+ Custom Area</small></p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../layout/fixed-topnav.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Fixed Navbar</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../layout/fixed-footer.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Fixed Footer</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../layout/collapsed-sidebar.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Collapsed Sidebar</p>
-                  </a>
-                </li>
-              </ul>
             </li> --}}
 
 
-
-            <li class="nav-header">Setting</li>
-
+        <li class="nav-header">Content Managment</li>
+        @canany(['Index-Speciality' , 'Create-Speciality' , 'Restore-Speciality'])
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-briefcase"></i>
+            <p>
+              specialities
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            @can('Index-Speciality')
             <li class="nav-item">
-              <a href="cms/iframe.html" class="nav-link">
-                <i class="nav-icon fas fa-lock"></i>
-                <p>Change Password</p>
+              <a href="{{route('specialities.index')}}" class="nav-link">
+                <i class="nav-icon fas fa-th-list"></i>
+                <p>Index</p>
+              </a>
+            </li>
+            @endcan
+
+            @can('Create-Speciality')
+            <li class="nav-item">
+              <a href="{{route('specialities.create')}}" class="nav-link">
+                <i class="nav-icon fas fa-plus-circle"></i>
+                <p>Create</p>
+              </a>
+            </li>
+            @endcan
+
+            @can('Restore-Speciality')
+            <li class="nav-item">
+              <a href="{{route('specialities.restore')}}" class="nav-link">
+                <i class="nav-icon fas fa-trash-restore"></i>
+                {{-- <i class=" fas fa-trash-can-arrow-up"></i> --}}
+                <p>Restore</p>
+              </a>
+            </li>
+            @endcan
+          </ul>
+        </li>
+        @endcanany
+
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-hammer"></i>
+            <p>
+              professional
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{route('professional.index')}}" class="nav-link">
+                <i class="nav-icon fas fa-th-list"></i>
+                <p>Index</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{route('admin.logout')}}" class="nav-link">
-                <i class="nav-icon fas fa-sign-out-alt"></i>
-                <p>LogOut </p>
+              <a href="{{route('professional.create')}}" class="nav-link">
+                <i class="nav-icon fas fa-plus-circle"></i>
+                <p>Create</p>
               </a>
             </li>
 
+            <li class="nav-item">
+              <a href="{{route('professional.restore')}}" class="nav-link">
+                <i class="nav-icon fas fa-trash-restore"></i>
+                <p>Restore</p>
+              </a>
+            </li>
+          </ul>
+        </li>
 
+
+
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-hammer"></i>
+            <p>
+              City
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{route('cities.index')}}" class="nav-link">
+                <i class="nav-icon fas fa-th-list"></i>
+                <p>Index</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('professional.create')}}" class="nav-link">
+                <i class="nav-icon fas fa-plus-circle"></i>
+                <p>Create</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="{{route('professional.restore')}}" class="nav-link">
+                <i class="nav-icon fas fa-trash-restore"></i>
+                <p>Restore</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-header">Roles and Permissions</li>
+        {{-- @canany(['create_role', 'index_role']) --}}
+
+        @canany(['Create_Roles' , 'Delete_Roles' , 'Update_Roles' , 'Index_Roles'])
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-user-tag"></i>
+            <p>
+              Roles
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            @can('Index_Roles')
+            <li class="nav-item">
+              <a href="{{route('roles.index')}}" class="nav-link">
+                <i class="nav-icon fas fa-th-list"></i>
+                <p>Index</p>
+              </a>
+            </li>
+            @endcan
+            @can('Create_Roles')
+            <li class="nav-item">
+              <a href="{{route('roles.create')}}" class="nav-link">
+                <i class="nav-icon fas fa-plus-circle"></i>
+
+                <p>Create</p>
+              </a>
+            </li>
+            @endCan
 
           </ul>
+        </li>
+
+        @endcanany
+        @canany(['Create_Permissions' , 'Delete_Permissions' , 'Update_Permissions' , 'Index_Permissions'])
+
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-magic"></i>
+            <p>
+              permissions
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            @can('Index_Permissions')
+            <li class="nav-item">
+              <a href="{{route('permission.index')}}" class="nav-link">
+                <i class="nav-icon fas fa-th-list"></i>
+                <p>Index</p>
+              </a>
+            </li>
+            @endcan
+            @can('Create_Permissions')
+            <li class="nav-item">
+              <a href="{{route('permission.create')}}" class="nav-link">
+                <i class="nav-icon fas fa-plus-circle"></i>
+                <p>Create</p>
+              </a>
+            </li>
+            @endcan
+
+          </ul>
+        </li>
+
+        @endcanany
+        <li class="nav-header">HR</li>
+        {{-- @canany(['create_role', 'index_role']) --}}
+
+
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-user-tag"></i>
+            <p>
+              User
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            {{-- @can('index_role') --}}
+            <li class="nav-item">
+              <a href="{{route('users.index')}}" class="nav-link">
+                <i class="nav-icon fas fa-th-list"></i>
+                <p>Index</p>
+              </a>
+            </li>
+            {{-- @endcan --}}
+            {{-- @can('create_role') --}}
+            <li class="nav-item">
+              <a href="{{route('users.create')}}" class="nav-link">
+                <i class="nav-icon fas fa-plus-circle"></i>
+
+                <p>Create</p>
+              </a>
+            </li>
+            {{-- @endCan --}}
+
+          </ul>
+        </li>
+        {{-- @endcanany --}}
+
+
+
+
+
+        <li class="nav-header">Setting</li>
+
+        <li class="nav-item">
+          <a href="cms/iframe.html" class="nav-link">
+            <i class="nav-icon fas fa-lock"></i>
+            <p>Change Password</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{route('admin.logout')}}" class="nav-link">
+            <i class="nav-icon fas fa-sign-out-alt"></i>
+            <p>LogOut </p>
+          </a>
+        </li>
+
+
+
+        </ul>
         </nav>
         <!-- /.sidebar-menu -->
       </div>

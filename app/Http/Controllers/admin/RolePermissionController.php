@@ -42,7 +42,8 @@ class RolePermissionController extends Controller
         // dd($roleId);
         $roles = Role::where('id', $roleId)->select('guard_name')->get();
         // dd($roles[0]->guard_name);
-        $permissions = Permission::where('guard_name', $roles[0]->guard_name)->select('*')->paginate($this->elementEachPage());
+        $permissions = Permission::where('guard_name', $roles[0]->guard_name)
+        ->select('*')->paginate($this->elementEachPage());
         $rolePermissions = Role::findOrFail($roleId)->permissions;
         if (count($rolePermissions) > 0) {
             foreach ($permissions as $permission) {
