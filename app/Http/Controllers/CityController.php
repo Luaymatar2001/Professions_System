@@ -9,6 +9,18 @@ use Illuminate\Http\Request;
 class CityController extends Controller
 {
 
+    public function elementEachPage()
+    {
+        return 20;
+    }
+    public function countNumRow($id)
+    {
+        // $specialty = specialties::count();
+        $index = City::pluck('id')->search($id);
+        return $index;
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +28,7 @@ class CityController extends Controller
      */
     public function index()
     {
-        $cities = City::paginate(10);
+        $cities = City::paginate($this->elementEachPage());
         return view('cms.city.index')->with('cities', $cities);
     }
 
