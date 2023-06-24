@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\admin\CityController;
+use App\Http\Controllers\admin\ImageController;
 use App\Http\Controllers\admin\ProfessionController;
 use App\Http\Controllers\admin\RoleController;
 use App\Http\Controllers\admin\SpecialtiesController;
@@ -9,8 +11,6 @@ use App\Http\Controllers\admin\RolePermissionController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\UserPermissionController;
 use App\Http\Controllers\Api\AccessTokensController;
-use App\Http\Controllers\CityController;
-use App\Models\Admin;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -51,6 +51,7 @@ Route::prefix('admin')
         Route::post('/professional/restore/{id}', [ProfessionController::class, 'restore'])->name('professional.restore_process');
         Route::resource('/professional', ProfessionController::class);
         Route::resource('/cities', CityController::class);
+        Route::resource('/images', ImageController::class);
 
         //Role and Permission
         Route::get('/role/delete/{id}', [RoleController::class, 'destroy']);

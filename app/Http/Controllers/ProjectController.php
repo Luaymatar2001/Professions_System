@@ -26,6 +26,7 @@ class ProjectController extends Controller
             ->with('profession')
             ->with('profession.specialty')
             ->with('user')
+            ->with('images')
             ->where('accept', true)
             ->latest('updated_at')
             ->paginate(20);
@@ -55,6 +56,7 @@ class ProjectController extends Controller
             ->with('profession')
             ->with('profession.specialty')
             ->with('user')
+            ->with('images')
             ->where('accept', true)
             ->filter($request)
             ->latest('updated_at')

@@ -1,20 +1,37 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Image;
 use Illuminate\Http\Request;
 
 class ImageController extends Controller
 {
+    public function elementEachPage()
+    {
+        return 20;
+    }
+    public function countNumRow($id)
+    {
+        // $specialty = specialties::count();
+        $index = Image::pluck('id')->search($id);
+        return $index;
+    }
+
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Image $image)
     {
-        //
+        // $image_path  = $image->image_url;
+        // $image_path = $image_path . url('project_img/projects', 'public');
+        // $image->full_ = $image_path;
+        $images = Image::paginate($this->elementEachPage());
+        return view('cms.images.index')->with('images', $images);
     }
 
     /**
@@ -59,6 +76,7 @@ class ImageController extends Controller
      */
     public function destroy(Image $image)
     {
-        //
+        $status = $image->delete();
+        return redirect()->back()->with('status', $status);
     }
 }

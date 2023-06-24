@@ -28,10 +28,10 @@ class Image extends Model
         $this->belongsTo(gallery::class, 'gallery_id', 'id');
     }
 
-    public function image()
-    {
-        $this->hasMany(Image::class, 'gallery_id', 'id');
-    }
+    // public function image()
+    // {
+    //     $this->hasMany(Image::class, 'gallery_id', 'id');
+    // }
 
     public function getCheckActiveAttribute()
     {

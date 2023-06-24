@@ -319,6 +319,24 @@
             </li>
 
 
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-city"></i>
+                <p>
+                  Images
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{route('images.index')}}" class="nav-link">
+                    <i class="nav-icon fas fa-th-list"></i>
+                    <p>Index</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
             <li class="nav-header">Roles and Permissions</li>
             {{-- @canany(['create_role', 'index_role']) --}}
 
@@ -344,7 +362,6 @@
                 <li class="nav-item">
                   <a href="{{route('roles.create')}}" class="nav-link">
                     <i class="nav-icon fas fa-plus-circle"></i>
-
                     <p>Create</p>
                   </a>
                 </li>
@@ -411,7 +428,6 @@
                 <li class="nav-item">
                   <a href="{{route('users.create')}}" class="nav-link">
                     <i class="nav-icon fas fa-plus-circle"></i>
-
                     <p>Create</p>
                   </a>
                 </li>
