@@ -424,14 +424,7 @@
                   </a>
                 </li>
                 {{-- @endcan --}}
-                {{-- @can('create_role') --}}
-                <li class="nav-item">
-                  <a href="{{route('users.create')}}" class="nav-link">
-                    <i class="nav-icon fas fa-plus-circle"></i>
-                    <p>Create</p>
-                  </a>
-                </li>
-                {{-- @endCan --}}
+
 
               </ul>
             </li>
