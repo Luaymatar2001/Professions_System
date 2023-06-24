@@ -26,6 +26,10 @@ class CityController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function create()
+    {
+        return view('cms.city.create');
+    }
     public function store(CityRequest $request, City $city)
     {
         $status = $city->create($request->all());
@@ -44,7 +48,7 @@ class CityController extends Controller
     }
     public function edit(City $city)
     {
-        return redirect()->back()->with('city', $city);
+        return view('cms.city.edit')->with('city', $city);
     }
 
 
