@@ -92,7 +92,10 @@ class ProjectController extends Controller
 
             foreach ($imagesFiles as $image) {
 
-                $imagePath = $image->store('project_img/projects', 'local');
+                // $imagePath = $image->store('project_img/projects', 'public');
+                $imagePath = $image->store('project_image/projects', [
+                    'disk' => 'public'
+                ]);
                 $img = new Image();
                 $img->image_url = $imagePath;
                 $img->slug = $project->slug;

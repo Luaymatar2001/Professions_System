@@ -83,9 +83,9 @@ class AccessTokensController extends Controller
         //decode from base64 image
         $data = base64_decode($base64);
         $imageSize = getimagesizefromstring($data);
-        $path = "project_img/user_img/";
+        $path = "project_image/user_img/";
         $name = time() + rand(1, 1000) . "." . explode("/", $imageSize['mime'])[1];
-        Storage::disk('local')->put($path . $name,  $data);
+        Storage::disk('public')->put($path . $name,  $data);
 
         // if (!$validator->fails()) {
         //     return response()->json($validator->getMessageBag()->first(), 422);

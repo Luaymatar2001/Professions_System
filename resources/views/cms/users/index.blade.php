@@ -72,7 +72,10 @@
                                     <th>ID</th>
                                     <th>name</th>
                                     <th>email</th>
-                                    <th>permissions</th>
+                                    {{-- <th>permissions</th> --}}
+                                    <th>role</th>
+                                    <th>image</th>
+                                    <th>active</th>
                                     <th>Create At</th>
                                     <th>Updated At</th>
                                     <th>Settings</th>
@@ -86,10 +89,23 @@
                                 <tr id="ID{{ $user->id }}">
                                     <td>{{ $user->id }}</td>
                                     <td>{{ $user->name }}</td>
-
                                     <td>{{ $user->email}}</td>
-                                    <td><a href="" class="badge badge-info">{{ $user->permissions_count}}
-                                            permission/s</a></td>
+                                    <td> {{ $user->role}} </td>
+                                    <td>
+                                        <div class="checkbox icheck-primary">
+                                            <input type="checkbox" id="permission_{{$user->id}}"
+                                                onchange="updateUserActive({{$user->id}})" @if($user->active) checked
+                                            @endif
+                                            />
+                                            <label for="permission_{{$user->id}}"></label>
+                                        </div>
+                                    <td>
+                                        <a href="{{ $user->full_path }}" target="_blank" rel="noopener noreferrer">
+                                            <img src="{{ $user->full_path }}" width="70" alt="nothing image">
+                                        </a>
+                                    </td>
+                                    {{-- <td><a href="" class="badge badge-info">{{ $user->permissions_count}}
+                                    permission/s</a></td> --}}
                                     <td>{{ $user->created_at }}</td>
                                     <td>{{ $user->updated_at }}</td>
                                     <td>
@@ -151,9 +167,22 @@
         <!-- /.row -->
     </div>
     <script>
+        function updateUserActive($userId){
+    
+
+    fetch('https://phplaravel-1025967-3619615.cloudwaysapps.com/api/user/update/'+$userId).then(response =>{
+     console.log(response);
+    }).catch(response => {
+    console.log("Error : "+ response.error);
+    })
+    ;
+    
+    }
+
+
         function deleteDel(id){
     
-    fetch(`http://127.0.0.1:8000/api/user/delete/${id}` ).then(data => {
+    fetch(`https://phplaravel-1025967-3619615.cloudwaysapps.com/api/user/delete/${id}` ).then(data => {
 data.json().then(response =>{
              
         if (status == 404) {
@@ -179,7 +208,7 @@ data.json().then(response =>{
     })
     
     .catch(error => {
-    console.log("Error1:", error);
+    console.log("Error1:  ", error);
     });
    }
 

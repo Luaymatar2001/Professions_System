@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
 {
@@ -27,9 +28,7 @@ class ImageController extends Controller
      */
     public function index(Image $image)
     {
-        // $image_path  = $image->image_url;
-        // $image_path = $image_path . url('project_img/projects', 'public');
-        // $image->full_ = $image_path;
+
         $images = Image::paginate($this->elementEachPage());
         return view('cms.images.index')->with('images', $images);
     }
@@ -77,6 +76,8 @@ class ImageController extends Controller
     public function destroy(Image $image)
     {
         $status = $image->delete();
+
+        Storage::disk('public')->delete($image->image_url);
         return redirect()->back()->with('status', $status);
     }
 }

@@ -34,11 +34,14 @@ Route::get('/user', function (Request $request) {
 Route::group(['middleware' => ['XSS', 'lang']], function () {
     Route::apiResource('about', AboutController::class);
 
+
+
     Route::get('data_project', [ProjectController::class, 'dataProject'])->middleware('auth:sanctum');
     Route::post('Filter', [ProjectController::class, 'filter'])->middleware('auth:sanctum');
     Route::apiResource('projects', ProjectController::class)->middleware('auth:sanctum');
 
     Route::get('/user/delete/{id}', [UserController::class, 'destroy']);
+    Route::get('/user/update/{id}', [UserController::class, 'update']);
 
     Route::Post('auth/register', [AccessTokensController::class, 'register']);
     //يجب أن يكون مضيف لعمل إضافة للبيانات

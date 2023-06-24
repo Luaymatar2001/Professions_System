@@ -111,9 +111,17 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
-        //
+        $user = User::find($id);
+        $active = $user->active ? '0' : '1';
+        $user->active = $active;
+        $status = $user->save();
+        if ($status) {
+            return response()->json(['message' => 'success'], 200);
+        } else {
+            return response()->json(['error' => 'dd'], 400);
+        }
     }
 
     /**
@@ -124,6 +132,11 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $status = User::destroy($id);
+        if ($status) {
+            return response()->json(['message' => 'Success for delete'], 200);
+        } else {
+            return response()->json(['error' => 'Something went wrong'], 400);
+        }
     }
 }

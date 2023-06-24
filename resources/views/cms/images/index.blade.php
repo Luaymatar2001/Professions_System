@@ -88,12 +88,17 @@
                                 <tr id="ID{{ $image->id }}">
                                     <td>{{ $image->id }}</td>
                                     {{-- <td>{{ $image->full_path }}</td> --}}
-                                    <img src="{{ $image->full_path }}" alt="nothing image">
+                                    <td>
+                                        <a href="{{ $image->full_path }}" target="_blank" rel="noopener noreferrer">
+                                            <img src="{{ $image->full_path }}" width="60" alt="nothing image">
+                                        </a>
+
+                                    </td>
                                     <td>
                                         @if ($image->accept)
-                                        <span class="badge bg-success"> Accept</span>
+                                        <span class="badge bg-success">{{$image->check_active}}</span>
                                         @else
-                                        <span class="badge bg-danger"> block </span>
+                                        <span class="badge bg-danger"> {{$image->check_active}} </span>
                                         @endif
                                         </span>
                                     </td>
@@ -110,10 +115,8 @@
                                     <td>{{ $image->updated_at }}</td>
                                     <td>
                                         <div class="btn-group">
-                                            <a href="{{route('images.edit',$image->id)}}" class="btn btn-info">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-                                            <form method="POST" action="{{route('images.destroy',$image->id)}}" ,
+
+                                            <form method="POST" action="{{route('images.destroy',$image->slug)}}" ,
                                                 id="sub_Delete{{$image->id}}">
                                                 @csrf
                                                 @method('DELETE')

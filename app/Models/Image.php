@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
@@ -16,7 +17,7 @@ class Image extends Model
     protected $appends = ['check_active', 'full_path'];
     protected $guarded = ["id"];
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
-    protected $fillable = ['image_url',  'galleries_id', 'accept', 'reject_reason'];
+    protected $fillable = ['image_url', 'accept', 'reject_reason'];
 
     public function imageable(): MorphTo
     {
@@ -55,8 +56,9 @@ class Image extends Model
     public function getFullPathAttribute()
     {
         if ($this->image_url) {
-            return url('project_img/projects', [
-                'image' => $this->image,
+            // return Storage::disk('public')->url($this->image_url);
+            return url('app/public', [
+                'image' => $this->image_url,
             ]);
         }
         return 'http://via.placeholder.com/80x80';

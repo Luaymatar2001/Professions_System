@@ -18,12 +18,16 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    protected $append = ['full_path'];
     protected $fillable = [
         'name',
         'email',
         'password',
-        'image'
+        'image',
+        'active'
     ];
+
+
 
 
     /**
@@ -47,4 +51,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getFullPathAttribute()
+    {
+        if ($this->image) {
+            return url('app/public', [
+                'image' => $this->image,
+            ]);
+        }
+        return 'http://via.placeholder.com/80x80';
+    }
 }
