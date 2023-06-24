@@ -48,6 +48,7 @@ class CityController extends Controller
     }
     public function edit(City $city)
     {
+
         return view('cms.city.edit')->with('city', $city);
     }
 
@@ -63,7 +64,8 @@ class CityController extends Controller
     public function update(CityRequest $request, City $city)
     {
         $status = $city->update($request->all());
-        return redirect()->back()->with('statusEdit', $status);
+        $pageNum = ceil($this->countNumRow($city->id) / $this->elementEachPage());
+        return redirect()->route('specialities.index')->with(['statusEdit' => $status, 'id' => $city->id, 'pageNumber' => $pageNum]);
     }
 
     /**
