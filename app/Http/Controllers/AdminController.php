@@ -82,6 +82,8 @@ class AdminController extends Controller
     }
     public function index()
     {
+
+        $this->authorize('viewAny', Admin::class);
         $data = Admin::paginate($this->elementEachPage());
         return view('cms.admin.index')->with('admins', $data);
     }
