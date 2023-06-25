@@ -430,8 +430,10 @@
               </ul>
             </li>
             {{-- @endcanany --}}
+            @canany(['Update_Admin', 'Create_Admin' , 'Delete_Admin' , 'Index_Admin'])
 
             <li class="nav-item">
+
               <a href="#" class="nav-link">
                 {{-- <i class="nav-icon fas fa-users"></i> --}}
                 <i class="nav-icon fas fa-user-tie"></i>
@@ -441,25 +443,26 @@
                 </p>
               </a>
               <ul class="nav nav-treeview">
-                {{-- @can('index_role') --}}
+                @can('Index_Admin')
                 <li class="nav-item">
                   <a href="{{route('admins.index')}}" class="nav-link">
                     <i class="nav-icon fas fa-th-list"></i>
                     <p>Index</p>
                   </a>
                 </li>
-                {{-- @endcan --}}
+                @endcan
+                @can('Create_Admin')
                 <li class="nav-item">
                   <a href="{{route('admins.create')}}" class="nav-link">
                     <i class="nav-icon fas fa-plus-circle"></i>
                     <p>create</p>
                   </a>
                 </li>
+                @endcan
 
               </ul>
             </li>
-            {{-- admins.index --}}
-
+            @endcanany
 
 
 
