@@ -336,7 +336,8 @@
                 </li>
               </ul>
             </li>
-
+            @canany(['Create_Permissions' , 'Delete_Permissions' , 'Update_Permissions' , 'Index_Permissions'
+            ,'Create_Roles' , 'Delete_Roles' , 'Update_Roles' , 'Index_Roles'])
             <li class="nav-header">Roles and Permissions</li>
             {{-- @canany(['create_role', 'index_role']) --}}
 
@@ -402,6 +403,7 @@
               </ul>
             </li>
 
+            @endcanany
             @endcanany
             <li class="nav-header">HR</li>
             {{-- @canany(['create_role', 'index_role']) --}}
