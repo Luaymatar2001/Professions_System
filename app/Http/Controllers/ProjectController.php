@@ -126,7 +126,16 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        //
+        $projects = $project::with('worker')
+            ->with('profession')
+            ->with('profession.specialty')
+            ->with('user')
+            ->with('images')
+            ->where('accept', true)->first();
+        if (!$projects) {
+            return response()->json(['message' => 'empty projects !'], 400);
+        }
+        return response()->json(['message' => $projects], 200);
     }
 
     /**

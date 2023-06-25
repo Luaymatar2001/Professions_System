@@ -74,8 +74,8 @@
                                     <th>email</th>
                                     {{-- <th>permissions</th> --}}
                                     <th>role</th>
-                                    <th>image</th>
                                     <th>active</th>
+                                    <th>image</th>
                                     <th>Create At</th>
                                     <th>Updated At</th>
                                     <th>Settings</th>
