@@ -4,9 +4,9 @@
 
 @endsection
 
-@section('title', 'city')
+@section('title', 'admin')
 @section('page-title', 'Index')
-@section('small-title', 'city Index')
+@section('small-title', 'admin Index')
 
 @section('content')
 <section class="content">
@@ -23,9 +23,9 @@
                                     $page ='{{session("pageNumber")}}';
                                     
                                     if ($page == 0) {
-                              window.location.href = 'http://127.0.0.1:8000/admin/cities'+'#ID'+$id;
+                              window.location.href = 'http://127.0.0.1:8000/admin/admins'+'#ID'+$id;
                                     }else{
-                              window.location.href = 'http://127.0.0.1:8000/admin/cities?page='+$page+'#ID'+$id;
+                              window.location.href = 'http://127.0.0.1:8000/admin/admins?page='+$page+'#ID'+$id;
                                     }
                                 // $('html, body').animate({ scrollTop: offset }, 'slow'); 
                                     // myElement = document.getElementById('#ID'+$id);
@@ -40,7 +40,7 @@
         </script>
         @else
         <script>
-            swal("Faild to add new cities", {
+            swal("Faild to add new admins", {
                                 className: "red-bg",
                             });
         </script>
@@ -76,6 +76,8 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>name</th>
+                                    <th>email</th>
+                                    <th>role name</th>
                                     <th>Create At</th>
                                     <th>Updated At</th>
                                     <th>Settings</th>
@@ -85,30 +87,32 @@
                             <tbody>
 
 
-                                @foreach ($cities as $city)
+                                @foreach ($admins as $admin)
 
-                                <tr id='ID{{ $city->id }}'>
+                                <tr id='ID{{ $admin->id }}'>
 
-                                    <td>{{ $city->id }}</td>
-                                    <td>{{ $city->name }}</td>
+                                    <td>{{ $admin->id }}</td>
+                                    <td>{{ $admin->name }}</td>
+                                    <td>{{ $admin->email }}</td>
+                                    <td>{{ $admin->role_name }}</td>
 
-                                    <td>{{ $city->created_at }}</td>
-                                    <td>{{ $city->updated_at }}</td>
+                                    <td>{{ $admin->created_at }}</td>
+                                    <td>{{ $admin->updated_at }}</td>
                                     <td>
                                         <div class="btn-group">
-                                            <a href="{{route('cities.edit',$city->id)}}" class="btn btn-info">
+                                            <a href="{{route('admins.edit',$admin->id)}}" class="btn btn-info">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <form method="POST" action="{{route('cities.destroy',$city->id)}}" ,
-                                                id="sub_Delete{{$city->id}}">
+                                            <form method="POST" action="{{route('admins.destroy',$admin->id)}}" ,
+                                                id="sub_Delete{{$admin->id}}">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger delete{{$city->id}}">
+                                                <button type="submit" class="btn btn-danger delete{{$admin->id}}">
                                                     <i class="fas fa-trash-alt"></i>
                                                 </button>
                                                 <script>
                                                     // swal library use for ask user are soure for make delete process
-                                                    $('.delete{{$city->id}}').click(function(e){
+                                                    $('.delete{{$admin->id}}').click(function(e){
                                                           e.preventDefault()
                                                                let confirm =swal("Are you sure delete this record ?", {
                                                                dangerMode: true,
@@ -120,7 +124,7 @@
                                                                          },
                                                                         },  }).then(function(e){
                                                                      if(e == "ok"){
-                                                                      $('#sub_Delete{{$city->id}}').submit();
+                                                                      $('#sub_Delete{{$admin->id}}').submit();
                                                                    }
                                                                });
                                                         });
@@ -138,13 +142,13 @@
                     <div class="container">
                         <hr>
                         <div class="row">
-                            <div class="hint-text col-10"><b> {{ $cities->count() }}</b> items out of
-                                <b>{{ $cities->total() }}</b> in
-                                <b>{{ $cities->lastPage() }}</b> pages
+                            <div class="hint-text col-10"><b> {{ $admins->count() }}</b> items out of
+                                <b>{{ $admins->total() }}</b> in
+                                <b>{{ $admins->lastPage() }}</b> pages
                             </div>
                             <!-- 2 items out of 100 in 10 pages -->
                             <div class="col-1" style="border :10px;">
-                                {{ $cities->links() }}
+                                {{ $admins->links() }}
                             </div>
                         </div>
                     </div>
@@ -165,15 +169,15 @@
                   $(document).ready(function(){
                     $('#'+ID).animate({
                        backgroundColor: '#A9A9A9',
-                        opacity: "toggle"
+                        opaadmin: "toggle"
                   }, 700, "swing" ,function(){
                 $('#'+ID).animate({backgroundColor: '#ffffff',
-                opacity: "toggle"},700);
+                opaadmin: "toggle"},700);
                 })
                  });
                         setTimeout(() => {
                         myElement.style.backgroundColor = '';
-                        }, 3000 );
+                        }, 2000 );
 
 
                     

@@ -120,7 +120,7 @@ class UserController extends Controller
         if ($status) {
             return response()->json(['message' => 'success'], 200);
         } else {
-            return response()->json(['error' => 'dd'], 400);
+            return response()->json(['error' => $status], 400);
         }
     }
 

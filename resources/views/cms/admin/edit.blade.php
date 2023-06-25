@@ -45,14 +45,14 @@
 
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form method="POST" action="{{ route('cities.update',[$city->id])}}">
+                    <form method="POST" action="{{ route('admins.update',[$admin->id])}}">
                         @csrf
                         @method('PUT')
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="title">name</label>
-                                <input type="text" class="form-control" id="title" name="name" placeholder="Enter Name"
-                                    value="{{ $city->name }}">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" value="{{old('name' ,$admin->name )}}" id="name"
+                                    name="name" placeholder="Enter Name">
                                 @error('name')
                                 <div class="col-sm-3">
                                     <small id="passwordHelp" class="text-danger">
@@ -62,19 +62,67 @@
                                 @enderror
                             </div>
 
-                        </div>
-                        <!-- /.card-body -->
+                            <div class="form-group">
+                                <label for="email">email</label>
+                                <input type="text" value="{{old('email' , $admin->email)}}" class="form-control"
+                                    id="email" name="email" placeholder="Enter Email">
+                                @error('email')
+                                <div class="col-sm-3">
+                                    <small id="passwordHelp" class="text-danger">
+                                        {{ $message }}
+                                    </small>
+                                </div>
+                                @enderror
+                            </div>
 
-                        <div class="card-footer">
-                            <button type="submit" class="btn btn-primary">Store</button>
+                            <div class="form-group">
+                                <label for="password">password</label>
+                                <input type="text" value="{{old('password')}}" class="form-control" id="password"
+                                    name="password"
+                                    placeholder="Enter password  If you want to leave the password as is, leave it blank">
+                                @error('password')
+                                <div class="col-sm-3">
+                                    <small id="passwordHelp" class="text-danger">
+                                        {{ $message }}
+                                    </small>
+                                </div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                {{-- <label for="title">Name</label>
+                                                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name"> --}}
+                                <label for="title">type of admin</label>
+                                <select name="role_name" id="role_name" class="form-control">
+                                    @foreach($type_admin as $type_admins)
+                                    <option value="{{$type_admins}}" @selected(old('role_name')==$type_admins)>
+                                        {{$type_admins}}</option>
+                                    @endforeach
+                                </select>
+                                @error('role_name')
+                                <div class="col-sm-3">
+                                    <small id="passwordHelp" class="text-danger">
+                                        {{ $message }}
+                                    </small>
+                                </div>
+                                @enderror
+                            </div>
+
                         </div>
-                    </form>
+
                 </div>
-                <!-- /.card -->
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Store</button>
+                </div>
+                </form>
             </div>
-            <!--/.col (left) -->
+            <!-- /.card -->
         </div>
-        <!-- /.row -->
+        <!--/.col (left) -->
+    </div>
+    <!-- /.row -->
     </div><!-- /.container-fluid -->
 </section>
 <!-- /.content -->

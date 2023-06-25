@@ -409,7 +409,8 @@
 
             <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-user-tag"></i>
+                <i class="nav-icon fas fa-users"></i>
+                {{-- <i class="nav-icon fas fa-user-tag"></i> --}}
                 <p>
                   User
                   <i class="fas fa-angle-left right"></i>
@@ -430,6 +431,34 @@
             </li>
             {{-- @endcanany --}}
 
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                {{-- <i class="nav-icon fas fa-users"></i> --}}
+                <i class="nav-icon fas fa-user-tie"></i>
+                <p>
+                  Admin
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                {{-- @can('index_role') --}}
+                <li class="nav-item">
+                  <a href="{{route('admins.index')}}" class="nav-link">
+                    <i class="nav-icon fas fa-th-list"></i>
+                    <p>Index</p>
+                  </a>
+                </li>
+                {{-- @endcan --}}
+                <li class="nav-item">
+                  <a href="{{route('admins.create')}}" class="nav-link">
+                    <i class="nav-icon fas fa-plus-circle"></i>
+                    <p>create</p>
+                  </a>
+                </li>
+
+              </ul>
+            </li>
+            {{-- admins.index --}}
 
 
 

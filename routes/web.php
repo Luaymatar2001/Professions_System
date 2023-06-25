@@ -52,6 +52,7 @@ Route::prefix('admin')
         Route::resource('/professional', ProfessionController::class);
         Route::resource('/cities', CityController::class);
         Route::resource('/images', ImageController::class);
+        Route::resource('dashBoard/admins', AdminController::class);
 
         //Role and Permission
         Route::get('/role/delete/{id}', [RoleController::class, 'destroy']);

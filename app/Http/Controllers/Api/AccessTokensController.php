@@ -86,7 +86,6 @@ class AccessTokensController extends Controller
         $path = "project_image/user_img/";
         $name = time() + rand(1, 1000) . "." . explode("/", $imageSize['mime'])[1];
         Storage::disk('public')->put($path . $name,  $data);
-
         // if (!$validator->fails()) {
         //     return response()->json($validator->getMessageBag()->first(), 422);
         // }

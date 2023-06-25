@@ -11,4 +11,10 @@ use Spatie\Permission\Traits\HasRoles;
 class Admin extends Authenticatable
 {
     use HasFactory, Notifiable, HasRoles;
+
+    protected $fillable = ['name', 'email', 'password', 'role_name'];
+    public const type_admin = [
+        'hight level admin' => "hight level admin",
+        'normal admin' => "normal admin"
+    ];
 }

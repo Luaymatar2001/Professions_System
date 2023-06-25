@@ -10,6 +10,7 @@ use App\Models\Project;
 use App\Models\specialties;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -91,11 +92,11 @@ class ProjectController extends Controller
             $imagesFiles = $request->file('images');
 
             foreach ($imagesFiles as $image) {
-
                 // $imagePath = $image->store('project_img/projects', 'public');
-                $imagePath = $image->store('project_image/projects', [
-                    'disk' => 'public'
-                ]);
+                // $imagePath = $image->store('project_image/projects', [
+                //     'disk' => 'public'
+                // ]);
+                $imagePath = Storage::disk('public')->put('project_img/projects',  $image);
                 $img = new Image();
                 $img->image_url = $imagePath;
                 $img->slug = $project->slug;
