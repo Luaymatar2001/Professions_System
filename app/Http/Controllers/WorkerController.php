@@ -108,25 +108,30 @@ class WorkerController extends Controller
      * @param  \App\Models\Worker  $worker
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Worker $worker)
+    public function update(Request $request, $slug)
     {
+        $worker = Worker::where('slug', $slug)->first();
         // Storage::disk('local')->delete($worker->cover_image);
 
         //The shortcut process loads the image on every update
-        if (Storage::disk('local')->exists('app/' . $worker->cover_image)) {
-            Storage::disk('local')->delete('app/' . $worker->cover_image);
+        if (Storage::disk('local')->exists($worker->cover_image)) {
+            Storage::disk('local')->delete($worker->cover_image);
         }
-        // $filePath = storage_path('app/' . $worker->CV);
-        $filePath = Storage::disk('local')->delete('app/' . $worker->CV);
-        // if (Storage::disk('local')->exists($filePath)) {
-        // Storage::disk('local')->delete($filePath);
-        // }
+        //تدخل مباشرة على ملف ال App
+        if (Storage::disk('local')->exists($worker->CV)) {
+            Storage::disk('local')->delete($worker->CV);
+        }
+
+
+
 
 
         $image = $request->file('cover_image');
-        $path = "project_img/cover_img/";
-        $name = time() + rand(1, 1000) . "." . $image->getClientOriginalExtension();
-        Storage::disk('local')->put($path . $name,  file_get_contents($image));
+        if (isset($image)) {
+            $path = "project_img/cover_img/";
+            $name = time() + rand(1, 1000) . "." . $image->getClientOriginalExtension();
+            Storage::disk('local')->put($path . $name,  file_get_contents($image));
+        }
         //  $this->URLFile($request->file('cover_image'));
         $worker->professional_experience = $request['professional_experience'];
         $worker->cover_image  = $path . $name;
@@ -138,11 +143,12 @@ class WorkerController extends Controller
         $worker->profession_id = $request['profession_id'];
         $worker->phone_number = $request['phone_number'];
         $file = $request->file('CV');
-        $pathFile = "project_img/Files/";
-        $nameFile = time() + rand(1, 1000) . "." . $file->getClientOriginalExtension();
-        Storage::disk('local')->put($pathFile . $nameFile,  file_get_contents($file));
-        $worker->CV = $pathFile . $nameFile;
-
+        if (isset($file)) {
+            $pathFile = "project_img/Files/";
+            $nameFile = time() + rand(1, 1000) . "." . $file->getClientOriginalExtension();
+            Storage::disk('local')->put($pathFile . $nameFile,  file_get_contents($file));
+            $worker->CV = $pathFile . $nameFile;
+        }
         $status = $worker->save();
 
         if ($status) {
@@ -163,6 +169,10 @@ class WorkerController extends Controller
         if (Storage::disk('local')->exists($worker->cover_image)) {
             Storage::disk('local')->delete($worker->cover_image);
         }
+        if (Storage::disk('local')->exists($worker->CV)) {
+            Storage::disk('local')->delete($worker->CV);
+        }
+
         $result = $worker::destroy($worker->id);
         if ($worker) {
             return response()->json(['message' => 'success for DELETE Process', 'data' => $result], 200);
