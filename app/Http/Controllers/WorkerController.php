@@ -118,7 +118,6 @@ class WorkerController extends Controller
     {
         $worker = Worker::where('slug', $slug)->first();
         // Storage::disk('local')->delete($worker->cover_image);
-
         //The shortcut process loads the image on every update
         if (Storage::disk('local')->exists($worker->cover_image)) {
             Storage::disk('local')->delete($worker->cover_image);
@@ -170,16 +169,16 @@ class WorkerController extends Controller
      * @param  \App\Models\Worker  $worker
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Worker $worker)
+    public function destroy($slug)
     {
+        $worker = Worker::where('slug', $slug)->first();
+
         if (Storage::disk('local')->exists($worker->cover_image)) {
             Storage::disk('local')->delete($worker->cover_image);
         }
         if (Storage::disk('local')->exists($worker->CV)) {
             Storage::disk('local')->delete($worker->CV);
         }
-
-
         $result = $worker::destroy($worker->id);
         Auth::user()->role = 0;
         if ($worker) {

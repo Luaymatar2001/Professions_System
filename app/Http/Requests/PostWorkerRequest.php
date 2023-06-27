@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\base64image;
+
 use Illuminate\Contracts\Validation\Rule;
 
 class PostWorkerRequest extends FormRequest
@@ -30,7 +32,7 @@ class PostWorkerRequest extends FormRequest
             //
             'professional_experience' => 'required|string',
             // 'cover_image' => 'required|mimes:jpg,png,jpeg,gif,svg|max:2048',
-            'cover_image' => 'required|base64image',
+            'cover_image' => ['required', new base64image],
             'id_number' => 'required|numeric|digits_between:7,12',
             'address' => 'required|string',
             'experience_year' => 'required|min:1',
