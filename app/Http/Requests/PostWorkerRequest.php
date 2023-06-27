@@ -34,7 +34,7 @@ class PostWorkerRequest extends FormRequest
             'id_number' => 'required|numeric|digits_between:7,12',
             'address' => 'required|string',
             'experience_year' => 'required|min:1',
-            'password' => 'required|min:6',
+            // 'password' => 'required|min:6',
             'user_id' => 'required|min:1',
             'profession_id' => 'required|min:1',
             'phone_number' => 'required|regex:/^\+\d+/',

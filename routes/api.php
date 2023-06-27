@@ -9,6 +9,7 @@ use App\Http\Controllers\admin\SpecialtiesController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\WorkerController;
 use App\Http\Controllers\Api\AccessTokensController;
+use App\Http\Controllers\offerController;
 use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\ProjectController;
 
@@ -38,7 +39,12 @@ Route::group(['middleware' => ['XSS', 'lang']], function () {
 
     Route::get('data_project', [ProjectController::class, 'dataProject'])->middleware('auth:sanctum');
     Route::post('Filter', [ProjectController::class, 'filter'])->middleware('auth:sanctum');
+    Route::get('offer/{slug}', [ProjectController::class, 'offer'])->middleware(['auth:sanctum', 'checkOuthViewProject']);
     Route::apiResource('projects', ProjectController::class)->middleware('auth:sanctum');
+    Route::post('offers/{offer}', [offerController::class, 'update'])->middleware(['auth:sanctum', 'AlowEditWithOffer']);
+    Route::delete('offers/{offer}', [offerController::class, 'delete'])->middleware(['auth:sanctum', 'AlowEditWithOffer']);
+    Route::apiResource('offers', offerController::class)->middleware(['auth:sanctum', 'checkOuthViewProject']);
+    Route::get('/email/register', [WorkerController::class, 'sendEmailRegister'])->middleware(['auth:sanctum', 'checkIfAlreadyWorker'])->name('email.register');
 
     Route::get('/user/delete/{id}', [UserController::class, 'destroy']);
     Route::get('/user/update/{id}', [UserController::class, 'update']);
@@ -47,6 +53,11 @@ Route::group(['middleware' => ['XSS', 'lang']], function () {
     //يجب أن يكون مضيف لعمل إضافة للبيانات
     Route::post('auth/access-tokens', [AccessTokensController::class, 'store'])->middleware('guest');
     Route::get('auth/logout/{token?}', [AccessTokensController::class, 'destroy'])->middleware('auth:sanctum');
+
+    // Route::get('worker/show/{slug}', [SpecialtiesController::class, 'show']);
+    Route::Post('worker/update/{slug}', [WorkerController::class, 'update']);
+    // Route::post('worker/delete/{slug}', [SpecialtiesController::class, 'destroy']);
+    Route::apiResource('worker', WorkerController::class);
 });
 
 // Route::Post('auth/token', [AccessTokensController::class, 'store']);

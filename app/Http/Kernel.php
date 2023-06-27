@@ -66,5 +66,8 @@ class Kernel extends HttpKernel
         'lang' => \App\Http\Middleware\CheckLangParam::class,
         'XSS' => \App\Http\Middleware\XSS::class,
         'roleAdmin' => \App\Http\Middleware\addRole::class,
+        'checkOuthViewProject' => \App\Http\Middleware\checkautheVirwSpecificProject::class,
+        'AlowEditWithOffer' => \App\Http\Middleware\AlowEditWithOffer::class,
+        'checkIfAlreadyWorker' => \App\Http\Middleware\checkIfAlreadyWorker::class,
     ];
 }

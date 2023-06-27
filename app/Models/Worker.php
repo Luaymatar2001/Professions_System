@@ -5,17 +5,32 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
+
 // use Spatie\Sluggable\HasSlug;
 // use Spatie\Sluggable\SlugOptions;
 
 class Worker extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, HasSlug;
     protected $guarded = ["id"];
     protected $hidden = [
         'created_at', 'updated_at', 'deleted_at'
     ];
-    protected $fillable = ['professional_experience', 'cover_image', 'id_number', 'address', 'experience_year', 'password', 'user_id', 'profession_id'];
+
+    protected $appends = ['path_image', 'path_file'];
+    protected $fillable = [
+        'professional_experience',
+        'cover_image',
+        'id_number',
+        'address',
+        'experience_year',
+        'user_id',
+        'profession_id',
+        'CV'
+    ];
 
 
     public function profession()
@@ -25,5 +40,42 @@ class Worker extends Model
     public function gallery()
     {
         $this->hasOne(gallery::class, 'worker_id', 'id');
+    }
+
+    public function getSlugOptions(): SlugOptions
+    {
+        //Build slug from name column and store slug column max length 255 and skip slug when deleted_at null
+
+        return SlugOptions::create()
+            ->generateSlugsFrom(['id_number'])
+            ->saveSlugsTo('slug')
+            ->slugsShouldBeNoLongerThan(10)
+            ->skipGenerateWhen(fn () => $this->deleted_at !== null);
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+    public function getPathImageAttribute($key)
+    {
+        if (!Storage::disk('local')->exists($this->cover_image)) {
+            return 'http://via.placeholder.com/80x80';
+        }
+
+        return storage_path('app/' . $this->cover_image);
+    }
+
+    public function getPathFileAttribute($key)
+    {
+        $filePath = storage_path('app/' . $this->CV);
+
+        // if (Storage::disk('local')->exists($filePath)) {
+        //     //ترجع محتوى
+        //     $fileContents = Storage::disk('local')->get($filePath);
+        //     // Process the file contents as needed
+        //     return $fileContents;
+        // }
+        return $filePath;
     }
 }

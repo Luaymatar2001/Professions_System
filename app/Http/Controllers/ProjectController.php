@@ -96,7 +96,7 @@ class ProjectController extends Controller
                 // $imagePath = $image->store('project_image/projects', [
                 //     'disk' => 'public'
                 // ]);
-                $imagePath = Storage::disk('public')->put('project_img/projects',  $image);
+                $imagePath = Storage::disk('public')->put('project_image/projects',  $image);
                 $img = new Image();
                 $img->image_url = $imagePath;
                 $img->slug = $project->slug;
@@ -124,18 +124,23 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function show(Project $project)
+    public function offer($project)
     {
-        $projects = $project::with('worker')
+        //يحصل مشكلة عند أستخدام المودل الأصلية المرجعة من عملة الراوت
+        $projects = Project::where('slug', $project)
+            ->with('worker')
+            ->with('images')
+            ->with('offer')
             ->with('profession')
             ->with('profession.specialty')
             ->with('user')
-            ->with('images')
-            ->where('accept', true)->first();
+            ->where('accept', true)
+            ->firstOrFail();
+
         if (!$projects) {
             return response()->json(['message' => 'empty projects !'], 400);
         }
-        return response()->json(['message' => $projects], 200);
+        return response()->json(['data' => $projects], 200);
     }
 
     /**
@@ -145,7 +150,7 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Project $project)
+    public function update(Request $request, $slug)
     {
     }
 
@@ -155,8 +160,22 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Project $project)
+    public function destroy($project)
     {
-        //
+        $projects = Project::where('slug', $project)->with('images')->first();
+        if ($projects) {
+            $images = $projects->images;
+
+            foreach ($images as $image) {
+                // Delete the image file from storage if needed
+                Storage::disk('public')->delete($image->image_url);
+
+                $image->delete(); // Delete the image record from the database
+            }
+
+            $projects->delete(); // Delete the project record from the database
+        }
+
+        return response()->json(['message' => "success for delete the project and related images", 'data' => $projects], 200);
     }
 }

@@ -36,6 +36,12 @@ class Project extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+    public function offer()
+    {
+        // fk ->pk
+        return $this->hasMany(Offer::class, 'project_id', 'id');
+    }
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
