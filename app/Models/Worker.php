@@ -33,6 +33,10 @@ class Worker extends Model
     ];
 
 
+    public function user() {
+        return $this->belongsTo(User::class , 'user_id' , 'id');
+    }
+
     public function profession()
     {
         $this->belongsTo(Profession::class, 'profession_id', 'id');

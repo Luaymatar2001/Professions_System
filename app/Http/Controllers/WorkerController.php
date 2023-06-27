@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostWorkerRequest;
+use App\Models\User;
 use App\Models\Worker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -65,7 +66,7 @@ class WorkerController extends Controller
         $worker->address = $request['address'];
         $worker->experience_year = $request['experience_year'];
         // $worker->password = $request['password'];
-        $worker->user_id = $request['user_id'];
+        $worker->user_id = Auth::user()->id;
         $worker->profession_id = $request['profession_id'];
         $worker->phone_number = $request['phone_number'];
         $file = $request->file('CV');
@@ -77,6 +78,10 @@ class WorkerController extends Controller
         }
 
         $status = $worker->save();
+        $user = User::where('id', Auth::user()->id)->first();
+        // $user->update(['role' => 1]);
+        $user->role = '1';
+        $user->save();
         // $status = Worker::create($request->except('cover_image'), ['cover_image' => $path . $name]);
 
         if ($status) {
@@ -92,10 +97,11 @@ class WorkerController extends Controller
      * @param  \App\Models\Worker  $worker
      * @return \Illuminate\Http\Response
      */
-    public function show(Worker $worker)
+    public function show($slug)
     {
+        $worker = Worker::where('slug', $slug)->with('user')->first();
         if ($worker) {
-            return response()->json($worker, 200);
+            return response()->json(['data' => $worker], 200);
         } else {
             return response()->json(['message' => 'not find this specialties '], 500);
         }
@@ -173,7 +179,9 @@ class WorkerController extends Controller
             Storage::disk('local')->delete($worker->CV);
         }
 
+
         $result = $worker::destroy($worker->id);
+        Auth::user()->role = 0;
         if ($worker) {
             return response()->json(['message' => 'success for DELETE Process', 'data' => $result], 200);
         } else {
@@ -204,6 +212,9 @@ class WorkerController extends Controller
             $message->to(Auth::user()->email, 'Professional System')
                 ->subject('Register as a worker');
         });
+        $user = User::where('id', Auth::user()->id)->first();
+        $user->role = '0';
+        $user->save();
         if ($status) {
             return response()->json(['message' => 'Check your email'], 200);
         }

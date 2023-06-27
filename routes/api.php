@@ -54,10 +54,10 @@ Route::group(['middleware' => ['XSS', 'lang']], function () {
     Route::post('auth/access-tokens', [AccessTokensController::class, 'store'])->middleware('guest');
     Route::get('auth/logout/{token?}', [AccessTokensController::class, 'destroy'])->middleware('auth:sanctum');
 
-    // Route::get('worker/show/{slug}', [SpecialtiesController::class, 'show']);
-    Route::Post('worker/update/{slug}', [WorkerController::class, 'update']);
-    // Route::post('worker/delete/{slug}', [SpecialtiesController::class, 'destroy']);
-    Route::apiResource('worker', WorkerController::class);
+    Route::get('worker/show/{slug}', [WorkerController::class, 'show'])->middleware('auth:sanctum');
+    Route::Post('worker/update/{slug}', [WorkerController::class, 'update'])->middleware('auth:sanctum');
+    Route::post('worker/delete/{slug}', [WorkerController::class, 'destroy'])->middleware('auth:sanctum');
+    Route::apiResource('worker', WorkerController::class)->middleware('auth:sanctum');
 });
 
 // Route::Post('auth/token', [AccessTokensController::class, 'store']);
