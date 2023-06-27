@@ -114,7 +114,7 @@ class WorkerController extends Controller
      * @param  \App\Models\Worker  $worker
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $slug)
+    public function update(PostWorkerRequest $request, $slug)
     {
         $worker = Worker::where('slug', $slug)->first();
         // Storage::disk('local')->delete($worker->cover_image);
