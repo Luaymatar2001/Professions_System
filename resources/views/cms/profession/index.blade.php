@@ -22,9 +22,9 @@
                                             $id = '{{session("id")}}';
                                             $page ='{{session("pageNumber")}}';
                                             if ($page == 0) {
-                                                window.location.href = 'http://127.0.0.1:8000/admin/professional'+'#ID'+$id;
+                                                window.location.href = 'https://phplaravel-1025967-3619615.cloudwaysapps.com/admin/professional'+'#ID'+$id;
                                             }else{
-                                                window.location.href = 'http://127.0.0.1:8000/admin/professional?page='+$page+'#ID'+$id;
+                                                window.location.href = 'https://phplaravel-1025967-3619615.cloudwaysapps.com/admin/professional?page='+$page+'#ID'+$id;
                                             }
                                   
                                   

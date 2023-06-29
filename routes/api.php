@@ -3,15 +3,14 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AboutController;
-use App\Http\Controllers\admin\PermissionController;
-use App\Http\Controllers\admin\RoleController;
-use App\Http\Controllers\admin\SpecialtiesController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\WorkerController;
 use App\Http\Controllers\Api\AccessTokensController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\offerController;
-use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\RateController;
+use App\Models\Worker;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +34,10 @@ Route::get('/user', function (Request $request) {
 Route::group(['middleware' => ['XSS', 'lang']], function () {
     Route::apiResource('about', AboutController::class);
 
+    Route::apiResource('/rate', RateController::class)->middleware('auth:sanctum');
+    Route::apiResource('/gallery', GalleryController::class)->middleware('auth:sanctum');
 
+    Route::get('/profileComment/{slug}', [WorkerController::class, 'profile_comment'])->middleware('auth:sanctum');
 
     Route::get('data_project', [ProjectController::class, 'dataProject'])->middleware('auth:sanctum');
     Route::post('Filter', [ProjectController::class, 'filter'])->middleware('auth:sanctum');

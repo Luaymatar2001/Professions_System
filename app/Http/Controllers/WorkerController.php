@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostWorkerRequest;
+use App\Models\Rate;
 use App\Models\User;
 use App\Models\Worker;
 use Illuminate\Http\Request;
@@ -219,5 +220,16 @@ class WorkerController extends Controller
         }
         return response()->json(['message' => 'Faild to send email'], 400);
         // 
+    }
+
+    public function profile_comment($slug)
+    {
+        $worker = Worker::where('slug', $slug)->first();
+        $rate = Rate::owner($worker->id)->get();
+        if (count($rate) > 0) {
+            return response()->json(['rates' => $rate], 200);
+        } else {
+            return response()->json(['rates' => 'the rate and comment is empty'], 400);
+        }
     }
 }

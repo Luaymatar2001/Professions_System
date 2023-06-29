@@ -14,7 +14,9 @@ use Spatie\Sluggable\SlugOptions;
 class Project extends Model
 {
     use HasFactory, HasSlug;
-
+    protected $hidden = [
+        'created_at', 'updated_at', 'deleted_at'
+    ];
     protected $fillable = ['name', 'description', 'time_first', 'notes', 'time_function', 'additional_file', 'value', 'funds', 'city_id', 'description_location', 'accept', 'user_id', 'worker_id', 'profession_id'];
     protected $appends = ['value_formatter'];
 

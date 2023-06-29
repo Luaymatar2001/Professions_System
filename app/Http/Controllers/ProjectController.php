@@ -106,9 +106,9 @@ class ProjectController extends Controller
         }
 
         // Check if the project and images were saved successfully
-        if ($result && $result_image) {
+        if ($result  || $result_image) {
             // Redirect or return a success response
-            return response()->json(['success', 'Project and images stored successfully'], 201);
+            return response()->json(['success', 'Project and images stored successfully'], 200);
         } else {
             // Redirect or return an error response
             return response()->json(['error', 'Failed to store project and images'], 400);

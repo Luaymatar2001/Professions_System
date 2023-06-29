@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
@@ -15,7 +16,12 @@ class gallery extends Model
     protected $appends = ['check_active'];
     protected $guarded = ["id"];
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
-    protected $fillable = ['title', 'details', 'visible', 'workers_id'];
+    protected $fillable = ['title', 'detail', 'visible', 'worker_id'];
+
+    public function images(): MorphMany
+    {
+        return $this->morphMany(Image::class, 'imageable');
+    }
 
     public function worker()
     {
@@ -29,7 +35,7 @@ class gallery extends Model
 
     public function getCheckActiveAttribute()
     {
-        return $this->visible ? 'active' : 'In-Active';
+        return $this->visible == "1" ?  'In-Active' : 'active';
     }
     public function getSlugOptions(): SlugOptions
     {

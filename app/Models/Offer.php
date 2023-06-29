@@ -11,7 +11,9 @@ class Offer extends Model
 {
     use HasFactory, HasSlug;
     protected $fillable = ['project_id', 'description', 'time', 'value', 'user_id'];
-
+    protected $hidden = [
+        'created_at', 'updated_at', 'deleted_at'
+    ];
     public function getSlugOptions(): SlugOptions
     {
         //Build slug from name column and store slug column max length 255 and skip slug when deleted_at null

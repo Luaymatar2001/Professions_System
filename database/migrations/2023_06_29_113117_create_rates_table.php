@@ -17,13 +17,13 @@ return new class extends Migration
             $table->id();
             $table->tinyInteger('rate');
             $table->string('comment', 190);
-            $table->boolean('accept')->default(false);
+            $table->boolean('accept')->default(true);
             $table->unsignedBigInteger('worker_id');
-            $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('worker_id')->references('id')->on('workers')->onDelete('cascade');
-            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

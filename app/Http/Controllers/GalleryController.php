@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\gallery;
+use App\Models\Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class GalleryController extends Controller
 {
@@ -14,7 +16,14 @@ class GalleryController extends Controller
      */
     public function index()
     {
-        //
+        $gallerys = gallery::with('images')
+            ->where('visible', '1')
+            ->latest('updated_at')
+            ->paginate(20);
+        if (!empty($projects) === 0) {
+            return response()->json(['message' => 'empty gallery !'], 400);
+        }
+        return response()->json(['message' => 'the gallery is not empty', 'data' => $gallerys], 200);
     }
 
     /**
@@ -25,7 +34,32 @@ class GalleryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $gallery = new gallery($request->only([
+            'title', 'detail', 'visible', 'worker_id'
+        ]));
+        $result = $gallery->save();
+        $result_image = false;
+
+        if ($request->hasFile('images')) {
+            $imagesFiles = $request->file('images');
+
+            foreach ($imagesFiles as $image) {
+                $imagePath = Storage::disk('public')->put('project_image/gallarys',  $image);
+                $img = new Image();
+                $img->image_url = $imagePath;
+                $img->slug = $gallery->slug;
+                $result_image = $gallery->images()->save($img);
+            }
+        }
+
+        // Check if the project and images were saved successfully
+        if ($result || $result_image) {
+            // Redirect or return a success response
+            return response()->json(['success', 'Project and images stored successfully'], 200);
+        } else {
+            // Redirect or return an error response
+            return response()->json(['error', 'Failed to store project and images'], 400);
+        }
     }
 
     /**
@@ -36,7 +70,12 @@ class GalleryController extends Controller
      */
     public function show(gallery $gallery)
     {
-        //
+        $gallerys = gallery::latest('updated_at')
+            ->paginate(20);
+        if (!empty($projects) === 0) {
+            return response()->json(['message' => 'empty gallery !'], 400);
+        }
+        return response()->json(['message' => 'the gallery is not empty', 'data' => $gallerys], 200);
     }
 
     /**
@@ -48,7 +87,11 @@ class GalleryController extends Controller
      */
     public function update(Request $request, gallery $gallery)
     {
-        //
+        $status = $gallery->update($request->all());
+        if (!$status) {
+            return response()->json(['message' => 'faild to edit gallery !'], 400);
+        }
+        return response()->json(['message' => 'success for edit gallery !'], 200 );
     }
 
     /**
@@ -59,6 +102,6 @@ class GalleryController extends Controller
      */
     public function destroy(gallery $gallery)
     {
-        //
+        // $status = $gallery->
     }
 }

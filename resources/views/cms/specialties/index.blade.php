@@ -23,9 +23,9 @@
                                     $page ='{{session("pageNumber")}}';
                                     
                                     if ($page == 0) {
-                              window.location.href = 'http://127.0.0.1:8000/admin/specialities'+'#ID'+$id;
+                              window.location.href = 'https://phplaravel-1025967-3619615.cloudwaysapps.com/admin/specialities'+'#ID'+$id;
                                     }else{
-                              window.location.href = 'http://127.0.0.1:8000/admin/specialities?page='+$page+'#ID'+$id;
+                              window.location.href = 'https://phplaravel-1025967-3619615.cloudwaysapps.com/admin/specialities?page='+$page+'#ID'+$id;
                                     }
                                 // $('html, body').animate({ scrollTop: offset }, 'slow'); 
                                     // myElement = document.getElementById('#ID'+$id);
