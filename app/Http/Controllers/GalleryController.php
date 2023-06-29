@@ -91,7 +91,7 @@ class GalleryController extends Controller
         if (!$status) {
             return response()->json(['message' => 'faild to edit gallery !'], 400);
         }
-        return response()->json(['message' => 'success for edit gallery !'], 200 );
+        return response()->json(['message' => 'success for edit gallery !'], 200);
     }
 
     /**
@@ -102,6 +102,20 @@ class GalleryController extends Controller
      */
     public function destroy(gallery $gallery)
     {
-        // $status = $gallery->
+        // $projects = gallery::where('slug', $gallery)->with('images')->first();
+        if ($gallery) {
+            $images = $gallery->images;
+
+            foreach ($images as $image) {
+                // Delete the image file from storage if needed
+                Storage::disk('public')->delete($image->image_url);
+
+                $image->delete(); // Delete the image record from the database
+            }
+
+            $gallery->delete(); // Delete the project record from the database
+        }
+
+        return response()->json(['message' => "success for delete the gallery and related images", 'data' => $gallery], 200);
     }
 }

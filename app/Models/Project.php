@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -18,7 +19,7 @@ class Project extends Model
         'created_at', 'updated_at', 'deleted_at'
     ];
     protected $fillable = ['name', 'description', 'time_first', 'notes', 'time_function', 'additional_file', 'value', 'funds', 'city_id', 'description_location', 'accept', 'user_id', 'worker_id', 'profession_id'];
-    protected $appends = ['value_formatter'];
+    protected $appends = ['value_formatter', 'days_formatter'];
 
     public function images(): MorphMany
     {
@@ -44,6 +45,11 @@ class Project extends Model
         // fk ->pk
         return $this->hasMany(Offer::class, 'project_id', 'id');
     }
+    public function getValueFormatterAttribute()
+    {
+        $formatter = new NumberFormatter('en', NumberFormatter::CURRENCY);
+        return $formatter->formatCurrency($this->value, 'USD');
+    }
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
@@ -58,11 +64,17 @@ class Project extends Model
     }
     //accessor function
     //formate the value according state or currancy
-    public function getValueFormatterAttribute()
+
+
+    public function getDaysFormatterAttribute()
     {
-        $formatter = new NumberFormatter('en', NumberFormatter::CURRENCY);
-        return $formatter->formatCurrency($this->value, 'USD');
+        $datetime = Carbon::parse($this->time_function); // Date and time
+        $formattedDays = $datetime->diffInDays(Carbon::now());
+        return $formattedDays;
     }
+
+
+
     /**
      * Scope a query to only include users of a given type.
      *
