@@ -18,7 +18,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $append = ['full_path'];
+    protected $appends = ['full_path'];
     protected $fillable = [
         'name',
         'email',

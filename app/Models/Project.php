@@ -25,6 +25,7 @@ class Project extends Model
     {
         return $this->morphMany(Image::class, 'imageable');
     }
+
     public function profession()
     {
         //fk ->pk
