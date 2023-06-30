@@ -41,6 +41,11 @@ class Project extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
+    public function scopeOwner($query, $id)
+    {
+        return $query->where('worker_id', $id );
+    }
+
     public function offer()
     {
         // fk ->pk

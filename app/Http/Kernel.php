@@ -69,5 +69,7 @@ class Kernel extends HttpKernel
         'checkOuthViewProject' => \App\Http\Middleware\checkautheVirwSpecificProject::class,
         'AlowEditWithOffer' => \App\Http\Middleware\AlowEditWithOffer::class,
         'checkIfAlreadyWorker' => \App\Http\Middleware\checkIfAlreadyWorker::class,
+        'checkIfOwnerProject' => \App\Http\Middleware\checkIfOwnerProject::class,
+        'check_if_owner_profile' => \App\Http\Middleware\check_if_owner_profile::class
     ];
 }

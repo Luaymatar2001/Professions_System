@@ -10,6 +10,7 @@ use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\offerController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RateController;
+use App\Models\Offer;
 use App\Models\Worker;
 
 /*
@@ -39,6 +40,11 @@ Route::group(['middleware' => ['XSS', 'lang']], function () {
 
     Route::get('/profileComment/{slug}', [WorkerController::class, 'profile_comment'])->middleware('auth:sanctum');
     Route::get('/profileGallery/{slug}', [WorkerController::class, 'profile_gallery'])->middleware('auth:sanctum');
+    Route::post('/specific_offer/{slug}', [offerController::class, 'select_Offer'])->middleware(['auth:sanctum', 'checkIfOwnerProject']);
+    Route::get('/profile_work/{slug}', [WorkerController::class, 'profile_work'])->middleware(['auth:sanctum']);
+    Route::get('/data_profile/{slug}', [WorkerController::class, 'data_profile'])->middleware(['auth:sanctum']);
+    Route::post('update_cover_image/{slug}', [WorkerController::class, 'Edit_cover'])->middleware(['auth:sanctum', 'check_if_owner_profile:worker']);
+    Route::post('update_profile_image/{slug}', [WorkerController::class, 'Edit_image_profile'])->middleware(['auth:sanctum', 'check_if_owner_profile:worker']);
 
     Route::get('data_project', [ProjectController::class, 'dataProject'])->middleware('auth:sanctum');
     Route::post('Filter', [ProjectController::class, 'filter'])->middleware('auth:sanctum');

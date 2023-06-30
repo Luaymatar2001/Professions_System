@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostWorkerRequest;
 use App\Models\gallery;
+use App\Models\Project;
 use App\Models\Rate;
 use App\Models\User;
 use App\Models\Worker;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class WorkerController extends Controller
 {
@@ -249,13 +251,86 @@ class WorkerController extends Controller
     public function profile_work($slug)
     {
         $worker = Worker::where('slug', $slug)->first();
-        $gallery = gallery::owner($worker->id)->with('images')->latest('updated_at')->get();
-        if (count($gallery) > 0) {
-            return response()->json(['gallery' => $gallery], 200);
+        $work = Project::owner($worker->id)->with('images')->latest('updated_at')->get();
+        if (count($work) > 0) {
+            return response()->json(['gallery' => $work], 200);
         } else {
-            return response()->json(['rates' => 'the gallery is empty'], 400);
+            return response()->json(['rates' => 'Never received business before'], 400);
         }
     }
 
+    public function data_profile($slug)
+    {
+        $worker = Worker::where('slug', $slug)
+            ->with('user')
+            ->first();
+        if ($worker != null && count($worker) != 0) {
+            return response()->json(['data' => $worker], 200);
+        }
+        return response()->json(['data' => 'the data is empty'], 400);
+    }
 
+    public function Edit_cover(Request $request, $slug)
+    {
+        $validate = Validator::make($request->all(), [
+            'cover_image' => 'required|image'
+        ], [
+            'cover_image.required' => 'please select a cover image ',
+            'cover_image.image' => "this file must be an image",
+        ]);
+        if ($validate->fails()) {
+            return response()->json(['message' => $validate->getMessageBag()->first()], 400);
+        }
+
+
+        $worker = Worker::where('slug', $slug)->first();
+        if (Storage::disk('local')->exists($worker->cover_image)) {
+            Storage::disk('local')->delete($worker->cover_image);
+        }
+        $image = $request->file('cover_image');
+        if (isset($image)) {
+            $path = "project_img/cover_img/";
+            $name = time() + rand(1, 1000) . "." . $image->getClientOriginalExtension();
+            Storage::disk('local')->put($path . $name,  file_get_contents($image));
+        }
+
+        $worker->cover_image  = $path . $name;
+        $status = $worker->save();
+        if ($status) {
+            return response()->json(['message' => 'success for update the cover image'], 200);
+        }
+        return response()->json(['message' => 'faild for update the cover image'], 400);
+    }
+
+    public function Edit_image_profile(Request $request, $slug)
+    {
+        $validate = Validator::make($request->all(), [
+            'image' => 'required|image'
+        ], [
+            'image.required' => 'please select a profile image ',
+            'image.image' => "this file must be an image",
+        ]);
+        if ($validate->fails()) {
+            return response()->json(['message' => $validate->getMessageBag()->first()], 400);
+        }
+
+
+        $worker = Worker::where('slug', $slug)->with('user')->first();
+        if (Storage::disk('public')->exists($worker->user->image)) {
+            Storage::disk('public')->delete($worker->user->image);
+        }
+        $image = $request->file('image');
+        if (isset($image)) {
+            $path = "project_image/user_img/";
+            $name = time() + rand(1, 1000) . "." . $image->getClientOriginalExtension();
+            Storage::disk('public')->put($path . $name,  file_get_contents($image));
+        }
+
+        $worker->user->image  = $path . $name;
+        $status = $worker->user->save();
+        if ($status) {
+            return response()->json(['message' => 'success for update the image'], 200);
+        }
+        return response()->json(['message' => 'faild for update the image'], 400);
+    }
 }
