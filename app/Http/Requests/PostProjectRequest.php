@@ -51,8 +51,6 @@ class PostProjectRequest extends FormRequest
             'city_id.exists' => 'the citie id not found in the table',
             'worker_id.exists' => 'the worker id not found in the table',
             'images.images' => 'must array of images'
-
-
         ];
     }
 }

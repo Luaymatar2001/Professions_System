@@ -91,19 +91,19 @@ class Project extends Model
     public function scopeFilter($query, $request)
     {
         if (isset($request['city'])) {
-            $query->where('city_id', $request['city_id']);
+            $query->where('city_id', $request['city']);
         }
         if (isset($request['profession'])) {
-            $query->where('profession_id', $request['profession_id']);
+            $query->where('profession_id', $request['city']);
         }
         if (isset($request['speciality'])) {
 
             $query->whereHas('profession', function ($query) use ($request) {
-                $query->where('specialtie_id', $request['speciality_id']);
+                $query->where('specialtie_id', $request['city']);
             });
         }
-        if (isset($request['value'])) {
-            $query->whereBetween('value', [$request['min'], $request['max']]);
+        if (isset($request['min_value']) && isset($request['min_value'])) {
+            $query->whereBetween('value', [$request['min_value'], $request['min_value']]);
         }
     }
     public static function values()
