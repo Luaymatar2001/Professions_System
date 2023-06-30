@@ -75,7 +75,7 @@ class ProjectController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store(Request $request)
+    public function store(PostProjectRequest $request)
     {
         $project = new Project($request->only([
             'name', 'description', 'time_first',
