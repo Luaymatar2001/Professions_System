@@ -38,6 +38,7 @@ Route::group(['middleware' => ['XSS', 'lang']], function () {
     Route::apiResource('/gallery', GalleryController::class)->middleware('auth:sanctum');
 
     Route::get('/profileComment/{slug}', [WorkerController::class, 'profile_comment'])->middleware('auth:sanctum');
+    Route::get('/profileGallery/{slug}', [WorkerController::class, 'profile_gallery'])->middleware('auth:sanctum');
 
     Route::get('data_project', [ProjectController::class, 'dataProject'])->middleware('auth:sanctum');
     Route::post('Filter', [ProjectController::class, 'filter'])->middleware('auth:sanctum');

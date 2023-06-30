@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostWorkerRequest;
+use App\Models\gallery;
 use App\Models\Rate;
 use App\Models\User;
 use App\Models\Worker;
@@ -225,11 +226,36 @@ class WorkerController extends Controller
     public function profile_comment($slug)
     {
         $worker = Worker::where('slug', $slug)->first();
-        $rate = Rate::owner($worker->id)->get();
+        $rate = Rate::owner($worker->id)->with('user')->get();
         if (count($rate) > 0) {
             return response()->json(['rates' => $rate], 200);
         } else {
             return response()->json(['rates' => 'the rate and comment is empty'], 400);
         }
     }
+
+    public function profile_gallery($slug)
+    {
+        $worker = Worker::where('slug', $slug)->first();
+        $gallery = gallery::owner($worker->id)->with('images')->latest('updated_at')->get();
+        if (count($gallery) > 0) {
+            return response()->json(['gallery' => $gallery], 200);
+        } else {
+            return response()->json(['rates' => 'the gallery is empty'], 400);
+        }
+    }
+
+
+    public function profile_work($slug)
+    {
+        $worker = Worker::where('slug', $slug)->first();
+        $gallery = gallery::owner($worker->id)->with('images')->latest('updated_at')->get();
+        if (count($gallery) > 0) {
+            return response()->json(['gallery' => $gallery], 200);
+        } else {
+            return response()->json(['rates' => 'the gallery is empty'], 400);
+        }
+    }
+
+
 }

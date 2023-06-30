@@ -37,6 +37,12 @@ class gallery extends Model
     {
         return $this->visible == "1" ?  'In-Active' : 'active';
     }
+
+    public function scopeOwner($query, $id)
+    {
+        return $query->where('worker_id', $id);
+    }
+
     public function getSlugOptions(): SlugOptions
     {
         //Build slug from name column and store slug column max length 255 and skip slug when deleted_at null

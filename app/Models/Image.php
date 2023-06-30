@@ -16,7 +16,7 @@ class Image extends Model
     protected $primaryKey = 'id';
     protected $appends = ['check_active', 'full_path'];
     protected $guarded = ["id"];
-    protected $hidden = ['created_at', 'updated_at', 'deleted_at', 'imageable_type', 'imageable_id', 'reject_reason'];
+    protected $hidden = ['created_at', 'updated_at', 'deleted_at', 'imageable_type', 'imageable_id'];
     protected $fillable = ['image_url', 'accept', 'reject_reason'];
 
 

@@ -87,11 +87,44 @@ class GalleryController extends Controller
      */
     public function update(Request $request, gallery $gallery)
     {
-        $status = $gallery->update($request->all());
-        if (!$status) {
-            return response()->json(['message' => 'faild to edit gallery !'], 400);
-        }
-        return response()->json(['message' => 'success for edit gallery !'], 200);
+
+
+
+        // if ($request->hasFile('images')) {
+        //     $images = $gallery->images;
+        //     $deletionStatus = true; // Assume all deletions are successful
+
+        //     foreach ($images as $image) {
+        //         // if (Storage::disk('public')->exists($image->image_url)) {
+        //         $deletionStatus = Storage::disk('public')->delete($image->image_url);
+        //         if (!$deletionStatus) {
+        //             // Handle deletion failure immediately
+        //             return response()->json(['message' => 'Failed to delete gallery images.'], 500);
+        //         }
+        //         // }
+        //     }
+
+
+        //     // // If all deletions were successful, return success response
+        //     // return response()->json(['message' => 'Success for edit gallery!', 'data' => $deletionStatus], 200);
+        //     $status = $gallery->update($request->all());
+
+        //     $status = $gallery->images->delete();
+        //     $imagesFiles = $request->file('images');
+
+        //     foreach ($imagesFiles as $image) {
+        //         $imagePath = Storage::disk('public')->put('project_image/gallarys',  $image);
+        //         $img = new Image();
+        //         $img->image_url = $imagePath;
+        //         $img->slug = $gallery->slug;
+        //         $gallery->images()->save($img);
+        //     }
+        // }
+
+        // if (!$status) {
+        //     return response()->json(['message' => 'faild to edit gallery !'], 400);
+        // }
+        // return response()->json(['message' => 'success for edit gallery !'], 200);
     }
 
     /**
