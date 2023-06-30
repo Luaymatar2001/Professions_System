@@ -14,6 +14,11 @@ class Offer extends Model
     protected $hidden = [
         'created_at', 'updated_at', 'deleted_at'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
     public function getSlugOptions(): SlugOptions
     {
         //Build slug from name column and store slug column max length 255 and skip slug when deleted_at null

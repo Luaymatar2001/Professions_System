@@ -130,7 +130,7 @@ class ProjectController extends Controller
         $projects = Project::where('slug', $project)
             ->with('worker')
             ->with('images')
-            ->with('offer')
+            ->with('offer', 'offer.user')
             ->with('profession')
             ->with('profession.specialty')
             ->with('user')

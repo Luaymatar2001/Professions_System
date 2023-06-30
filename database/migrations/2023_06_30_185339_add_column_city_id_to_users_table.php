@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('galleries', function (Blueprint $table) {
-            // $table->enum('visible', [0, 1])->default(1);
+        Schema::table('users', function (Blueprint $table) {
+            $table->unsignedBigInteger('city_id')->nullable();
         });
     }
 
@@ -25,8 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('galleries', function (Blueprint $table) {
-            $table->dropColumn('visible');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('city_id');
         });
     }
 };

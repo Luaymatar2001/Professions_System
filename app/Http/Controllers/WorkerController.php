@@ -167,6 +167,9 @@ class WorkerController extends Controller
         }
     }
 
+    public function profile_info()  {
+        
+    }
     /**
      * Remove the specified resource from storage.
      *
