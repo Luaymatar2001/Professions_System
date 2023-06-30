@@ -136,13 +136,7 @@ class ProjectController extends Controller
             ->with('user')
             ->where('accept', true)
             ->firstOrFail();
-        if ($projects->user->image) {
-            $projects->user->image = url('app/public', [
-                'image' => $projects->user->image,
-            ]);
-        } else {
-            $projects->user->image = 'http://via.placeholder.com/80x80';
-        }
+
 
         if (!$projects) {
             return response()->json(['message' => 'empty projects !'], 400);
