@@ -43,7 +43,7 @@ class Project extends Model
 
     public function scopeOwner($query, $id)
     {
-        return $query->where('worker_id', $id );
+        return $query->where('worker_id', $id);
     }
 
     public function offer()
@@ -90,13 +90,13 @@ class Project extends Model
      */
     public function scopeFilter($query, $request)
     {
-        if (isset($request['city_id'])) {
+        if (isset($request['city'])) {
             $query->where('city_id', $request['city_id']);
         }
-        if (isset($request['profession_id'])) {
+        if (isset($request['profession'])) {
             $query->where('profession_id', $request['profession_id']);
         }
-        if (isset($request['speciality_id'])) {
+        if (isset($request['speciality'])) {
 
             $query->whereHas('profession', function ($query) use ($request) {
                 $query->where('specialtie_id', $request['speciality_id']);
