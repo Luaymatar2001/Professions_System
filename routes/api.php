@@ -40,20 +40,28 @@ Route::group(['middleware' => ['XSS', 'lang']], function () {
 
     Route::get('/profileComment/{slug}', [WorkerController::class, 'profile_comment'])->middleware('auth:sanctum');
     Route::get('/profileGallery/{slug}', [WorkerController::class, 'profile_gallery'])->middleware('auth:sanctum');
-    Route::post('/specific_offer/{slug}', [offerController::class, 'select_Offer'])->middleware(['auth:sanctum', 'checkIfOwnerProject']);
+    Route::post('/specific_offer/{slug}', [offerController::class, 'select_Offer'])->middleware(['auth:sanctum']);
+    // , 'checkIfOwnerProject'
     Route::get('/profile_work/{slug}', [WorkerController::class, 'profile_work'])->middleware(['auth:sanctum']);
     Route::get('/data_profile/{slug}', [WorkerController::class, 'data_profile'])->middleware(['auth:sanctum']);
-    Route::post('update_cover_image/{slug}', [WorkerController::class, 'Edit_cover'])->middleware(['auth:sanctum', 'check_if_owner_profile:worker']);
-    Route::post('update_profile_image/{slug}', [WorkerController::class, 'Edit_image_profile'])->middleware(['auth:sanctum', 'check_if_owner_profile:worker']);
+    Route::post('update_cover_image/{slug}', [WorkerController::class, 'Edit_cover'])->middleware(['auth:sanctum']);
+    // , 'check_if_owner_profile:worker'
+    Route::post('update_profile_image/{slug}', [WorkerController::class, 'Edit_image_profile'])->middleware(['auth:sanctum']);
+    // , 'check_if_owner_profile:worker'
 
     Route::get('data_project', [ProjectController::class, 'dataProject'])->middleware('auth:sanctum');
     Route::post('Filter', [ProjectController::class, 'filter'])->middleware('auth:sanctum');
-    Route::get('offer/{slug}', [ProjectController::class, 'offer'])->middleware(['auth:sanctum', 'checkOuthViewProject']);
+    Route::get('offer/{slug}', [ProjectController::class, 'offer'])->middleware(['auth:sanctum']);
+    // , 'checkOuthViewProject'
     Route::apiResource('projects', ProjectController::class)->middleware('auth:sanctum');
-    Route::post('offers/{offer}', [offerController::class, 'update'])->middleware(['auth:sanctum', 'AlowEditWithOffer']);
-    Route::delete('offers/{offer}', [offerController::class, 'delete'])->middleware(['auth:sanctum', 'AlowEditWithOffer']);
-    Route::apiResource('offers', offerController::class)->middleware(['auth:sanctum', 'checkOuthViewProject']);
-    Route::get('/email/register', [WorkerController::class, 'sendEmailRegister'])->middleware(['auth:sanctum', 'checkIfAlreadyWorker'])->name('email.register');
+    Route::post('offers/{offer}', [offerController::class, 'update'])->middleware(['auth:sanctum']);
+    // , 'AlowEditWithOffer'
+    Route::delete('offers/{offer}', [offerController::class, 'delete'])->middleware(['auth:sanctum']);
+    // , 'AlowEditWithOffer'
+    Route::apiResource('offers', offerController::class)->middleware(['auth:sanctum']);
+    // , 'checkOuthViewProject'
+    Route::get('/email/register', [WorkerController::class, 'sendEmailRegister'])->middleware(['auth:sanctum'])->name('email.register');
+    // , 'checkIfAlreadyWorker'
 
     Route::get('/user/delete/{id}', [UserController::class, 'destroy']);
     Route::get('/user/update/{id}', [UserController::class, 'update']);
@@ -67,7 +75,8 @@ Route::group(['middleware' => ['XSS', 'lang']], function () {
     Route::get('worker/show/{slug}', [WorkerController::class, 'show'])->middleware('auth:sanctum');
     Route::Post('worker/update/{slug}', [WorkerController::class, 'update'])->middleware('auth:sanctum');
     Route::post('worker/delete/{slug}', [WorkerController::class, 'destroy'])->middleware('auth:sanctum');
-    Route::post('/worker', [WorkerController::class, 'store'])->middleware(['auth:sanctum', 'checkIfAlreadyWorker']);
+    Route::post('/worker', [WorkerController::class, 'store'])->middleware(['auth:sanctum']);
+    // , 'checkIfAlreadyWorker'
     // Route::apiResource('worker', WorkerController::class)->middleware('auth:sanctum');
 });
 
