@@ -49,11 +49,15 @@ Route::group(['middleware' => ['XSS', 'lang']], function () {
     Route::post('update_profile_image/{slug}', [WorkerController::class, 'Edit_image_profile'])->middleware(['auth:sanctum']);
     // , 'check_if_owner_profile:worker'
 
-    Route::get('data_project', [ProjectController::class, 'dataProject'])->middleware('auth:sanctum');
-    Route::post('Filter', [ProjectController::class, 'filter'])->middleware('auth:sanctum');
-    Route::get('offer/{slug}', [ProjectController::class, 'offer'])->middleware(['auth:sanctum']);
+    Route::get('data_project', [ProjectController::class, 'dataProject']);
+    // ->middleware('auth:sanctum');
+    Route::post('Filter', [ProjectController::class, 'filter']);
+    // ->middleware('auth:sanctum');
+    Route::get('offer/{slug}', [ProjectController::class, 'offer']);
+    // ->middleware(['auth:sanctum']);
     // , 'checkOuthViewProject'
-    Route::apiResource('projects', ProjectController::class)->middleware('auth:sanctum');
+    Route::apiResource('projects', ProjectController::class);
+    // ->middleware('auth:sanctum');
     Route::post('offers/{offer}', [offerController::class, 'update'])->middleware(['auth:sanctum']);
     // , 'AlowEditWithOffer'
     Route::delete('offers/{offer}', [offerController::class, 'delete'])->middleware(['auth:sanctum']);

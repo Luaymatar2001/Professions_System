@@ -29,6 +29,7 @@ class UserRegisterRequest extends FormRequest
             "email" => ['required', 'unique:users,email'],
             "password" => ['required', 'min:8', 'confirmed'],
             'image' => ['nullable', new base64image],
+            'city_id' => 'nullable|exists:cities,name',
         ];
     }
     public function messages()
@@ -41,6 +42,7 @@ class UserRegisterRequest extends FormRequest
             "password.min" => "The password must be at least 8",
             "password.confirmed" => "must confirmed the password",
             // 'image.base64image' => "the image must store Base64",
+            'city_id.exists' => 'sory !! the city not exists in the website'
         ];
     }
 }

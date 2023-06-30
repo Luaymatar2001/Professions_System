@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Worker;
 use Illuminate\Foundation\Http\FormRequest;
 
 class postEditWorker extends FormRequest
@@ -24,7 +25,8 @@ class postEditWorker extends FormRequest
     public function rules()
     {
         //  ['professional_experience', 'cover_image', 'id_number', 'address', 'experience-year', 'password', 'user_id', 'profession_id'];
-
+        $slug = $this->route('slug', 0);
+        $worker = Worker::where('slug', $slug)->with('user')->first();
         return [
             //
             'professional_experience' => 'required|string',
@@ -35,6 +37,10 @@ class postEditWorker extends FormRequest
             'user_id' => 'required|min:1',
             'profession_id' => 'required|min:1',
             'phone_number' => 'required|regex:/^\+\d+/',
+            'email' => 'nullable|unique:users,email,' . $worker->user->id,
+            'name' => 'required',
+            'city_id' => 'nullable|exists:cities,name'
+
         ];
     }
     public function messages()
@@ -61,6 +67,9 @@ class postEditWorker extends FormRequest
             'profession_id.min' => 'minimum number profession id is 1 ',
             'phone_number.required' => 'the phone number is required',
             'phone_number.regex' => 'The phone number must start with a + sign followed by 4 to 15 numbers.',
+            'city_id.exists' => 'sory !! the city not exists in the website',
+            "name.required" => "Name is required.",
+            "email.unique" => "This email already exists in our database!",
         ];
     }
 }

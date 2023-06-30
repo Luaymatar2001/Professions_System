@@ -131,10 +131,6 @@ class WorkerController extends Controller
             Storage::disk('local')->delete($worker->CV);
         }
 
-
-
-
-
         $image = $request->file('cover_image');
         if (isset($image)) {
             $path = "project_img/cover_img/";
@@ -167,8 +163,8 @@ class WorkerController extends Controller
         }
     }
 
-    public function profile_info()  {
-        
+    public function profile_info()
+    {
     }
     /**
      * Remove the specified resource from storage.
@@ -335,5 +331,42 @@ class WorkerController extends Controller
             return response()->json(['message' => 'success for update the image'], 200);
         }
         return response()->json(['message' => 'faild for update the image'], 400);
+    }
+
+    public function Edit_data_profile(Request $request, $slug)
+    {
+        $worker = Worker::where('slug', $slug)->first();
+
+        //  $this->URLFile($request->file('cover_image'));
+        $worker->professional_experience = $request['professional_experience'];
+        $worker->id_number = $request['id_number'];
+        $worker->address = $request['address'];
+        $worker->experience_year = $request['experience_year'];
+        // $worker->password = $request['password'];
+        $worker->user_id = $request['user_id'];
+        $worker->profession_id = $request['profession_id'];
+        $worker->phone_number = $request['phone_number'];
+        $worker->user->name = $request['name'];
+        $worker->user->email = $request['email'];
+        $worker->user->city_id = $request['city_id'];
+
+        $file = $request->file('CV');
+
+        if (isset($file)) {
+            if (Storage::disk('local')->exists($worker->CV)) {
+                Storage::disk('local')->delete($worker->CV);
+            }
+            $pathFile = "project_img/Files/";
+            $nameFile = time() + rand(1, 1000) . "." . $file->getClientOriginalExtension();
+            Storage::disk('local')->put($pathFile . $nameFile,  file_get_contents($file));
+            $worker->CV = $pathFile . $nameFile;
+        }
+        $status = $worker->save();
+        $statusUser = $worker->user->save();
+        if ($status && $statusUser) {
+            return response()->json(['message' => 'success for update Process', 'data' =>  $status], 200);
+        } else {
+            return response()->json(['message' => 'not find this Worker '], 500);
+        }
     }
 }
