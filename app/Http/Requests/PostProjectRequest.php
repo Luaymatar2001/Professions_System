@@ -37,8 +37,8 @@ class PostProjectRequest extends FormRequest
             'accept' => 'nullable|in:0,1',
             // 'user_id' => 'required|integer|exists:users,id',
             'worker_id' => 'required|integer|exists:workers,id',
-            'images' => 'array',
-            'images.*' => 'image'
+            'images' => 'nullable|array',
+            'images.*' => 'nullable|image'
         ];
     }
     public function messages()
