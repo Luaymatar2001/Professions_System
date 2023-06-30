@@ -94,12 +94,12 @@ class Project extends Model
             $query->where('city_id', $request['city']);
         }
         if (isset($request['profession'])) {
-            $query->where('profession_id', $request['city']);
+            $query->where('profession_id', $request['profession']);
         }
         if (isset($request['speciality'])) {
 
             $query->whereHas('profession', function ($query) use ($request) {
-                $query->where('specialtie_id', $request['city']);
+                $query->where('specialtie_id', $request['speciality']);
             });
         }
         if (isset($request['min_value']) && isset($request['min_value'])) {
