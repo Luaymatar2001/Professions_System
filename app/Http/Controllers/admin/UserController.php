@@ -187,7 +187,7 @@ class UserController extends Controller
     {
 
         $validate = Validator::make($request->all(), [
-            'password' => ['required', 'min:8'],
+            'password' => ['required', 'min:8', 'confirmed'],
             'email' => ['required', 'email'],
         ], [
             "password.required" => 'the password is required',
