@@ -182,33 +182,26 @@ class UserController extends Controller
 
         return Response(["message" => 'the email is exists check your email box'], 200);
     }
-
-    public function reset_password(Request $request)
+    public function reset_password(Request $request, $email)
     {
 
         $validate = Validator::make($request->all(), [
-            'password' => ['required', 'min:8', 'confirmed'],
-            'email' => ['required', 'email'],
+            'password' => ['required', 'min:8', 'confirmed']
         ], [
             "password.required" => 'the password is required',
             "password.min" => "The Password must be at least :min characters.",
             "password.confirmed" => 'Confirm Password does not match.',
-            "email.required" => 'Email field can\'t be empty!',
-            "email.email" => 'Please enter a valid Email address!'
         ]);
         if ($validate->fails()) {
-            return redirect()
-                ->route('email.reset')
-                ->withErrors($validate->errors())
-                ->withInput();
+            return Response([$validate->messages()], 400);
         }
         $password = Hash::make($request['password']);
-        $user = User::where('email', $request['email'])->first();
+        $user = User::where('email', $email)->first();
         $user->password = $password;
         $status = $user->save();
         if (!$status) {
-            return Response(["errors" => 'some this is rong'], 400);
+            return Response(['some this is rong'], 400);
         }
-        return Response(["message" => 'success for reset the password'], 200);
+        return Response(['success for reset the password'], 200);
     }
 }
