@@ -197,7 +197,9 @@ class UserController extends Controller
             "email.email" => 'Please enter a valid Email address!'
         ]);
         if ($validate->fails()) {
-            return Response(["errors" =>   $validate->messages()], 400);
+            return redirect()
+                ->withErrors($validate)
+                ->withInput();
         }
         $password = Hash::make($request['password']);
         $user = User::where('email', $request['email'])->first();

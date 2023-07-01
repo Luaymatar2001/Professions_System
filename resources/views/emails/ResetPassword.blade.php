@@ -6,7 +6,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="stylesheet" href="{{asset('cms/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 
@@ -25,12 +26,30 @@
         <p class="card-text py-2">
             Enter your email address and we'll send you an email with instructions to reset your password.
         </p>
-        <div class="form-outline">
-            <input type="email" id="typeEmail" class="form-control my-3" />
-            <label class="form-label" for="typeEmail">Email input</label>
-        </div>
-        <a href="#" class="btn btn-primary w-100">Reset password</a>
+        <form action="https://phplaravel-1025967-3619615.cloudwaysapps.com/api/forgin_password/reset_password"
+            method="post">
+            <div class="form-outline">
+                <input type="text" id="password" name="password" class="form-control my-3" />
+                <label class="form-label" for="password">password input</label>
+                @error('password_confirmation')
+                <small class="text-danger">
+                    {{ $message }}
+                </small>
+                @enderror
+            </div>
+            <div class="form-outline">
+                <input type="text" id="password_confirmation" name="password_confirmation" class="form-control my-3" />
+                <label class="form-label" for="password_confirmation">confairmed input</label>
 
+                @error('password_confirmation')
+                <small class="text-danger">
+                    {{ $message }}
+                </small>
+                @enderror
+
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Reset password</button>
+        </form>
     </div>
 </div>
 </body>
