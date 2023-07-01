@@ -155,7 +155,9 @@
                                                     <form
                                                         action="https://phplaravel-1025967-3619615.cloudwaysapps.com/api/forgin_password/reset_password"
                                                         method="post">
-                                                        <input type="hidden" value="{{$email}}">
+                                                        @csrf
+                                                        <input type="hidden" name="email" value="{{$email}}">
+
                                                         <button type="submit"
                                                             style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid #FFA73B; display: inline-block;">Go
                                                             To Reset The Password</button>
