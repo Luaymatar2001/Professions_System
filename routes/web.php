@@ -26,9 +26,9 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-// Route::get('/', function () {
-//     return view('layouts.main');
-// });
+Route::get('/', function () {
+    return view('cms.temp');
+});
 
 Route::prefix('admin')->group(function () {
     //login
@@ -67,4 +67,3 @@ Route::prefix('admin')
         Route::resource('user.permissions', UserPermissionController::class);
         Route::resource('role.permissions', RolePermissionController::class);
     });
-

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
@@ -179,6 +180,29 @@ class UserController extends Controller
             $message->subject('reset the password');
         });
 
-        return Response(["message" => 'check your email'], 200);
+        return Response(["message" => 'the email is exists check your email box'], 200);
+    }
+    
+    public function reset_password(Request $request, $email)
+    {
+
+        $validate = Validator::make($request->all(), [
+            'password' => ['required', 'min:8', 'confirmed']
+        ], [
+            "password.required" => 'the password is required',
+            "password.min" => "The Password must be at least :min characters.",
+            "password.confirmed" => 'Confirm Password does not match.',
+        ]);
+        if ($validate->fails()) {
+            return Response(["errors" =>   $validate->messages()], 400);
+        }
+        $password = Hash::make($request['password']);
+        $user = User::where('email', $email)->first();
+        $user->password = $password;
+        $status = $user->save();
+        if (!$status) {
+            return Response(["errors" => 'some this is rong'], 400);
+        }
+        return Response(["message" => 'success for reset the password'], 200);
     }
 }

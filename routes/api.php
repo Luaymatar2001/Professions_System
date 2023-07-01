@@ -69,7 +69,8 @@ Route::group(['middleware' => ['XSS', 'lang']], function () {
     // , 'checkOuthViewProject'
     Route::get('/email/register', [WorkerController::class, 'sendEmailRegister'])->middleware(['auth:sanctum'])->name('email.register');
     // , 'checkIfAlreadyWorker'
-    Route::post('/forgin_password/check_email', [UserController::class, 'check_email'])->middleware(['auth:sanctum'])->name('email.register');
+    Route::post('/forgin_password/check_email', [UserController::class, 'check_email'])->name('email.register');
+    Route::post('/forgin_password/reset_password/{email}', [UserController::class, 'reset_password'])->name('email.register');
 
 
     Route::get('/user/delete/{id}', [UserController::class, 'destroy']);
