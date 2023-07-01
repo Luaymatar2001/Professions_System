@@ -187,7 +187,7 @@ class UserController extends Controller
     {
 
         $validate = Validator::make($request->all(), [
-            'password' => ['required', 'min:8', 'confirmed'],
+            'password' => ['required', 'min:8'],
             'email' => ['required', 'email'],
         ], [
             "password.required" => 'the password is required',
@@ -198,7 +198,7 @@ class UserController extends Controller
         ]);
         if ($validate->fails()) {
             return redirect()
-                ->route('cms.emails.ResetPassword')
+                ->route('emails.ResetPassword')
                 ->withErrors($validate->errors())
                 ->withInput();
         }
