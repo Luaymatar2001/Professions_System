@@ -72,6 +72,7 @@
                                     <th>ID</th>
                                     <th>image</th>
                                     <th>accept</th>
+                                    <th>rejection reason</th>
                                     <td>imageable id</td>
                                     <td>imageable type</td>
                                     <td>slug</td>
