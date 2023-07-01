@@ -33,7 +33,7 @@
                         method="post">
                         <div class="form-outline">
                             <input type="text" required id="password" name="password" class="form-control my-3"
-                                pattern="{8,}" title="at least 8 or more characters" required />
+                                pattern=".{8,}" title="at least 8 or more characters" required />
                             <label class="form-label" for="password">password input</label>
                             {{-- @error('password')
                 <small class="text-danger">
@@ -43,8 +43,8 @@
 
                         </div>
                         <div class="form-outline">
-                            <input type="text" pattern="{8,}" title="at least 8 or more characters" required id="password_confirmation" name="password_confirmation"
-                                class="form-control my-3" />
+                            <input type="text" pattern=".{8,}" title="at least 8 or more characters" required
+                                id="password_confirmation" name="password_confirmation" class="form-control my-3" />
                             <label class="form-label" for="password_confirmation">confairmed input</label>
                             @isset($errors)
                             @if($errors->any())

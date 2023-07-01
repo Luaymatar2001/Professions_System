@@ -198,7 +198,7 @@ class UserController extends Controller
         ]);
         if ($validate->fails()) {
             return redirect()
-                ->route('emails.ResetPassword')
+                ->route('email.reset')
                 ->withErrors($validate->errors())
                 ->withInput();
         }
