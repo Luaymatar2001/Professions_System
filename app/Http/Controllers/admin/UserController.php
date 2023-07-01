@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -138,5 +139,46 @@ class UserController extends Controller
         } else {
             return response()->json(['error' => 'Something went wrong'], 400);
         }
+    }
+
+    public function check_email(Request $request)
+    {
+        $validate = Validator::make(
+            $request->all(),
+            [
+                "email"    => 'required|exists:users,email',
+            ],
+            [
+                "email.required"    => 'the email is required ',
+                "email.exists"      => "this Email doesn't exists",
+            ]
+        );
+        if ($validate->fails()) {
+            return Response(["errors" =>   $validate->messages()], 400);
+        }
+        $email_user = User::where('email', $request->input('email'))->first();
+
+
+        $image_url = $email_user->image;
+        if ($image_url) {
+            $image_url = url('app/public', [
+                'image' => $image_url,
+            ]);
+        } else {
+            $image_url = 'http://via.placeholder.com/80x80';
+        }
+        $status = Mail::send('emails.ResetPassword', [
+            'name'          => $email_user->name,
+            'email'          => $email_user->email,
+            'image_url'          => $image_url,
+
+        ], function ($message) use ($email_user) {
+            $message->from('Profession_System@gmail.com', 'Profession System');
+            $message->sender('Profession_System@gmail.com', 'forgot password');
+            $message->to($email_user->email, $email_user->name);
+            $message->subject('reset the password');
+        });
+
+        return Response(["message" => 'check your email'], 200);
     }
 }

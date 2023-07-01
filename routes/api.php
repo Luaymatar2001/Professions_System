@@ -49,7 +49,6 @@ Route::group(['middleware' => ['XSS', 'lang']], function () {
     Route::post('update_profile_image/{slug}', [WorkerController::class, 'Edit_image_profile'])->middleware(['auth:sanctum']);
     // , 'check_if_owner_profile:worker'
     Route::post('update_profile_image/{slug}', [WorkerController::class, 'Edit_image_profile'])->middleware(['auth:sanctum']);
-
     Route::post('Edit_data_profile/{slug}', [WorkerController::class, 'Edit_data_profile'])->middleware(['auth:sanctum']);
 
 
@@ -70,6 +69,8 @@ Route::group(['middleware' => ['XSS', 'lang']], function () {
     // , 'checkOuthViewProject'
     Route::get('/email/register', [WorkerController::class, 'sendEmailRegister'])->middleware(['auth:sanctum'])->name('email.register');
     // , 'checkIfAlreadyWorker'
+    Route::post('/forgin_password/check_email', [UserController::class, 'check_email'])->middleware(['auth:sanctum'])->name('email.register');
+
 
     Route::get('/user/delete/{id}', [UserController::class, 'destroy']);
     Route::get('/user/update/{id}', [UserController::class, 'update']);
