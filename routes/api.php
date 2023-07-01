@@ -50,6 +50,8 @@ Route::group(['middleware' => ['XSS', 'lang']], function () {
     // , 'check_if_owner_profile:worker'
     Route::post('update_profile_image/{slug}', [WorkerController::class, 'Edit_image_profile'])->middleware(['auth:sanctum']);
 
+    Route::post('Edit_data_profile/{slug}', [WorkerController::class, 'Edit_data_profile'])->middleware(['auth:sanctum']);
+
 
     Route::get('data_project', [ProjectController::class, 'dataProject']);
     // ->middleware('auth:sanctum');

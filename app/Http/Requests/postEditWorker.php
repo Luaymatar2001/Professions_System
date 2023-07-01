@@ -14,7 +14,7 @@ class postEditWorker extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -27,21 +27,25 @@ class postEditWorker extends FormRequest
         //  ['professional_experience', 'cover_image', 'id_number', 'address', 'experience-year', 'password', 'user_id', 'profession_id'];
         $slug = $this->route('slug', 0);
         $worker = Worker::where('slug', $slug)->with('user')->first();
-        return [
+        $rule = [
             //
             'professional_experience' => 'required|string',
             'id_number' => 'required|numeric|digits_between:7,12',
             'address' => 'required|string',
             'experience_year' => 'required|min:1',
             // 'password' => 'required|min:6',
-            'user_id' => 'required|min:1',
+            // 'user_id' => 'required|min:1',
             'profession_id' => 'required|min:1',
             'phone_number' => 'required|regex:/^\+\d+/',
-            'email' => 'nullable|unique:users,email,' . $worker->user->id,
+            // 'email' => 'nullable|email|unique:users,email,' . $worker->user->id,
             'name' => 'required',
-            'city_id' => 'nullable|exists:cities,name'
+            'city_id' => 'nullable|exists:cities,id'
 
         ];
+        if ($worker && $worker->user) {
+            $rules['email'] = 'nullable|email|unique:users,email,' . $worker->user->id;
+        }
+        return $rule;
     }
     public function messages()
     {

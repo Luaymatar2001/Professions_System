@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\postEditWorker;
 use App\Http\Requests\PostWorkerRequest;
 use App\Models\gallery;
 use App\Models\Project;
@@ -205,7 +206,6 @@ class WorkerController extends Controller
             $image_url = 'http://via.placeholder.com/80x80';
         }
 
-
         $status = Mail::send('emails.registerWorker', [
             'name' => $name,
             'email' => $email,
@@ -220,7 +220,7 @@ class WorkerController extends Controller
         if ($status) {
             return response()->json(['message' => 'Check your email'], 200);
         }
-        return response()->json(['message' => 'Faild to send email'], 400);
+        return response()->json(['message' => $image_url], 200);
         // 
     }
 
@@ -333,9 +333,10 @@ class WorkerController extends Controller
         return response()->json(['message' => 'faild for update the image'], 400);
     }
 
-    public function Edit_data_profile(Request $request, $slug)
+    public function Edit_data_profile(postEditWorker $request, $slug)
     {
         $worker = Worker::where('slug', $slug)->first();
+        $user = User::where('id', $worker->user_id)->first();
 
         //  $this->URLFile($request->file('cover_image'));
         $worker->professional_experience = $request['professional_experience'];
@@ -343,26 +344,26 @@ class WorkerController extends Controller
         $worker->address = $request['address'];
         $worker->experience_year = $request['experience_year'];
         // $worker->password = $request['password'];
-        $worker->user_id = $request['user_id'];
+        $worker->user_id = Auth::user()->id;
         $worker->profession_id = $request['profession_id'];
         $worker->phone_number = $request['phone_number'];
-        $worker->user->name = $request['name'];
-        $worker->user->email = $request['email'];
-        $worker->user->city_id = $request['city_id'];
+
+        $user->name = $request['name'];
+        $user->email = $request['email'];
+        $user->city_id = $request['city_id'];
 
         $file = $request->file('CV');
-
         if (isset($file)) {
-            if (Storage::disk('local')->exists($worker->CV)) {
-                Storage::disk('local')->delete($worker->CV);
-            }
+            // if (Storage::disk('local')->exists($worker->CV)) {
+            Storage::disk('local')->delete($worker->CV);
+            // }
             $pathFile = "project_img/Files/";
             $nameFile = time() + rand(1, 1000) . "." . $file->getClientOriginalExtension();
             Storage::disk('local')->put($pathFile . $nameFile,  file_get_contents($file));
             $worker->CV = $pathFile . $nameFile;
         }
         $status = $worker->save();
-        $statusUser = $worker->user->save();
+        $statusUser = $user->save();
         if ($status && $statusUser) {
             return response()->json(['message' => 'success for update Process', 'data' =>  $status], 200);
         } else {
