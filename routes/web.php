@@ -67,3 +67,6 @@ Route::prefix('admin')
         Route::resource('user.permissions', UserPermissionController::class);
         Route::resource('role.permissions', RolePermissionController::class);
     });
+
+
+Route::post('/forgin_password/reset_password', [UserController::class, 'reset_password'])->name('email.reset');

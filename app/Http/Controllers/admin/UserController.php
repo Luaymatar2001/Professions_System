@@ -198,7 +198,8 @@ class UserController extends Controller
         ]);
         if ($validate->fails()) {
             return redirect()
-                ->withErrors($validate)
+                ->route('cms.emails.ResetPassword')
+                ->withErrors($validate->errors())
                 ->withInput();
         }
         $password = Hash::make($request['password']);
