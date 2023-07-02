@@ -90,40 +90,40 @@
                             <tbody>
 
 
-                                @foreach ($workers as $project)
-                                <tr id="ID{{ $project->id }}">
-                                    <td>{{ $project->id }}</td>
-                                    <td>{{ $project->user?->name }}</td>
-                                    <td>{{ $project->user?->email }}</td>
-                                    <td>{{ $project->professional_experience }}</td>
-                                    <th>{{ $project->description }}</th>
+                                @foreach ($workers as $worker)
+                                <tr id="ID{{ $worker->id }}">
+                                    <td>{{ $worker->id }}</td>
+                                    <td>{{ $worker->user?->name }}</td>
+                                    <td>{{ $worker->user?->email }}</td>
+                                    <td>{{ $worker->professional_experience }}</td>
+                                    <th>{{ $worker->description }}</th>
                                     <th>
-                                        <a href="{{ $project->path_image }}" target="_blank" rel="noopener noreferrer">
-                                            <img src="{{ $project->path_image }}" width="80" alt="nothing image">
+                                        <a href="{{ $worker->path_image }}" target="_blank" rel="noopener noreferrer">
+                                            <img src="{{ $worker->path_image }}" width="80" alt="nothing image">
                                         </a>
                                     </th>
-                                    <th>{{ $project->id_number }}</th>
-                                    <th>{{ $project->address }}</th>
-                                    <th>{{ $project->experience_year }}</th>
-                                    <th>{{ $project->profession?->title }}</th>
-                                    <th>{{ $project->phone_number }}</th>
-                                    <th>{{ $project->slug }}</th>
+                                    <th>{{ $worker->id_number }}</th>
+                                    <th>{{ $worker->address }}</th>
+                                    <th>{{ $worker->experience_year }}</th>
+                                    <th>{{ $worker->profession?->title }}</th>
+                                    <th>{{ $worker->phone_number }}</th>
+                                    <th>{{ $worker->slug }}</th>
                                     <th>
-                                        @if ($project->path_file)
-                                        <a href="{{$project->path_file}}" class="btn btn-primary">open File</a>
+                                        @if ($worker->path_file)
+                                        <a href="{{$worker->path_file}}" class="btn btn-primary">open File</a>
                                         @endif
 
                                     </th>
 
-                                    {{-- @if ($project->accept)
-                                        <span class="badge bg-success">{{$project->check_active}}</span>
+                                    {{-- @if ($worker->accept)
+                                        <span class="badge bg-success">{{$worker->check_active}}</span>
                                     @else
-                                    <span class="badge bg-danger"> {{$project->check_active}} </span>
+                                    <span class="badge bg-danger"> {{$worker->check_active}} </span>
                                     @endif
                                     </span>
                                     </td>
-                                    @if($project->reject_reason !=null)
-                                    <td>{{ $project->reject_reason}}</td>
+                                    @if($worker->reject_reason !=null)
+                                    <td>{{ $worker->reject_reason}}</td>
                                     @else
                                     <td>--</td>
                                     @endif
@@ -132,16 +132,16 @@
                                     <th>
                                         <div class="btn-group">
 
-                                            <form method="POST" action="{{route('project.destroy',$project->slug)}}" ,
-                                                id="sub_Delete{{$project->id}}">
+                                            <form method="POST" action="{{route('worker.destroy',$worker->slug)}}" ,
+                                                id="sub_Delete{{$worker->id}}">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger delete{{$project->id}}">
+                                                <button type="submit" class="btn btn-danger delete{{$worker->id}}">
                                                     <i class="fas fa-trash-alt"></i>
 
                                                 </button>
                                                 <script>
-                                                    $('.delete{{$project->id}}').click(function(e){
+                                                    $('.delete{{$worker->id}}').click(function(e){
                                                           e.preventDefault()
                                                                let confirm =swal("Are you sure delete this record ?", {
                                                                dangerMode: true,
@@ -153,7 +153,7 @@
                                                                          },
                                                                         },  }).then(function(e){
                                                                      if(e == "ok"){
-                                                                      $('#sub_Delete{{$project->id}}').submit();
+                                                                      $('#sub_Delete{{$worker->id}}').submit();
                                                                    }
                                                                });
                                         

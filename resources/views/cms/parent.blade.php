@@ -356,6 +356,25 @@
             </li>
 
 
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-align-left"></i>
+                <p>
+                  Workers
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{route('worker.index')}}" class="nav-link">
+                    <i class="nav-icon fas fa-th-list"></i>
+                    <p>Index</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            {{-- worker.index --}}
+
 
             @canany(['Create_Permissions' , 'Delete_Permissions' , 'Update_Permissions' , 'Index_Permissions'
             ,'Create_Roles' , 'Delete_Roles' , 'Update_Roles' , 'Index_Roles'])

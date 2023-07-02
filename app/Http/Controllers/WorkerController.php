@@ -41,7 +41,7 @@ class WorkerController extends Controller
             ->with('user')
             ->paginate($paginate);
 
-        return response()->json(["Worker data" => $result], 200);
+        return view('cms.workers.index')->with('workers', $result);
     }
 
     /**
@@ -201,6 +201,23 @@ class WorkerController extends Controller
         } else {
             return response()->json(['message' => 'not find this Worker '], 500);
         }
+    }
+
+
+    public function destroy_view($slug)
+    {
+        $worker = Worker::where('slug', $slug)->first();
+
+        if (Storage::disk('local')->exists($worker->cover_image)) {
+            Storage::disk('local')->delete($worker->cover_image);
+        }
+        if (Storage::disk('local')->exists($worker->CV)) {
+            Storage::disk('local')->delete($worker->CV);
+        }
+        $result = $worker::destroy($worker->id);
+        Auth::user()->role = 0;
+
+        return redirect()->back()->with('status', $result);
     }
 
     public function sendEmailRegister()
