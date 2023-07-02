@@ -69,4 +69,4 @@ Route::prefix('admin')
     });
 
 
-Route::post('/forgin_password/reset_password', [UserController::class, 'reset_password'])->name('email.reset');
+        // Route::post('/forgin_password/reset_password', [UserController::class, 'reset_password'])->name('email.register');
