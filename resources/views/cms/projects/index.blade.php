@@ -102,8 +102,12 @@
                                     <th>{{ $project->time_function }}</th>
                                     <th>{{ $project->additional_file }}</th>
                                     <th>{{ $project->funds }}</th>
-                                    <th>{{ $project->city }}</th>
-                                    <th>{{ $project->description_location }}</th>
+                                    <th>{{ $project->city?->name }}</th>
+                                    <th>{{ $project->description_location }}
+                                        @if ($project->additional_file)
+                                        <a href="{{$project->full_path}}" class="btn btn-primary">open File</a>
+                                        @endif
+                                    </th>
                                     <th>{{ $project->user?->name }}</th>
                                     <th>{{ $project->worker?->user?->name }}</th>
                                     <th>{{ $project->profession?->title }}</th>

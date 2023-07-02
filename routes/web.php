@@ -67,7 +67,12 @@ Route::prefix('admin')
 
         Route::resource('user.permissions', UserPermissionController::class);
         Route::resource('role.permissions', RolePermissionController::class);
-        Route::get('/admin/project', [ProjectController::class , 'index_view'])->name('project.index');
+        Route::get(
+            '/download',
+            [ProjectController::class, 'download']
+        )->name('download.file');
+
+        Route::get('/admin/project', [ProjectController::class, 'index_view'])->name('project.index');
         // Route::resource('/project', ProjectController::class);
     });
 
