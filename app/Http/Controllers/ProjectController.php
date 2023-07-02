@@ -211,7 +211,7 @@ class ProjectController extends Controller
 
             $projects->delete(); // Delete the project record from the database
         }
-
-        return response()->json(['message' => "success for delete the project and related images", 'data' => $projects], 200);
+        return redirect()->back();
+        // return response()->json(['message' => "success for delete the project and related images", 'data' => $projects], 200);
     }
 }

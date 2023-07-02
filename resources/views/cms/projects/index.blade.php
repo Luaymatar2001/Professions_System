@@ -112,14 +112,14 @@
                                     <th>{{ $project->worker?->user?->name }}</th>
                                     <th>{{ $project->profession?->title }}</th>
                                     {{-- <td>{{ $project->full_path }}</td> --}}
-                                    <td>
+                                    <th>
                                         @foreach($project->images as $image)
 
                                         <a href="{{ $image?->full_path }}" target="_blank" rel="noopener noreferrer">
                                             <img src="{{ $image?->full_path }}" width="60" alt="nothing project">
                                         </a>
                                         @endforeach
-                                    </td>
+                                    </th>
 
                                     {{-- @if ($project->accept)
                                         <span class="badge bg-success">{{$project->check_active}}</span>
@@ -135,18 +135,18 @@
                                     @endif
                                     --}}
 
+                                    <th>
+                                        <div class="btn-group">
 
-                                    <div class="btn-group">
-
-                                        <form method="POST" action="{{route('project.destroy',$project->slug)}}" ,
-                                            id="sub_Delete{{$project->id}}">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger delete{{$project->id}}">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                            <script>
-                                                $('.delete{{$project->id}}').click(function(e){
+                                            <form method="POST" action="{{route('project.destroy',$project->slug)}}" ,
+                                                id="sub_Delete{{$project->id}}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger delete{{$project->id}}">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                                <script>
+                                                    $('.delete{{$project->id}}').click(function(e){
                                                           e.preventDefault()
                                                                let confirm =swal("Are you sure delete this record ?", {
                                                                dangerMode: true,
@@ -163,10 +163,10 @@
                                                                });
                                         
                                                         });
-                                            </script>
-                                        </form>
-                                    </div>
-                                    </td>
+                                                </script>
+                                            </form>
+                                        </div>
+                                    </th>
                                 </tr>
                                 @endforeach
                             </tbody>
