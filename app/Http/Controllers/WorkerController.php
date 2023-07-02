@@ -12,7 +12,6 @@ use App\Models\User;
 use App\Models\Worker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -35,11 +34,10 @@ class WorkerController extends Controller
 
     public function index_view()
     {
-        $paginate = 10;
         $result = Worker::select("*")
             ->with('profession')
             ->with('user')
-            ->paginate($paginate);
+            ->paginate(10);
 
         return view('cms.workers.index')->with('workers', $result);
     }
