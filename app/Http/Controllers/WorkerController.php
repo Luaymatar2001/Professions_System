@@ -33,6 +33,17 @@ class WorkerController extends Controller
         return response()->json(["Worker data" => $result], 200);
     }
 
+    public function index_view()
+    {
+        $paginate = 10;
+        $result = Worker::select("*")
+            ->with('profession')
+            ->with('user')
+            ->paginate($paginate);
+
+        return response()->json(["Worker data" => $result], 200);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

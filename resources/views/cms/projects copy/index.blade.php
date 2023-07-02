@@ -4,9 +4,9 @@
 
 @endsection
 
-@section('title', 'projects')
+@section('title', 'workers')
 @section('page-title', 'Index')
-@section('small-title', 'projects Index')
+@section('small-title', 'workers Index')
 
 @section('content')
 <section class="content">
@@ -22,9 +22,9 @@
                                             $id = '{{session("id")}}';
         $page ='{{session("pageNumber")}}';
         if ($page == 0) {
-        window.location.href = 'http://127.0.0.1:8000/admin/projects'+'#ID'+$id;
+        window.location.href = 'http://127.0.0.1:8000/admin/workers'+'#ID'+$id;
         }else{
-        window.location.href = 'http://127.0.0.1:8000/admin/projects?page='+$page+'#ID'+$id;
+        window.location.href = 'http://127.0.0.1:8000/admin/workers?page='+$page+'#ID'+$id;
         }
 
 
@@ -71,21 +71,18 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>name</th>
+                                    <th>email</th>
+                                    <th>professional experience</th>
                                     <th>description</th>
-                                    <th>time first</th>
+                                    <th>image</th>
+                                    <th>ID number</th>
+                                    <td>address</td>
+                                    <td>experience year</td>
+                                    <td>profession </td>
+                                    <td>phone number</td>
                                     <td>slug </td>
-                                    <td>notes</td>
-                                    <td>time function</td>
-                                    <td>additional file</td>
-                                    <td>funds</td>
-                                    <th>city</th>
-                                    <th>description location</th>
-                                    <th>user</th>
-                                    <th>number of offer</th>
-                                    <th>worker</th>
-                                    <th>profession</th>
-                                    <th>number of offers
-                                        </br> submitted</th>
+                                    <th>CV</th>
+
                                     <th>Settings</th>
 
                                 </tr>
@@ -93,40 +90,28 @@
                             <tbody>
 
 
-                                @foreach ($projects as $project)
+                                @foreach ($workers as $project)
                                 <tr id="ID{{ $project->id }}">
                                     <td>{{ $project->id }}</td>
-                                    <td>{{ $project->name }}</td>
-                                    <td>{{ $project->description }}</td>
-                                    <th>{{ $project->time_first }}</th>
-                                    <th>{{ $project->slug }}</th>
-                                    <th>{{ $project->notes }}</th>
-                                    <th>{{ $project->time_function }}</th>
-                                    <th>{{ $project->additional_file }}</th>
-                                    <th>{{ $project->funds }}</th>
-                                    <th>{{ $project->city?->name }}</th>
-                                    <th>{{ $project->description_location }}</th>
+                                    <td>{{ $project->user?->name }}</td>
+                                    <td>{{ $project->user?->email }}</td>
+                                    <td>{{ $project->professional_experience }}</td>
+                                    <th>{{ $project->description }}</th>
                                     <th>
-                                        @if ($project->additional_file)
-                                        <a href="{{$project->full_path}}" class="btn btn-primary">open File</a>
-                                        @endif
-                                        
+                                        <a href="{{ $project->path_image }}" target="_blank" rel="noopener noreferrer">
+                                            <img src="{{ $project->path_image }}" width="80" alt="nothing image">
+                                        </a>
                                     </th>
-                                    <th>{{ $project->user?->name }}</th>
-                                    <th>{{ $project->offer_count }}</th>
-
-                                    <th>{{ $project->worker?->user?->name }}</th>
+                                    <th>{{ $project->id_number }}</th>
+                                    <th>{{ $project->address }}</th>
+                                    <th>{{ $project->experience_year }}</th>
                                     <th>{{ $project->profession?->title }}</th>
-                                    {{-- <td>{{ $project->full_path }}</td> --}}
+                                    <th>{{ $project->phone_number }}</th>
+                                    <th>{{ $project->slug }}</th>
                                     <th>
-                                        <div class="col-md-2">
-                                            @foreach($project->images as $image)
-                                            <a href="{{ $image?->full_path }}" target="_blank"
-                                                rel="noopener noreferrer">
-                                                <img src="{{ $image?->full_path }}" width="60" alt="nothing project">
-                                            </a>
-                                            @endforeach
-                                        </div>
+                                        @if ($project->path_file)
+                                        <a href="{{$project->path_file}}" class="btn btn-primary">open File</a>
+                                        @endif
 
                                     </th>
 
@@ -187,13 +172,13 @@
                     <div class="container">
                         <hr>
                         <div class="row">
-                            <div class="hint-text col-10"><b> {{ $projects->count() }}</b> items out of
-                                <b>{{ $projects->total() }}</b> in
-                                <b>{{ $projects->lastPage() }}</b> pages
+                            <div class="hint-text col-10"><b> {{ $workers->count() }}</b> items out of
+                                <b>{{ $workers->total() }}</b> in
+                                <b>{{ $workers->lastPage() }}</b> pages
                             </div>
                             <!-- 2 items out of 100 in 10 pages -->
                             <div class="col-1" style="border :10px;">
-                                {{ $projects->links() }}
+                                {{ $workers->links() }}
                             </div>
                         </div>
                     </div>
