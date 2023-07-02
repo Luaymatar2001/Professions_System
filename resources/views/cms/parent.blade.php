@@ -339,7 +339,7 @@
 
             <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-images"></i>
+                <i class="nav-icon fas fa-align-left"></i>
                 <p>
                   Projects
                   <i class="fas fa-angle-left right"></i>

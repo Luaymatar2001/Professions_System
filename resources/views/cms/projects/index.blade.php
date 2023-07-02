@@ -144,6 +144,7 @@
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger delete{{$project->id}}">
                                                     <i class="fas fa-trash-alt"></i>
+                                                    
                                                 </button>
                                                 <script>
                                                     $('.delete{{$project->id}}').click(function(e){
