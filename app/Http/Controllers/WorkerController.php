@@ -34,12 +34,11 @@ class WorkerController extends Controller
 
     public function index_view()
     {
-        $result = Worker::
-            // with('profession')
+        $result = Worker::with('profession')
             //     ->with('user')
-            //     ->
-            latest('updated_at')
-            ->paginate(20);
+            //    
+            ->latest('updated_at')
+            ->get();
 
         return view('cms.workers.index')->with('workers', $result);
     }
