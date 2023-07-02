@@ -46,7 +46,6 @@ class ProjectController extends Controller
             ->with('user')
             ->with('images')
             ->with('city')
-
             ->latest('updated_at')
             ->paginate(20);
 
@@ -181,6 +180,25 @@ class ProjectController extends Controller
     public function destroy($project)
     {
         $projects = Project::where('slug', $project)->with('images')->first();
+        if ($projects) {
+            $images = $projects->images;
+
+            foreach ($images as $image) {
+                // Delete the image file from storage if needed
+                Storage::disk('public')->delete($image->image_url);
+
+                $image->delete(); // Delete the image record from the database
+            }
+
+            $projects->delete(); // Delete the project record from the database
+        }
+
+        return response()->json(['message' => "success for delete the project and related images", 'data' => $projects], 200);
+    }
+
+    public function destroy_view($slug)
+    {
+        $projects = Project::where('slug', $slug)->with('images')->first();
         if ($projects) {
             $images = $projects->images;
 

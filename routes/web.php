@@ -71,8 +71,8 @@ Route::prefix('admin')
             '/download',
             [ProjectController::class, 'download']
         )->name('download.file');
-
-        Route::get('/admin/project', [ProjectController::class, 'index_view'])->name('project.index');
+        Route::delete('/project/{slug}', [ProjectController::class, 'destroy_view'])->name('project.destroy');
+        Route::get('/project', [ProjectController::class, 'index_view'])->name('project.index');
         // Route::resource('/project', ProjectController::class);
     });
 

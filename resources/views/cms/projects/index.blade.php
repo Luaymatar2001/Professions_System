@@ -120,13 +120,13 @@
                                         </a>
                                         @endforeach
                                     </td>
-                                    <td>
-                                        {{-- @if ($project->accept)
+
+                                    {{-- @if ($project->accept)
                                         <span class="badge bg-success">{{$project->check_active}}</span>
-                                        @else
-                                        <span class="badge bg-danger"> {{$project->check_active}} </span>
-                                        @endif
-                                        </span>
+                                    @else
+                                    <span class="badge bg-danger"> {{$project->check_active}} </span>
+                                    @endif
+                                    </span>
                                     </td>
                                     @if($project->reject_reason !=null)
                                     <td>{{ $project->reject_reason}}</td>
@@ -135,18 +135,18 @@
                                     @endif
                                     --}}
 
-                                    <td>
-                                        <div class="btn-group">
 
-                                            <form method="POST" action="{{route('projects.destroy',$project->slug)}}" ,
-                                                id="sub_Delete{{$project->id}}">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger delete{{$project->id}}">
-                                                    <i class="fas fa-trash-alt"></i>
-                                                </button>
-                                                <script>
-                                                    $('.delete{{$project->id}}').click(function(e){
+                                    <div class="btn-group">
+
+                                        <form method="POST" action="{{route('project.destroy',$project->slug)}}" ,
+                                            id="sub_Delete{{$project->id}}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger delete{{$project->id}}">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                            <script>
+                                                $('.delete{{$project->id}}').click(function(e){
                                                           e.preventDefault()
                                                                let confirm =swal("Are you sure delete this record ?", {
                                                                dangerMode: true,
@@ -163,9 +163,9 @@
                                                                });
                                         
                                                         });
-                                                </script>
-                                            </form>
-                                        </div>
+                                            </script>
+                                        </form>
+                                    </div>
                                     </td>
                                 </tr>
                                 @endforeach
