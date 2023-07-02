@@ -44,6 +44,7 @@ class ProjectController extends Controller
             ->with('profession')
             ->with('profession.specialty')
             ->with('user')
+            ->withCount('offer')
             ->with('images')
             ->with('city')
             ->latest('updated_at')

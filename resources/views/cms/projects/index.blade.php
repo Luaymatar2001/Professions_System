@@ -81,6 +81,7 @@
                                     <th>city</th>
                                     <th>description location</th>
                                     <th>user</th>
+                                    <th>number of offer</th>
                                     <th>worker</th>
                                     <th>profession</th>
                                     <th>description location</th>
@@ -109,6 +110,8 @@
                                         @endif
                                     </th>
                                     <th>{{ $project->user?->name }}</th>
+                                    <th>{{ $project->offer_count }}</th>
+
                                     <th>{{ $project->worker?->user?->name }}</th>
                                     <th>{{ $project->profession?->title }}</th>
                                     {{-- <td>{{ $project->full_path }}</td> --}}
