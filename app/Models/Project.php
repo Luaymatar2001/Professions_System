@@ -38,7 +38,7 @@ class Project extends Model
 
     public function city()
     {
-        return $this->belongsTo(City::class, 'worker_id', 'id');
+        return $this->belongsTo(City::class, 'city_id', 'id');
     }
     public function user()
     {
