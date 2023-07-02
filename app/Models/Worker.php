@@ -37,14 +37,14 @@ class Worker extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
-    
+
     public function profession()
     {
-        $this->belongsTo(Profession::class, 'profession_id', 'id');
+        return $this->belongsTo(Profession::class, 'profession_id', 'id');
     }
     public function gallery()
     {
-        $this->hasOne(gallery::class, 'worker_id', 'id');
+        return $this->hasOne(gallery::class, 'worker_id', 'id');
     }
 
     public function getSlugOptions(): SlugOptions
