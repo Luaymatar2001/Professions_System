@@ -21,7 +21,6 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        // 
         // Filter local scope
         $projects = Project::with('worker')
             ->with('profession')
@@ -35,6 +34,20 @@ class ProjectController extends Controller
             return response()->json(['message' => 'empty projects !'], 400);
         }
         return response()->json(['message' => 'the projects is not empty', 'data' => $projects], 200);
+    }
+
+    public function index_view()
+    {
+        // Filter local scope
+        $projects = Project::with('worker')
+            ->with('profession')
+            ->with('profession.specialty')
+            ->with('user')
+            ->with('images')
+            ->latest('updated_at')
+            ->paginate(20);
+
+        return view('cms.projects.index')->with('projects', $projects);
     }
 
     public function dataProject()

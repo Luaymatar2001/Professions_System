@@ -11,6 +11,7 @@ use App\Http\Controllers\admin\RolePermissionController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\UserPermissionController;
 use App\Http\Controllers\Api\AccessTokensController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\WorkerController;
 use App\Models\Worker;
 use Illuminate\Support\Facades\Route;
@@ -66,6 +67,7 @@ Route::prefix('admin')
 
         Route::resource('user.permissions', UserPermissionController::class);
         Route::resource('role.permissions', RolePermissionController::class);
+        Route::resource('/project', ProjectController::class);
     });
 
 
