@@ -94,12 +94,25 @@
                                 @foreach ($projects as $project)
                                 <tr id="ID{{ $project->id }}">
                                     <td>{{ $project->id }}</td>
+                                    <td>{{ $project->name }}</td>
+                                    <td>{{ $project->description }}</td>
+                                    <th>{{ $project->time_first }}</th>
+                                    <th>{{ $project->slug }}</th>
+                                    <th>{{ $project->notes }}</th>
+                                    <th>{{ $project->time_function }}</th>
+                                    <th>{{ $project->additional_file }}</th>
+                                    <th>{{ $project->funds }}</th>
+                                    <th>{{ $project->city }}</th>
+                                    <th>{{ $project->description_location }}</th>
+                                    <th>{{ $project->user?->name }}</th>
+                                    <th>{{ $project->worker?->user?->name }}</th>
+                                    <th>{{ $project->profession?->title }}</th>
                                     {{-- <td>{{ $project->full_path }}</td> --}}
                                     <td>
                                         @foreach($project->images as $image)
 
-                                        <a href="{{ $image->full_path }}" target="_blank" rel="noopener noreferrer">
-                                            <img src="{{ $image->full_path }}" width="60" alt="nothing project">
+                                        <a href="{{ $image?->full_path }}" target="_blank" rel="noopener noreferrer">
+                                            <img src="{{ $image?->full_path }}" width="60" alt="nothing project">
                                         </a>
                                         @endforeach
                                     </td>
@@ -116,12 +129,8 @@
                                     @else
                                     <td>--</td>
                                     @endif
+                                    --}}
 
-                                    <td>{{ $project->projectable_id }}</td>
-                                    <td>{{ $project->projectable_type }}</td>
-                                    <td>{{ $project->slug }}</td>
-                                    <td>{{ $project->created_at }}</td>
-                                    <td>{{ $project->updated_at }}</td> --}}
                                     <td>
                                         <div class="btn-group">
 
