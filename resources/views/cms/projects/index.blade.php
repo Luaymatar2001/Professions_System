@@ -11,7 +11,7 @@
 @section('content')
 <section class="content">
     <div class="container-fluid">
-        @if (session()->has('statusEdit'))
+        {{-- @if (session()->has('statusEdit'))
         @if (session('statusEdit'))
         <script>
             $(document).ready(function() {
@@ -20,19 +20,19 @@
                                             text: "the Edit Process is success \n Do you want to go back Edit row ?"
                                         }).then(function name(params) {
                                             $id = '{{session("id")}}';
-                                            $page ='{{session("pageNumber")}}';
-                                            if ($page == 0) {
-                                                window.location.href = 'http://127.0.0.1:8000/admin/projects'+'#ID'+$id;
-                                            }else{
-                                                window.location.href = 'http://127.0.0.1:8000/admin/projects?page='+$page+'#ID'+$id;
-                                            }
-                                  
-                                  
-                                         
-                                        }
-                                         
-                                        )
-                                    });
+        $page ='{{session("pageNumber")}}';
+        if ($page == 0) {
+        window.location.href = 'http://127.0.0.1:8000/admin/projects'+'#ID'+$id;
+        }else{
+        window.location.href = 'http://127.0.0.1:8000/admin/projects?page='+$page+'#ID'+$id;
+        }
+
+
+
+        }
+
+        )
+        });
         </script>
         @else
         <script>
@@ -41,7 +41,7 @@
                                     });
         </script>
         @endif
-        @endif
+        @endif --}}
         <!-- /.row -->
         <div class="row">
             <div class="col-12">
@@ -113,12 +113,15 @@
                                     <th>{{ $project->profession?->title }}</th>
                                     {{-- <td>{{ $project->full_path }}</td> --}}
                                     <th>
-                                        @foreach($project->images as $image)
+                                        <div class="col-md-2">
+                                            @foreach($project->images as $image)
+                                            <a href="{{ $image?->full_path }}" target="_blank"
+                                                rel="noopener noreferrer">
+                                                <img src="{{ $image?->full_path }}" width="60" alt="nothing project">
+                                            </a>
+                                            @endforeach
+                                        </div>
 
-                                        <a href="{{ $image?->full_path }}" target="_blank" rel="noopener noreferrer">
-                                            <img src="{{ $image?->full_path }}" width="60" alt="nothing project">
-                                        </a>
-                                        @endforeach
                                     </th>
 
                                     {{-- @if ($project->accept)
@@ -144,7 +147,7 @@
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger delete{{$project->id}}">
                                                     <i class="fas fa-trash-alt"></i>
-                                                    
+
                                                 </button>
                                                 <script>
                                                     $('.delete{{$project->id}}').click(function(e){
