@@ -126,7 +126,12 @@ class AdminController extends Controller
         }
     }
 
-    public function reset_password(Request $request)
+
+    public function page_change_password()
+    {
+        return view('cms.changePassword');
+    }
+    public function change_password(Request $request)
     {
 
         $validate = FacadesValidator::make($request->all(), [

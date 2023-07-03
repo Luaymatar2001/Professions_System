@@ -13,6 +13,7 @@ use App\Http\Controllers\admin\UserPermissionController;
 use App\Http\Controllers\Api\AccessTokensController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\WorkerController;
+use App\Models\Admin;
 use App\Models\Worker;
 use Illuminate\Support\Facades\Route;
 
@@ -56,8 +57,8 @@ Route::prefix('admin')
         Route::resource('/cities', CityController::class);
         Route::resource('/images', ImageController::class);
         Route::resource('dashBoard/admins', AdminController::class);
-        Route::post('/change_password', [UserController::class, 'change_password'])->name('user.change_password');
-        Route::get('/page_change_password', [UserController::class, 'page_change_password'])->name('user.page_change_password');
+        Route::post('/change_password', [AdminController::class, 'change_password'])->name('Admin.change_password');
+        Route::get('/page_change_password', [AdminController::class, 'page_change_password'])->name('Admin.page_change_password');
 
 
         //Role and Permission

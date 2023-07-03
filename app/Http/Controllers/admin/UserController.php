@@ -182,11 +182,7 @@ class UserController extends Controller
 
         return Response(["message" => 'the email is exists check your email box'], 200);
     }
-    public function page_change_password()
-    {
-        return view('cms.changePassword');
-    }
-    public function change_password(Request $request, $email)
+    public function reset_password(Request $request, $email)
     {
 
         $validate = Validator::make($request->all(), [

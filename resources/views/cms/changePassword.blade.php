@@ -71,7 +71,7 @@
       <div class="card-body login-card-body">
         <p class="login-box-msg">You are only one step a way from your new password, recover your password now.</p>
 
-        <form action="{{route('user.change_password')}}" method="post">
+        <form action="{{route('Admin.change_password')}}" method="post">
           <div class="input-group mb-3">
             <input type="password" class="form-control" name="old_password" placeholder="old password">
             <div class="input-group-append">
