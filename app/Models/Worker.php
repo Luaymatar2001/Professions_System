@@ -40,7 +40,7 @@ class Worker extends Model
 
     public function profession()
     {
-        return $this->belongsTo(Profession::class, 'profession_id', 'id');
+        return $this->belongsTo(Profession::class, 'profession_id');
     }
     public function gallery()
     {

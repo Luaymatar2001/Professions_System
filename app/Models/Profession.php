@@ -13,7 +13,7 @@ class Profession extends Model
 {
     use HasSlug, HasFactory, SoftDeletes;
     protected $primaryKey = 'id';
-    protected $guarded = ["id"];
+    // protected $guarded = ["id"];
     protected $hidden = [
         'created_at', 'updated_at', 'deleted_at'
     ];
