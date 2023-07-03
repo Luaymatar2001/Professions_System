@@ -511,7 +511,7 @@
             <li class="nav-header">Setting</li>
 
             <li class="nav-item">
-              <a href="cms/iframe.html" class="nav-link">
+              <a href="{{route('user.page_change_password')}}" class="nav-link">
                 <i class="nav-icon fas fa-lock"></i>
                 <p>Change Password</p>
               </a>

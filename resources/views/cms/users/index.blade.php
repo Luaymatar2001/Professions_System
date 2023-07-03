@@ -110,9 +110,9 @@
                                     <td>{{ $user->updated_at }}</td>
                                     <td>
                                         <div class="btn-group">
-                                            <a href="{{route('users.edit',$user->id)}}" class="btn btn-info">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
+                                            {{-- <a href="{{route('users.edit',$user->id)}}" class="btn btn-info">
+                                            <i class="fas fa-edit"></i>
+                                            </a> --}}
                                             {{-- action="{{route('users.destroy',$user->id)}}" --}}
 
                                             <button type="button" id="deleteDel"

@@ -56,7 +56,10 @@ Route::prefix('admin')
         Route::resource('/cities', CityController::class);
         Route::resource('/images', ImageController::class);
         Route::resource('dashBoard/admins', AdminController::class);
+        Route::post('/change_password', [UserController::class, 'index_view'])->name('user.change_password');
+        Route::get('/page_change_password', [UserController::class, 'page_change_password'])->name('user.page_change_password');
 
+        
         //Role and Permission
         Route::get('/role/delete/{id}', [RoleController::class, 'destroy']);
         Route::resource('/roles', RoleController::class);

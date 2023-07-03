@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AdminRequest;
 use App\Http\Requests\PostAdminRequest;
 use App\Models\Admin;
+use Dotenv\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator as FacadesValidator;
 use Symfony\Component\HttpFoundation\Response;
 
 
@@ -122,5 +124,34 @@ class AdminController extends Controller
         } else {
             return back()->withSuccess("Deleted Successfully");
         }
+    }
+
+    public function reset_password(Request $request)
+    {
+
+        $validate = FacadesValidator::make($request->all(), [
+            'old_password' => ['required', 'min:8'],
+            'password' => ['required', 'min:8', 'confirmed']
+        ], [
+            "password.required" => 'the password is required',
+            "password.min" => "The Password must be at least :min characters.",
+            "password.confirmed" => 'Confirm Password does not match.',
+        ]);
+        if ($validate->fails()) {
+            return redirect()->back()->withErrors($validate->errors())->withInput();
+        }
+        $status = false;
+        if (Hash::check($request['old_password'], Auth::guard('admin')->password)) {
+            $password = Hash::make($request['password']);
+            $user = Auth::guard('admin')->id;
+            $user = Admin::findorFail((int)$user)->firstOrFail();
+            $user->password = $password;
+            $status = $user->save();
+        }else {
+            return redirect()->back()->with('statOld' , 'the old password not correct')
+        }
+
+
+        return redirect()->back()->with('status', $status);
     }
 }
