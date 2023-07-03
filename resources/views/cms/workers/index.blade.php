@@ -108,7 +108,8 @@
                                     <th>{{ $worker->slug }}</th>
                                     <th>
                                         @if ($worker->path_file)
-                                        <a href="{{$worker->path_file}}" class="btn btn-primary">open File</a>
+                                        <a href="{{$worker->path_file}}" target="_blank" class="btn btn-primary">open
+                                            File</a>
                                         @endif
 
                                     </th>
