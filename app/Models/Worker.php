@@ -64,18 +64,18 @@ class Worker extends Model
     }
     public function getPathImageAttribute($key)
     {
-        if (!Storage::disk('local')->exists($this->cover_image)) {
+        if (!Storage::disk('public')->exists($this->cover_image)) {
             return 'http://via.placeholder.com/80x80';
         }
 
         // return storage_path('app/' . $this->cover_image);
-        $filePath =  Storage::disk('local')->url($this->cover_image);
+        $filePath =  Storage::disk('public')->url($this->cover_image);
     }
 
     public function getPathFileAttribute($key)
     {
         // $filePath = storage_path('app/' . $this->CV);
-        $filePath =  Storage::disk('local')->url($this->CV);
+        $filePath =  Storage::disk('public')->url($this->CV);
 
         // if (Storage::disk('local')->exists($filePath)) {
         //     //ترجع محتوى
