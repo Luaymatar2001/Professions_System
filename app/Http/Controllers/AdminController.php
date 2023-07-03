@@ -152,8 +152,8 @@ class AdminController extends Controller
             $user = Admin::findorFail((int)$user)->firstOrFail();
             $user->password = $password;
             $status = $user->save();
-        }else {
-            return redirect()->back()->with('statOld' , 'the old password not correct')
+        } else {
+            return redirect()->back()->with('statOld', 'the old password not correct');
         }
 
 
