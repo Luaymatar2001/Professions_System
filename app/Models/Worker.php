@@ -70,6 +70,7 @@ class Worker extends Model
 
         // return storage_path('app/' . $this->cover_image);
         $filePath =  Storage::disk('local')->url($this->cover_image);
+        return $filePath;
     }
 
     public function getPathFileAttribute($key)
