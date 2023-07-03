@@ -73,7 +73,7 @@
 
         <form action="{{route('user.change_password')}}" method="post">
           <div class="input-group mb-3">
-            <input type="password" class="form-control" name="old_password" placeholder="Password">
+            <input type="password" class="form-control" name="old_password" placeholder="old password">
             <div class="input-group-append">
               <div class="input-group-text">
                 @error('old_password')
@@ -86,7 +86,7 @@
             </div>
           </div>
           <div class="input-group mb-3">
-            <input type="password" class="form-control" name="password" placeholder="Old Password">
+            <input type="password" class="form-control" name="password" placeholder="new Password">
             <div class="input-group-append">
               <div class="input-group-text">
                 @error('password')
@@ -116,10 +116,6 @@
             <!-- /.col -->
           </div>
         </form>
-
-        <p class="mt-3 mb-1">
-          <a href="login.html">Login</a>
-        </p>
       </div>
       <!-- /.login-card-body -->
     </div>
