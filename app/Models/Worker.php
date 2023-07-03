@@ -64,18 +64,26 @@ class Worker extends Model
     }
     public function getPathImageAttribute($key)
     {
-        if (!Storage::disk('public')->exists($this->cover_image)) {
-            return 'http://via.placeholder.com/80x80';
-        }
+        // if (!Storage::disk('public')->exists($this->cover_image)) {
+        //     return 'http://via.placeholder.com/80x80';
+        // }
 
-        // return storage_path('app/' . $this->cover_image);
-        $filePath =  Storage::disk('public')->url($this->cover_image);
+        // // return storage_path('app/' . $this->cover_image);
+        // $filePath =  Storage::disk('public')->url($this->cover_image);
+
+        if ($this->image_url) {
+            // return Storage::disk('public')->url($this->image_url);
+            return url('app/public', [
+                'image' => $this->cover_image,
+            ]);
+        }
+        return 'http://via.placeholder.com/80x80';
     }
 
     public function getPathFileAttribute($key)
     {
         // $filePath = storage_path('app/' . $this->CV);
-        $filePath =  Storage::disk('public')->url($this->CV);
+        // $filePath =  Storage::disk('public')->url($this->CV);
 
         // if (Storage::disk('local')->exists($filePath)) {
         //     //ترجع محتوى
@@ -84,6 +92,15 @@ class Worker extends Model
         //     return $fileContents;
         // }
 
-        return $filePath;
+
+        if ($this->CV) {
+            // return Storage::disk('public')->url($this->image_url);
+            return url('app/public', [
+                'file' => $this->CV,
+            ]);
+        }
+        return 'http://via.placeholder.com/80x80';
+
+        // return $filePath;
     }
 }
