@@ -68,9 +68,7 @@ class Worker extends Model
             return 'http://via.placeholder.com/80x80';
         }
 
-        // return storage_path('app/' . $this->cover_image);
-        $filePath =  Storage::disk('local')->url($this->cover_image);
-        return $filePath;
+        return storage_path('app/' . $this->cover_image);
     }
 
     public function getPathFileAttribute($key)
