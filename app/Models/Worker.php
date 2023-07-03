@@ -68,12 +68,14 @@ class Worker extends Model
             return 'http://via.placeholder.com/80x80';
         }
 
-        return storage_path('app/' . $this->cover_image);
+        // return storage_path('app/' . $this->cover_image);
+        $filePath =  Storage::disk('local')->url($this->cover_image);
     }
 
     public function getPathFileAttribute($key)
     {
-        $filePath = storage_path('app/' . $this->CV);
+        // $filePath = storage_path('app/' . $this->CV);
+        $filePath =  Storage::disk('local')->url($this->CV);
 
         // if (Storage::disk('local')->exists($filePath)) {
         //     //ترجع محتوى

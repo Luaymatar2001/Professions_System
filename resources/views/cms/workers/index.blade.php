@@ -73,7 +73,6 @@
                                     <th>name</th>
                                     <th>email</th>
                                     <th>professional experience</th>
-                                    <th>description</th>
                                     <th>image</th>
                                     <th>ID number</th>
                                     <td>address</td>
@@ -96,10 +95,9 @@
                                     <td>{{ $worker->user?->name }}</td>
                                     <td>{{ $worker->user?->email }}</td>
                                     <td>{{ $worker->professional_experience }}</td>
-                                    <th>{{ $worker->description }}</th>
                                     <th>
-                                        <a href="{{ $worker->path_image }}" target="_blank" rel="noopener noreferrer">
-                                            <img src="{{ $worker->path_image }}" width="80" alt="nothing image">
+                                        <a href="{{ $worker->path_image}}" target="_blank" rel="noopener noreferrer">
+                                            <img src="{{ $worker->path_image}}" width="80" alt="nothing image">
                                         </a>
                                     </th>
                                     <th>{{ $worker->id_number }}</th>
