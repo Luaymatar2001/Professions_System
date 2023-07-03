@@ -71,7 +71,7 @@ class Worker extends Model
         // // return storage_path('app/' . $this->cover_image);
         // $filePath =  Storage::disk('public')->url($this->cover_image);
 
-        if ($this->image_url) {
+        if ($this->cover_image) {
             // return Storage::disk('public')->url($this->image_url);
             return url('app/public', [
                 'image' => $this->cover_image,
