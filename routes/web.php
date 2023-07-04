@@ -60,7 +60,7 @@ Route::prefix('admin')
                 'professions'  =>  $professions,
                 'worker' => $worker2
             ]);
-        });
+        })->name('admin.home');
 
         //specialities
         Route::get('/specialities/restore_index', [SpecialtiesController::class, 'index_restore'])->name('specialities.restore');
