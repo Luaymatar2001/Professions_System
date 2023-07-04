@@ -110,13 +110,14 @@
                                         @if ($project->additional_file)
                                         <a href="{{$project->full_path}}" class="btn btn-primary">open File</a>
                                         @endif
-                                        
+
                                     </th>
                                     <th>{{ $project->user?->name }}</th>
                                     <th>{{ $project->offer_count }}</th>
 
                                     <th>{{ $project->worker?->user?->name }}</th>
                                     <th>{{ $project->profession?->title }}</th>
+                                    <th>{{ $project->offer_count }}</th>
                                     {{-- <td>{{ $project->full_path }}</td> --}}
                                     <th>
                                         <div class="col-md-2">
