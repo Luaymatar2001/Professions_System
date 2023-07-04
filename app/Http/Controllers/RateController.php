@@ -38,7 +38,7 @@ class RateController extends Controller
     {
 
         $rate = new Rate($request->all());
-        if (!User::where('user_id', $rate->user_id)->exists()) {
+        if (!Rate::where('user_id', $rate->user_id)->exists()) {
             $rate->user_id = Auth::user()->id;
         } else {
             abort("503", " This user has already rated ! ");
