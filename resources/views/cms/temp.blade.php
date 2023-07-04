@@ -174,7 +174,7 @@
                                     </ul>
                                 </div>
                                 <div class="col-5 text-center">
-                                    <img src="https://www.facebook.com/profile.php?id=100006970170028&locale=ar_AR"
+                                    <img src="https://media.licdn.com/dms/image/D4D03AQHs15DwqOKenA/profile-displayphoto-shrink_800_800/0/1687593412718?e=1694044800&v=beta&t=rWoach-KwIwiKJIE0pRsdr8Ho49vIUMFUH4W-jGlLog"
                                         alt="user-avatar" class="img-circle img-fluid">
                                 </div>
                             </div>
@@ -211,14 +211,16 @@
                                     </ul>
                                 </div>
                                 <div class="col-5 text-center">
-                                    <img src="https://media.licdn.com/dms/image/D4D03AQFOzEBVIeUHxg/profile-displayphoto-shrink_800_800/0/1677965639362?e=1694044800&v=beta&t=nysDRrw50GjbvF73xcCsnk0K-sfG0C4vzAWGRlIj4AM"
-                                        alt="user-avatar" class="img-circle img-fluid">
+                                    <img src="http://via.placeholder.com/80x80" alt="user-avatar"
+                                        class="img-circle img-fluid">
                                 </div>
                             </div>
                         </div>
                         <div class="card-footer">
                             <div class="text-right">
-                                <a href="http://via.placeholder.com/80x80" class="btn btn-sm btn-primary">
+
+                                <a href="https://www.facebook.com/profile.php?id=100006970170028&locale=ar_AR"
+                                    class="btn btn-sm btn-primary">
                                     <i class="fas fa-user"></i> View Profile
                                 </a>
                             </div>
