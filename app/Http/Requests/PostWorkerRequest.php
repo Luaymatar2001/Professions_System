@@ -38,6 +38,7 @@ class PostWorkerRequest extends FormRequest
             'experience_year' => 'required|min:1',
             // 'password' => 'required|min:6',
             // 'user_id' => 'required|min:1',
+            'CV' => 'nullable|mimetypes:application/pdf|max:5120',
             'profession_id' => 'required|min:1',
             'phone_number' => 'required|regex:/^\+\d+/',
         ];
