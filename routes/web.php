@@ -32,7 +32,8 @@ use Illuminate\Support\Facades\Route;
  */
 
 Route::get('/', function () {
-    return view('cms.testPage');
+    $user = User::first();
+    return view('cms.testPage')->with('user', $user);
 });
 
 Route::prefix('admin')->group(function () {
