@@ -13,7 +13,7 @@ class AvailabilityTest extends TestCase
      */
     public function testRouteAvailability()
     {
-        $response = $this->get('/admin/login'); // Replace 'your-route' with the actual route you want to test
+        $response = $this->get('/rate'); // Replace 'your-route' with the actual route you want to test
 
         $response->assertStatus(200);
     }
