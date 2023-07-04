@@ -46,7 +46,10 @@ class Worker extends Model
     {
         return $this->hasOne(gallery::class, 'worker_id', 'id');
     }
-
+    public function rate()
+    {
+        return $this->hasMany(Rate::class, 'worker_id');
+    }
     public function getSlugOptions(): SlugOptions
     {
         //Build slug from name column and store slug column max length 255 and skip slug when deleted_at null

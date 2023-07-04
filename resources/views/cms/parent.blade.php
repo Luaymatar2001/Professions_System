@@ -264,7 +264,7 @@
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-hammer"></i>
                 <p>
-                  professional
+                  professions
                   <i class="fas fa-angle-left right"></i>
                 </p>
               </a>
@@ -511,7 +511,7 @@
             <li class="nav-header">Setting</li>
 
             <li class="nav-item">
-              <a href="{{route('user.page_change_password')}}" class="nav-link">
+              <a href="{{route('Admin.page_change_password')}}" class="nav-link">
                 <i class="nav-icon fas fa-lock"></i>
                 <p>Change Password</p>
               </a>

@@ -14,6 +14,9 @@ use App\Http\Controllers\Api\AccessTokensController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\WorkerController;
 use App\Models\Admin;
+use App\Models\City;
+use App\Models\Profession;
+use App\Models\User;
 use App\Models\Worker;
 use Illuminate\Support\Facades\Route;
 
@@ -43,7 +46,21 @@ Route::prefix('admin')
     ->middleware(['auth:admin', 'roleAdmin'])->group(function () {
 
         //main Page
-        Route::view('/', 'cms.temp');
+        Route::get('/', function () {
+            $users = User::count();
+            $worker = Worker::count();
+            $cities = City::count();
+            $professions = Profession::count();
+            $worker2 = Worker::withSum('rate', 'rate')->get();
+
+            return view('cms.temp')->with([
+                'users' => $users,
+                'workers' => $worker,
+                'cities' => $cities,
+                'professions'  =>  $professions,
+                'worker' => $worker2
+            ]);
+        });
 
         //specialities
         Route::get('/specialities/restore_index', [SpecialtiesController::class, 'index_restore'])->name('specialities.restore');

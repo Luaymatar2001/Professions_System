@@ -64,48 +64,58 @@
   @endif
   <div class="login-box">
     <div class="login-logo">
-      <a href="../../index2.html"><b>Admin</b>LTE</a>
+      <a href="{{route('admin.login')}}"><b>Professional</b>System</a>
     </div>
     <!-- /.login-logo -->
     <div class="card">
       <div class="card-body login-card-body">
-        <p class="login-box-msg">You are only one step a way from your new password, recover your password now.</p>
+        <p class="login-box-msg">You are only one step a way from your new password</p>
 
         <form action="{{route('Admin.change_password')}}" method="post">
+          @csrf
+          @error('old_password')
+          <small class="text-danger">
+            {{$message}}
+          </small>
+          @enderror
           <div class="input-group mb-3">
-            <input type="password" class="form-control" name="old_password" placeholder="old password">
+            <input type="password" class="form-control" value="{{old('old_password')}}" name="old_password"
+              placeholder="old password">
             <div class="input-group-append">
               <div class="input-group-text">
-                @error('old_password')
-                <span class="fas fa-lock danger">
-                  {{$message}}
-                </span>
-                @enderror
+                <span class="fas fa-lock "></span>
+              </div>
+            </div>
 
+          </div>
+
+          @error('password')
+          <small class="text-danger">
+            {{$message}}
+          </small>
+
+          @enderror
+          <div class="input-group mb-3">
+            <input type="password" class="form-control" name="password" value="{{old('password')}}"
+              placeholder="new Password">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock "></span>
               </div>
             </div>
           </div>
+
+          @error('password_confirmation')
+          <span class="fas fa-lock danger">
+            {{$message}}
+          </span>
+          @enderror
           <div class="input-group mb-3">
-            <input type="password" class="form-control" name="password" placeholder="new Password">
+            <input type="password" class="form-control" name="password_confirmation"
+              value="{{old('password_confirmation')}}" placeholder="Confirm Password">
             <div class="input-group-append">
               <div class="input-group-text">
-                @error('password')
-                <span class="fas fa-lock danger">
-                  {{$message}}
-                </span>
-                @enderror
-              </div>
-            </div>
-          </div>
-          <div class="input-group mb-3">
-            <input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password">
-            <div class="input-group-append">
-              <div class="input-group-text">
-                @error('password_confirmation')
-                <span class="fas fa-lock danger">
-                  {{$message}}
-                </span>
-                @enderror
+                <span></span>
               </div>
             </div>
           </div>

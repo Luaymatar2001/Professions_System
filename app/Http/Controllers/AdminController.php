@@ -138,6 +138,8 @@ class AdminController extends Controller
             'old_password' => ['required', 'min:8'],
             'password' => ['required', 'min:8', 'confirmed']
         ], [
+            "old_password.required" => 'must enter the current password ',
+            "old_password.min" => 'The Password must be at least :min characters.',
             "password.required" => 'the password is required',
             "password.min" => "The Password must be at least :min characters.",
             "password.confirmed" => 'Confirm Password does not match.',
@@ -146,9 +148,9 @@ class AdminController extends Controller
             return redirect()->back()->withErrors($validate->errors())->withInput();
         }
         $status = false;
-        if (Hash::check($request['old_password'], Auth::guard('admin')->password)) {
+        if (Hash::check($request['old_password'], Auth::guard('admin')->user()->password)) {
             $password = Hash::make($request['password']);
-            $user = Auth::guard('admin')->id;
+            $user = Auth::guard('admin')->user()->id;
             $user = Admin::findorFail((int)$user)->firstOrFail();
             $user->password = $password;
             $status = $user->save();

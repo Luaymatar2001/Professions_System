@@ -124,6 +124,7 @@
     };
     
     fetch('https://phplaravel-1025967-3619615.cloudwaysapps.com/admin/login',
+    // fetch('http://127.0.0.1:8000/admin/login' ,
 
      {
       method: 'POST',
@@ -142,6 +143,7 @@
   //  console.log(response);
   if(message == 'success'){
     window.location.href = 'https://phplaravel-1025967-3619615.cloudwaysapps.com/admin';
+  // window.location.href = 'http://127.0.0.1:8000/admin';
   }else{
    
     const codeMessage = ' <div class="alert alert-warning alert-dismissible fade show" role="alert">'+
