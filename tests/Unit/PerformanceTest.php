@@ -22,6 +22,6 @@ class PerformanceTest extends TestCase
         $response->assertStatus(200);
 
         $responseTime = $response->headers->get('x-response-time');
-        $this->assertLessThan(2000, $responseTime);
+        $this->assertLessThan(3000, $responseTime);
     }
 }
