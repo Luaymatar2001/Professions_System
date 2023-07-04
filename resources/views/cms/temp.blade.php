@@ -86,7 +86,7 @@
                         <div class="card-body pt-0">
                             <div class="row">
                                 <div class="col-7">
-                                    <h2 class="lead"><b>Luay matar</b></h2>
+                                    <h2 class="lead"><b>Luay Matar</b></h2>
                                     <p class="text-muted text-sm"><b>About: </b> backEnd Developer / laravel framwork /
                                         jquery
                                     </p>
@@ -129,9 +129,9 @@
                                     <ul class="ml-4 mb-0 fa-ul text-muted">
                                         <li class="small"><span class="fa-li"><i
                                                     class="fas fa-lg fa-building"></i></span>
-                                            Address: Demo Street 123, Demo City 04312, NJ</li>
+                                            Address:Palestine , Gaza , al-Naser</li>
                                         <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span>
-                                            Phone #: + +972 59 51 48 174</li>
+                                            Phone #: +972 59 51 48 174</li>
                                     </ul>
                                 </div>
                                 <div class="col-5 text-center">
@@ -160,30 +160,30 @@
                         <div class="card-body pt-0">
                             <div class="row">
                                 <div class="col-7">
-                                    <h2 class="lead"><b>Nicole Pearson</b></h2>
-                                    <p class="text-muted text-sm"><b>About: </b> Web Designer / UX / Graphic Artist /
+                                    <h2 class="lead"><b>Mohamed Alserhi</b></h2>
+                                    <p class="text-muted text-sm"><b>About: </b> Web Designer / Front End Developer /
+                                        Flutter /
                                         Coffee
                                         Lover </p>
                                     <ul class="ml-4 mb-0 fa-ul text-muted">
                                         <li class="small"><span class="fa-li"><i
                                                     class="fas fa-lg fa-building"></i></span>
-                                            Address: Demo Street 123, Demo City 04312, NJ</li>
+                                            Address: Palestine , Gaza, Al-Zaytoun Street 10</li>
                                         <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span>
-                                            Phone #: + 800 - 12 12 23 52</li>
+                                            Phone #: + 972 59 24 76 869</li>
                                     </ul>
                                 </div>
                                 <div class="col-5 text-center">
-                                    <img src="https://media.licdn.com/dms/image/D4D03AQFOzEBVIeUHxg/profile-displayphoto-shrink_800_800/0/1677965639362?e=1694044800&v=beta&t=nysDRrw50GjbvF73xcCsnk0K-sfG0C4vzAWGRlIj4AM"
+                                    <img src="https://www.facebook.com/profile.php?id=100006970170028&locale=ar_AR"
                                         alt="user-avatar" class="img-circle img-fluid">
                                 </div>
                             </div>
                         </div>
                         <div class="card-footer">
                             <div class="text-right">
-                                <a href="#" class="btn btn-sm bg-teal">
-                                    <i class="fas fa-comments"></i>
-                                </a>
-                                <a href="#" class="btn btn-sm btn-primary">
+
+                                <a href="https://www.linkedin.com/in/mohamed-alserhi-2a93101a6/"
+                                    class="btn btn-sm btn-primary">
                                     <i class="fas fa-user"></i> View Profile
                                 </a>
                             </div>
@@ -198,16 +198,16 @@
                         <div class="card-body pt-0">
                             <div class="row">
                                 <div class="col-7">
-                                    <h2 class="lead"><b>Nicole Pearson</b></h2>
-                                    <p class="text-muted text-sm"><b>About: </b> Web Designer / UX / Graphic Artist /
+                                    <h2 class="lead"><b>Taj aldeen huseen</b></h2>
+                                    <p class="text-muted text-sm"><b>About: </b> Web Designer / react / node js /
                                         Coffee
                                         Lover </p>
                                     <ul class="ml-4 mb-0 fa-ul text-muted">
                                         <li class="small"><span class="fa-li"><i
                                                     class="fas fa-lg fa-building"></i></span>
-                                            Address: Demo Street 123, Demo City 04312, NJ</li>
+                                            Address: Palestine , Gaza , Al-brije</li>
                                         <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span>
-                                            Phone #: + 800 - 12 12 23 52</li>
+                                            Phone #: +972 59 23 68 009</li>
                                     </ul>
                                 </div>
                                 <div class="col-5 text-center">
@@ -218,10 +218,7 @@
                         </div>
                         <div class="card-footer">
                             <div class="text-right">
-                                <a href="#" class="btn btn-sm bg-teal">
-                                    <i class="fas fa-comments"></i>
-                                </a>
-                                <a href="#" class="btn btn-sm btn-primary">
+                                <a href="http://via.placeholder.com/80x80" class="btn btn-sm btn-primary">
                                     <i class="fas fa-user"></i> View Profile
                                 </a>
                             </div>
