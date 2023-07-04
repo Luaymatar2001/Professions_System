@@ -136,8 +136,8 @@
                                     </ul>
                                 </div>
                                 <div class="col-5 text-center">
-                                    <img src="../../dist/img/user2-160x160.jpg" alt="user-avatar"
-                                        class="img-circle img-fluid">
+                                    <img src="https://media.licdn.com/dms/image/D4D03AQFOzEBVIeUHxg/profile-displayphoto-shrink_800_800/0/1677965639362?e=1694044800&v=beta&t=nysDRrw50GjbvF73xcCsnk0K-sfG0C4vzAWGRlIj4AM"
+                                        alt="user-avatar" class="img-circle img-fluid">
                                 </div>
                             </div>
                         </div>
@@ -175,8 +175,8 @@
                                     </ul>
                                 </div>
                                 <div class="col-5 text-center">
-                                    <img src="../../dist/img/user2-160x160.jpg" alt="user-avatar"
-                                        class="img-circle img-fluid">
+                                    <img src="https://media.licdn.com/dms/image/D4D03AQFOzEBVIeUHxg/profile-displayphoto-shrink_800_800/0/1677965639362?e=1694044800&v=beta&t=nysDRrw50GjbvF73xcCsnk0K-sfG0C4vzAWGRlIj4AM"
+                                        alt="user-avatar" class="img-circle img-fluid">
                                 </div>
                             </div>
                         </div>
@@ -213,8 +213,8 @@
                                     </ul>
                                 </div>
                                 <div class="col-5 text-center">
-                                    <img src="../../dist/img/user2-160x160.jpg" alt="user-avatar"
-                                        class="img-circle img-fluid">
+                                    <img src="https://media.licdn.com/dms/image/D4D03AQFOzEBVIeUHxg/profile-displayphoto-shrink_800_800/0/1677965639362?e=1694044800&v=beta&t=nysDRrw50GjbvF73xcCsnk0K-sfG0C4vzAWGRlIj4AM"
+                                        alt="user-avatar" class="img-circle img-fluid">
                                 </div>
                             </div>
                         </div>
