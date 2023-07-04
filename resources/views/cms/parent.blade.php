@@ -182,7 +182,7 @@
         {{-- <img src="{{asset('cms/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo"
         class="brand-image img-circle elevation-3" style="opacity: .8"> --}}
         <span class="brand-text font-weight-light"><img src="{{asset('/app/public/logo/logoProfessionalSystem.jpeg')}}"
-            alt="nothing image" width="250"></span>
+            alt="nothing image" width="220"></span>
       </a>
 
       <!-- Sidebar -->
