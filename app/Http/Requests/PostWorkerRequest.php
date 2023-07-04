@@ -65,8 +65,12 @@ class PostWorkerRequest extends FormRequest
             'user_id.min' => 'minimum number user id is 1 ',
             'profession_id.required' => 'the profession id is required ',
             'profession_id.min' => 'minimum number profession id is 1 ',
+            'CV.mimetypes' => 'the file must type PDF',
+            'CV.max' => 'the maximum size of file is 5120',
             'phone_number.required' => 'the phone number is required',
             'phone_number.regex' => 'The phone number must start with a + sign followed by 4 to 15 numbers.',
+
+
         ];
     }
 }
