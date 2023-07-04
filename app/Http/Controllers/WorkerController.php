@@ -289,7 +289,7 @@ class WorkerController extends Controller
         $worker = Worker::where('slug', $slug)
             ->with('rate')
             ->withSum('rate as star_rate', 'rate')
-            ->withCount('rate')
+            // ->withCount('rate')
             ->with('user')
             ->first();
         // $worker->star_rate =  ;
