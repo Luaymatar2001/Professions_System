@@ -98,8 +98,6 @@ Route::prefix('admin')
 
         Route::delete('/worker/{slug}', [WorkerController::class, 'destroy_view'])->name('worker.destroy');
         Route::get('/worker', [WorkerController::class, 'index_view'])->name('worker.index');
-
-
         // Route::resource('/project', ProjectController::class);
     });
 

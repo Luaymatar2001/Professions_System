@@ -287,8 +287,13 @@ class WorkerController extends Controller
     public function data_profile($slug)
     {
         $worker = Worker::where('slug', $slug)
+            ->withSum('rate as star_rate', 'rate')
+            ->withCount('rate')
             ->with('user')
             ->first();
+        // $worker->star_rate =  ;
+
+
         if ($worker != null && count($worker) != 0) {
             return response()->json(['data' => $worker], 200);
         }
