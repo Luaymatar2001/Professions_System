@@ -123,30 +123,28 @@
                         <div class="card-body pt-0">
                             <div class="row">
                                 <div class="col-7">
-                                    <h2 class="lead"><b>Nicole Pearson</b></h2>
-                                    <p class="text-muted text-sm"><b>About: </b> Web Designer / UX / Graphic Artist /
-                                        Coffee
-                                        Lover </p>
+                                    <h2 class="lead"><b>Ahmed Tubail</b></h2>
+                                    <p class="text-muted text-sm"><b>About: </b> Web developer / Back End/
+                                        Coffee Lover </p>
                                     <ul class="ml-4 mb-0 fa-ul text-muted">
                                         <li class="small"><span class="fa-li"><i
                                                     class="fas fa-lg fa-building"></i></span>
                                             Address: Demo Street 123, Demo City 04312, NJ</li>
                                         <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span>
-                                            Phone #: + 800 - 12 12 23 52</li>
+                                            Phone #: + +972 59 51 48 174</li>
                                     </ul>
                                 </div>
                                 <div class="col-5 text-center">
-                                    <img src="https://media.licdn.com/dms/image/D4D03AQFOzEBVIeUHxg/profile-displayphoto-shrink_800_800/0/1677965639362?e=1694044800&v=beta&t=nysDRrw50GjbvF73xcCsnk0K-sfG0C4vzAWGRlIj4AM"
+                                    <img src="https://media.licdn.com/dms/image/D4D35AQGkXD5l5Cwx1A/profile-framedphoto-shrink_800_800/0/1679561957745?e=1689073200&v=beta&t=4C5nYvsCEojHiHdLMX-dUVGmhCL_2UBPHhLN50cqhUg"
                                         alt="user-avatar" class="img-circle img-fluid">
                                 </div>
                             </div>
                         </div>
                         <div class="card-footer">
                             <div class="text-right">
-                                <a href="#" class="btn btn-sm bg-teal">
-                                    <i class="fas fa-comments"></i>
-                                </a>
-                                <a href="#" class="btn btn-sm btn-primary">
+
+                                <a href="https://www.linkedin.com/in/ahmed-tubail-3b236326a/"
+                                    class="btn btn-sm btn-primary">
                                     <i class="fas fa-user"></i> View Profile
                                 </a>
                             </div>
