@@ -108,7 +108,7 @@
                             <div class="text-right">
 
                                 <a href="https://www.linkedin.com/in/luay-matar-639320224/"
-                                    class="btn btn-sm btn-primary">
+                                    class="btn btn-sm btn-primary" target="_blank">
                                     <i class="fas fa-user"></i> View Profile
                                 </a>
                             </div>
@@ -143,7 +143,7 @@
                         <div class="card-footer">
                             <div class="text-right">
 
-                                <a href="https://www.linkedin.com/in/ahmed-tubail-3b236326a/"
+                                <a href="https://www.linkedin.com/in/ahmed-tubail-3b236326a/" target="_blank"
                                     class="btn btn-sm btn-primary">
                                     <i class="fas fa-user"></i> View Profile
                                 </a>
@@ -182,7 +182,7 @@
                         <div class="card-footer">
                             <div class="text-right">
 
-                                <a href="https://www.linkedin.com/in/mohamed-alserhi-2a93101a6/"
+                                <a href="https://www.linkedin.com/in/mohamed-alserhi-2a93101a6/" target="_blank"
                                     class="btn btn-sm btn-primary">
                                     <i class="fas fa-user"></i> View Profile
                                 </a>
@@ -220,7 +220,7 @@
                             <div class="text-right">
 
                                 <a href="https://www.facebook.com/profile.php?id=100006970170028&locale=ar_AR"
-                                    class="btn btn-sm btn-primary">
+                                    target="_blank" class="btn btn-sm btn-primary">
                                     <i class="fas fa-user"></i> View Profile
                                 </a>
                             </div>
