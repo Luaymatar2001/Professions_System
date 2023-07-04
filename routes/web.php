@@ -37,8 +37,8 @@ Route::get('/', function () {
 
 Route::prefix('admin')->group(function () {
     //login
-    Route::get('/login', [AdminController::class, 'showLogin'])->name('admin.login');
-    Route::post('/login', [AdminController::class, 'login'])->name('admin.checkLogin');
+    Route::get('/login', [AdminController::class, 'showLogin'])->middleware('guest')->name('admin.login');
+    Route::post('/login', [AdminController::class, 'login'])->middleware('guest')->name('admin.checkLogin');
     Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
 });
 
