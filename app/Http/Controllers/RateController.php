@@ -40,13 +40,13 @@ class RateController extends Controller
         $rate = new Rate($request->all());
         if (!Rate::where('user_id', $rate->user_id)->exists()) {
             $rate->user_id = Auth::user()->id;
+            if ($rate->save()) {
+                return response()->json('success', 201);
+            } else {
+                return response()->json('faild', 400);
+            }
         } else {
             abort("503", " This user has already rated ! ");
-        }
-        if ($rate->save()) {
-            return response()->json('success', 201);
-        } else {
-            return response()->json('faild', 400);
         }
     }
 

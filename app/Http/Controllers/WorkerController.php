@@ -292,7 +292,7 @@ class WorkerController extends Controller
             ->withCount('rate')
             ->with('user')
             ->first();
-        // $worker->star_rate =  ;
+        $worker->star_rate = ($worker->star_rate / ($worker->rate_count*10))*10 ;
 
         // && count($worker) != 0
         if ($worker != null) {
