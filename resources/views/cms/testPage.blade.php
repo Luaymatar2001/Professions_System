@@ -4,7 +4,7 @@
 <body>
 
     <h1>My First Heading</h1>
-    <p>My first paragraph. {{$user}}</p>
+    <p>My first paragraph. {{$user->email}}</p>
 
 
 </body>
