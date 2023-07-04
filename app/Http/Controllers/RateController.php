@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RateRequest;
 use App\Models\Rate;
+use App\Models\User;
 use App\Models\Worker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,8 +36,13 @@ class RateController extends Controller
      */
     public function store(RateRequest $request)
     {
+
         $rate = new Rate($request->all());
-        $rate->user_id = Auth::user()->id;
+        if (!User::where('user_id', $rate->user_id)->exists()) {
+            $rate->user_id = Auth::user()->id;
+        } else {
+            abort("503", " This user has already rated ! ");
+        }
         if ($rate->save()) {
             return response()->json('success', 201);
         } else {

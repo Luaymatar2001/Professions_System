@@ -23,13 +23,12 @@ class RateRequest extends FormRequest
      */
     public function rules()
     {
-        $id = $this->route('rate', 0);
 
         return [
             'comment' => 'nullable|max:200',
             'rate' => 'required|integer|between:0,10',
             'accept' => 'nullable|max:1',
-            'worker_id' => 'required|exists:workers,id|unique:rates,worker_id,' . $id
+            'worker_id' => 'required|exists:workers,id'
         ];
     }
     public function messages(): array
