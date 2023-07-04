@@ -287,7 +287,7 @@ class WorkerController extends Controller
     public function data_profile($slug)
     {
         $worker = Worker::where('slug', $slug)
-            ->with('rate')
+            // ->with('rate')
             // ->withSum('rate as star_rate', 'rate')
             // ->withCount('rate')
             ->with('user')
