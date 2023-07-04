@@ -7,9 +7,9 @@
 <link href="{{asset('cms/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}" rel="stylesheet" />
 @endsection
 
-@section('title', 'Professional')
-@section('page-title', 'Create Professional')
-@section('small-title', 'Professional')
+@section('title', 'Roles')
+@section('page-title', 'Create Roles')
+@section('small-title', 'Roles')
 
 @section('content')
 
@@ -35,7 +35,7 @@
     </script>
     @else
     <script>
-        swal("Faild to add new professional row", {
+        swal("Faild to add new Roles row", {
                         className: "red-bg",
                     });
     </script>
@@ -48,14 +48,14 @@
                 <!-- general form elements -->
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Create Professional</h3>
+                        <h3 class="card-title">Create Roles</h3>
                     </div>
 
                     <!-- /.card-header -->
                     <!-- form start -->
                     {{-- action="{{ route('role.store') }}" --}}
                     <form method="POST">
-                        {{-- action="{{ route('professional.store') }}" --}}
+                        {{-- action="{{ route('Roles.store') }}" --}}
                         @csrf
                         <div class="card-body">
                             <div class="form-group">

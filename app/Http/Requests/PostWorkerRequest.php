@@ -68,7 +68,7 @@ class PostWorkerRequest extends FormRequest
             'CV.mimetypes' => 'the file must type PDF',
             'CV.max' => 'the maximum size of file is 5120',
             'phone_number.required' => 'the phone number is required',
-            'phone_number.regex' => 'The phone number must start with a + sign followed by 4 to 15 numbers.',
+            'phone_number.regex' =>   'The phone number must start with a + sign followed by 4 to 15 numbers.',
 
 
         ];

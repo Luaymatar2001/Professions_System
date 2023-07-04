@@ -6,7 +6,7 @@
 
 @section('title', 'Specialties')
 @section('page-title', 'Index')
-@section('small-title', 'Specialties Index')
+@section('small-title', 'profession trashed Index')
 
 @section('content')
 @if (session()->has('status'))
@@ -15,13 +15,13 @@
     $(document).ready(function() {
                   swal({
                     icon: "success",
-                    text: "the restore process specialty is completed!"
+                    text: "the restore process profession trashed is completed!"
                   })
                 });
 </script>
 @else
 <script>
-    swal("Faild to restore specialty!", {
+    swal("Faild to restore profession trashed!", {
                   className: "red-bg",
                 });
 </script>

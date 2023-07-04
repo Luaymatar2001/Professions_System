@@ -4,10 +4,10 @@
 
 @endsection
 
-@section('title', 'cities')
-@section('page-title', 'Edit cities')
+@section('title', 'Admin')
+@section('page-title', 'Edit Admin')
 
-@section('small-title', 'cities')
+@section('small-title', 'Admin')
 
 @section('content')
 
@@ -27,7 +27,7 @@
     </script>
     @else
     <script>
-        swal("Faild to add new city", {
+        swal("Faild to add new Admin", {
                         className: "red-bg",
                     });
     </script>
@@ -40,7 +40,7 @@
                 <!-- general form elements -->
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Edit City</h3>
+                        <h3 class="card-title">Edit Admin</h3>
                     </div>
 
                     <!-- /.card-header -->
