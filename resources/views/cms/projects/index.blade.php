@@ -76,10 +76,10 @@
                                     <td>slug </td>
                                     <td>notes</td>
                                     <td>time function</td>
-                                    <td>additional file</td>
                                     <td>funds</td>
                                     <th>city</th>
                                     <th>description location</th>
+                                    <td>additional file</td>
                                     <th>user</th>
                                     <th>number of offer</th>
                                     <th>worker</th>
@@ -102,7 +102,7 @@
                                     <th>{{ $project->slug }}</th>
                                     <th>{{ $project->notes }}</th>
                                     <th>{{ $project->time_function }}</th>
-                                    <th>{{ $project->additional_file }}</th>
+                                    {{-- <th>{{ $project->additional_file }}</th> --}}
                                     <th>{{ $project->funds }}</th>
                                     <th>{{ $project->city?->name }}</th>
                                     <th>{{ $project->description_location }}</th>
