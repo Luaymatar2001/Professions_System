@@ -181,8 +181,8 @@
       <a href="cms/index3.html" class="brand-link">
         {{-- <img src="{{asset('cms/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo"
         class="brand-image img-circle elevation-3" style="opacity: .8"> --}}
-        <span class="brand-text font-weight-light"><img
-            src="{{Storage::dist('public')->url('logo/logoProfessionalSystem.jpeg')}}" alt="" srcset=""></span>
+        <span class="brand-text font-weight-light"><img src="{{asset('/logo/logoProfessionalSystem.jpeg')}}"
+            alt="nothing image" width="100"></span>
       </a>
 
       <!-- Sidebar -->
