@@ -64,7 +64,7 @@
   @endif
   <div class="login-box">
     <div class="login-logo">
-      <a href="{{route('admin.login')}}"><b>Professional</b>System</a>
+      <a href="{{route('admin.login')}}"><b>Professionals</b>System</a>
     </div>
     <!-- /.login-logo -->
     <div class="card">
