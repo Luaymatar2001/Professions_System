@@ -211,16 +211,16 @@
                                     </ul>
                                 </div>
                                 <div class="col-5 text-center">
-                                    <img src="http://via.placeholder.com/80x80" alt="user-avatar"
-                                        class="img-circle img-fluid">
+                                    <img src="https://media.licdn.com/dms/image/D4D03AQHhFB2t3ePqJA/profile-displayphoto-shrink_800_800/0/1688480170441?e=1694044800&v=beta&t=5kosGz9MAFbAjvKqi5nbdf3qagjagEUqV1alxgRJeX0"
+                                        alt="user-avatar" class="img-circle img-fluid">
                                 </div>
                             </div>
                         </div>
                         <div class="card-footer">
                             <div class="text-right">
 
-                                <a href="https://www.facebook.com/profile.php?id=100006970170028&locale=ar_AR"
-                                    target="_blank" class="btn btn-sm btn-primary">
+                                <a href="https://www.linkedin.com/in/taj-aldeen/" target="_blank"
+                                    class="btn btn-sm btn-primary">
                                     <i class="fas fa-user"></i> View Profile
                                 </a>
                             </div>
