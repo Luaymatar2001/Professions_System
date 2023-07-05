@@ -37,7 +37,7 @@ class offerRequest extends FormRequest
             "project_id.exists" => "is not exists in projects",
             "value.integer" => "the value must integer",
             "value.max" => ":attribute can't be more than 7 digits ",
-            "time.date" => "The time format should be yyyy-mm-dd hh"
+            "time.integer" => 'the time must be integer'
 
         ];
     }
