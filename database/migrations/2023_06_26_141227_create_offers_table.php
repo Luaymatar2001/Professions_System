@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('project_id');
             $table->text('description');
             $table->integer('time');
+            $table->string('slug', 100)->unique();
             $table->integer('value');
             $table->foreign('project_id')->on('offers')->references('id')->on('projects')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
