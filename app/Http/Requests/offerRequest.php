@@ -27,7 +27,7 @@ class offerRequest extends FormRequest
             'project_id' => 'required|exists:projects,id',
             'description' => 'required|max:400',
             'value' => 'required|integer|max:1000000',
-            'time' => 'required|date'
+            'time' => 'required|integer'
         ];
     }
     public function messages()

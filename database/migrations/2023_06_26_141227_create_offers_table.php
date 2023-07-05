@@ -18,12 +18,10 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('project_id');
             $table->text('description');
-            $table->date('time');
+            $table->integer('time');
             $table->integer('value');
             $table->foreign('project_id')->on('offers')->references('id')->on('projects')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
-         
-
         });
     }
 
