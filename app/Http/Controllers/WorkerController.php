@@ -268,7 +268,7 @@ class WorkerController extends Controller
         if (count($gallery) > 0) {
             return response()->json(['gallery' => $gallery], 200);
         } else {
-            return response()->json(['rates' => 'the gallery is empty'], 400);
+            return response()->json(['gallery' => 'the gallery is empty'], 400);
         }
     }
 
@@ -278,9 +278,9 @@ class WorkerController extends Controller
         $worker = Worker::where('slug', $slug)->first();
         $work = Project::owner($worker->id)->with('images')->latest('updated_at')->get();
         if (count($work) > 0) {
-            return response()->json(['gallery' => $work], 200);
+            return response()->json(['works' => $work], 200);
         } else {
-            return response()->json(['rates' => 'Never received business before'], 400);
+            return response()->json(['works' => 'Never received business before'], 400);
         }
     }
 
@@ -292,7 +292,7 @@ class WorkerController extends Controller
             ->withCount('rate')
             ->with('user')
             ->first();
-        $worker->star_rate = ($worker->star_rate / ($worker->rate_count*10))*10 ;
+        $worker->star_rate = ($worker->star_rate / ($worker->rate_count * 10)) * 10;
 
         // && count($worker) != 0
         if ($worker != null) {
