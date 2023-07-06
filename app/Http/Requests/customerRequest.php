@@ -24,7 +24,7 @@ class customerRequest extends FormRequest
     public function rules()
     {
         return [
-            'Whatsapp_number' => 'nullable|',
+
         ];
     }
 }

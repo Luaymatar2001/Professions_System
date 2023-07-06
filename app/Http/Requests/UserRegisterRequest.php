@@ -30,6 +30,7 @@ class UserRegisterRequest extends FormRequest
             "password" => ['required', 'min:8', 'confirmed'],
             'image' => ['nullable', new base64image],
             'city_id' => 'nullable|exists:cities,name',
+            'phone_number' => 'nullable|integer'
         ];
     }
     public function messages()

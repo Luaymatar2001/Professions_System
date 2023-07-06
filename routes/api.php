@@ -79,7 +79,7 @@ Route::group(['middleware' => ['XSS', 'lang']], function () {
     Route::Post('auth/register', [AccessTokensController::class, 'register']);
     //يجب أن يكون مضيف لعمل إضافة للبيانات
     Route::post('auth/access-tokens', [AccessTokensController::class, 'store'])->middleware('guest');
-    Route::get('auth/logout/{token?}', [AccessTokensController::class, 'destroy'])->middleware('auth:sanctum');
+    Route::get('auth/logout/{token?}', [AccessTokensController::class, 'destroy'])->middleware(['auth:sanctum', 'guest']);
 
     Route::get('/worker', [WorkerController::class, 'index'])->middleware('auth:sanctum');
     Route::get('worker/show/{slug}', [WorkerController::class, 'show'])->middleware('auth:sanctum');
