@@ -106,21 +106,21 @@ class ProjectController extends Controller
         $result_image = false;
 
         if ($request->hasFile('images')) {
-            $imagesFiles = $request->file('images');
+            $image = $request->file('images');
 
-            foreach ($imagesFiles as $image) {
-                // $imagePath = $image->store('project_img/projects', 'public');
-                // $imagePath = $image->store('project_image/projects', [
-                //     'disk' => 'public'
-                // ]);
-                $imagePath = Storage::disk('public')->put('project_image/projects',  $image);
-                $img = new Image();
-                $img->image_url = $imagePath;
-                $img->slug = $project->slug;
+            // foreach ($imagesFiles as $image) {
+            // $imagePath = $image->store('project_img/projects', 'public');
+            // $imagePath = $image->store('project_image/projects', [
+            //     'disk' => 'public'
+            // ]);
+            $imagePath = Storage::disk('public')->put('project_image/projects',  $image);
+            $img = new Image();
+            $img->image_url = $imagePath;
+            $img->slug = $project->slug;
 
-                $result_image = $project->images()->save($img);
-            }
+            $result_image = $project->images()->save($img);
         }
+        // }
 
         // Check if the project and images were saved successfully
         if ($result  || $result_image) {
@@ -184,12 +184,12 @@ class ProjectController extends Controller
         if ($projects) {
             $images = $projects->images;
 
-            foreach ($images as $image) {
-                // Delete the image file from storage if needed
-                Storage::disk('public')->delete($image->image_url);
+            // foreach ($images as $image) {
+            // Delete the image file from storage if needed
+            Storage::disk('public')->delete($images->image_url);
 
-                $image->delete(); // Delete the image record from the database
-            }
+            $images->delete(); // Delete the image record from the database
+            // }
 
             $projects->delete(); // Delete the project record from the database
         }
@@ -203,12 +203,12 @@ class ProjectController extends Controller
         if ($projects) {
             $images = $projects->images;
 
-            foreach ($images as $image) {
-                // Delete the image file from storage if needed
-                Storage::disk('public')->delete($image->image_url);
+            // foreach ($images as $image) {
+            // Delete the image file from storage if needed
+            Storage::disk('public')->delete($images->image_url);
 
-                $image->delete(); // Delete the image record from the database
-            }
+            $images->delete(); // Delete the image record from the database
+            // }
 
             $projects->delete(); // Delete the project record from the database
         }

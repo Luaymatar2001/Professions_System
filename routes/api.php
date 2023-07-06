@@ -89,8 +89,10 @@ Route::group(['middleware' => ['XSS', 'lang']], function () {
     Route::post('/worker', [WorkerController::class, 'store'])->middleware(['auth:sanctum']);
     // , 'checkIfAlreadyWorker'
     // Route::apiResource('worker', WorkerController::class)->middleware('auth:sanctum');
-    Route::post('/customer', [CustomerController::class, 'store'])->middleware(['auth:sanctum']);
-
+    Route::delete('/client/{slug}', [CustomerController::class, 'destroy'])->middleware(['auth:sanctum']);
+    Route::post('/client', [CustomerController::class, 'store'])->middleware(['auth:sanctum']);
+    Route::put('/client/{slug}', [CustomerController::class, 'update'])->middleware(['auth:sanctum']);
+    Route::get('/client/data_profile/{slug}', [CustomerController::class, 'data_profile'])->middleware(['auth:sanctum']);
 });
 
 // Route::Post('auth/token', [AccessTokensController::class, 'store']);

@@ -10,11 +10,11 @@ use Spatie\Sluggable\SlugOptions;
 class Customer extends Model
 {
     use HasFactory, HasSlug;
-    protected $fillable = ['user_id', 'Whatsapp_number', 'phone_number', 'id_number', 'address', 'birthDate', 'gender'];
+    protected $fillable = ['user_id', 'address', 'id_number', 'Whatsapp_number', 'birthDate', 'gender'];
     protected $hidden = [
         'created_at', 'updated_at', 'deleted_at'
     ];
-    
+
 
     public function user()
     {
@@ -26,9 +26,9 @@ class Customer extends Model
         //Build slug from name column and store slug column max length 255 and skip slug when deleted_at null
 
         return SlugOptions::create()
-            ->generateSlugsFrom(['phone_number'])
+            ->generateSlugsFrom(['address'])
             ->saveSlugsTo('slug')
-            ->slugsShouldBeNoLongerThan(15)
+            ->slugsShouldBeNoLongerThan(25)
             ->skipGenerateWhen(fn () => $this->deleted_at !== null);
     }
 

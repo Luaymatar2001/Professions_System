@@ -25,7 +25,8 @@ class User extends Authenticatable
         'password',
         'image',
         'active',
-        'phone_number'
+        'phone_number',
+        'city_id'
     ];
 
 
@@ -46,7 +47,10 @@ class User extends Authenticatable
 
 
     ];
-
+    public function city()
+    {
+        return $this->belongsTo(City::class, 'city_id', 'id');
+    }
     /**
      * The attributes that should be cast.
      *

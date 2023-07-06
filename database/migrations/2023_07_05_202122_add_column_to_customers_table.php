@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('customers', function (Blueprint $table) {
             $table->string('Whatsapp_number')->nullable();
-            $table->string('phone_number');
+            // $table->string('phone_number');
             $table->integer('id_number');
             $table->string('address', 250);
             $table->date('birthDate')->nullable();
