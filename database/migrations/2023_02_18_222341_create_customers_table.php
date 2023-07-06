@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 60);
+            // $table->string('name', 60);
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
             $table->softDeletes();
