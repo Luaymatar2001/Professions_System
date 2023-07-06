@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\customerRequest;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 
@@ -23,9 +24,13 @@ class CustomerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(customerRequest $request)
     {
-    
+        $customer = new Customer($request->all());
+        if ($customer->save()) {
+            return response()->json(['status' => true], 400);
+        }
+        return response()->json(['status' => true], 200);
     }
 
     /**
@@ -36,7 +41,7 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        //
+       
     }
 
     /**

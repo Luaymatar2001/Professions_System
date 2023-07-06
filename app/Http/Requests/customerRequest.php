@@ -24,6 +24,24 @@ class customerRequest extends FormRequest
     public function rules()
     {
         return [
+            'Whatsapp_number' => 'nullable|integer',
+            'id_number' => 'nullable|integer',
+            'birthDate' => 'nullable|date',
+            'gender' => 'nullable|in:Male,Female',
+            'slug' => 'nullable|string',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            // Validation Custom Messages...
+            'Whatsapp_number.integer' => 'the whats number must integer',
+            'Whatsapp_number.max' => 'the whats number max 15',
+            'id_number.integer'  => 'the id number must integer',
+            'id_number.max'  => 'the id number max 15',
+            'birthDate.date' => 'birthDate must date type',
+            'gender.in' => 'must be Male or Female ',
+
 
         ];
     }

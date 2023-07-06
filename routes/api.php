@@ -6,6 +6,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\WorkerController;
 use App\Http\Controllers\Api\AccessTokensController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\offerController;
 use App\Http\Controllers\ProjectController;
@@ -88,6 +89,8 @@ Route::group(['middleware' => ['XSS', 'lang']], function () {
     Route::post('/worker', [WorkerController::class, 'store'])->middleware(['auth:sanctum']);
     // , 'checkIfAlreadyWorker'
     // Route::apiResource('worker', WorkerController::class)->middleware('auth:sanctum');
+    Route::post('/customer', [CustomerController::class, 'store'])->middleware(['auth:sanctum']);
+
 });
 
 // Route::Post('auth/token', [AccessTokensController::class, 'store']);
