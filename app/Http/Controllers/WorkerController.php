@@ -265,7 +265,7 @@ class WorkerController extends Controller
     {
         $worker = Worker::where('slug', $slug)->first();
         $gallery = gallery::owner($worker->id)->with('images')->latest('updated_at')->get();
-        if ($gallery) {
+        if (count($gallery) > 0) {
             return response()->json(['gallery' => $gallery], 200);
         } else {
             return response()->json(['gallery' => 'the gallery is empty'], 400);
