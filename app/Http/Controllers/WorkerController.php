@@ -91,6 +91,8 @@ class WorkerController extends Controller
             $worker->CV = $pathFile . $nameFile;
         }
 
+
+
         $status = $worker->save();
         $user = User::where('id', Auth::user()->id)->first();
         // $user->update(['role' => 1]);
@@ -99,6 +101,27 @@ class WorkerController extends Controller
         // $status = Worker::create($request->except('cover_image'), ['cover_image' => $path . $name]);
 
         if ($status) {
+            $user =  Auth::user();
+            $name =  $user->name;
+            $email =  $user->email;
+            $image_url = $user->image;
+            if ($image_url) {
+                $image_url = url('app/public', [
+                    'image' => $image_url,
+                ]);
+            } else {
+                $image_url = 'http://via.placeholder.com/80x80';
+            }
+
+            $status = Mail::send('emails.registerWorker', [
+                'name' => $name,
+                'email' => $email,
+                'image_url' => $image_url
+            ], function ($message) {
+                $message->to(Auth::user()->email, 'Professional System')
+                    ->subject('success for registar as aworker');
+            });
+
             return response()->json(['message' => 'Record inserted successfully.', 'data' => $status], 200);
         } else {
             return response()->json(['message' => 'Failed to insert record.'], 500);
@@ -238,7 +261,7 @@ class WorkerController extends Controller
             'image_url' => $image_url
         ], function ($message) {
             $message->to(Auth::user()->email, 'Professional System')
-                ->subject('Register as a worker');
+                ->subject('return to website');
         });
         $user = User::where('id', Auth::user()->id)->first();
         $user->role = '0';

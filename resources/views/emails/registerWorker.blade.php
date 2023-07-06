@@ -105,7 +105,7 @@
     <!-- HIDDEN PREHEADER TEXT -->
     <div
         style="display: none; font-size: 1px; color: #fefefe; line-height: 1px; font-family: 'Lato', Helvetica, Arial, sans-serif; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;">
-        We're thrilled to have you here! Get ready to dive into your new account. </div>
+        thank you for register as aworker in professionals system website ! </div>
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
         <!-- LOGO -->
         <tr>
@@ -123,9 +123,9 @@
                     <tr>
                         <td bgcolor="#ffffff" align="center" valign="top"
                             style="padding: 40px 20px 20px 20px; border-radius: 4px 4px 0px 0px; color: #111111; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 27px; font-weight: 400; letter-spacing: 4px; line-height: 48px;">
-                            <h2 style="font-size: 38px; font-weight: 400; margin: 2;">Wellcom {{$name}} in register
-                                page!</h2> <img src="{{$image_url}}" width="225" height="220"
-                                style="display: block; border: 0px;" />
+                            <h2 style="font-size: 38px; font-weight: 400; margin: 2;">Congratulations {{$name}}, you
+                                have been approved to become a professional with our website !</h2> <img
+                                src="{{$image_url}}" width="225" height="220" style="display: block; border: 0px;" />
                             </h3 style="font-size: 30px;">email : {{$email}}</h3>
                         </td>
 
@@ -139,7 +139,7 @@
                     <tr>
                         <td bgcolor="#ffffff" align="left"
                             style="padding: 20px 30px 40px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                            <p style="margin: 0;">Enter with this link and register your data.</p>
+                            <p style="margin: 0;">Enter with this link for return for website.</p>
                         </td>
                     </tr>
                     <tr>
@@ -153,7 +153,7 @@
                                                     <a href="https://phplaravel-1025967-3619615.cloudwaysapps.com/api/worker"
                                                         target="_blank"
                                                         style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid #FFA73B; display: inline-block;">Go
-                                                        To Register Page
+                                                        To website Page
                                                     </a>
                                                 </td>
                                             </tr>
