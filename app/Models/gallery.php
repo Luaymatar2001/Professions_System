@@ -30,7 +30,7 @@ class gallery extends Model
 
     public function image()
     {
-        $this->hasMany(Image::class, 'gallery_id', 'id');
+        $this->hasMany(Image::class, 'imageable_id', 'id');
     }
 
     public function getCheckActiveAttribute()
