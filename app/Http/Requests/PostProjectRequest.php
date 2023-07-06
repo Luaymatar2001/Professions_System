@@ -37,8 +37,8 @@ class PostProjectRequest extends FormRequest
             'accept' => 'nullable|in:0,1',
             // 'user_id' => 'required|integer|exists:users,id',
             'worker_id' => 'nullable|integer|exists:workers,id',
-            'images' => 'nullable|array',
-            'images.*' => 'nullable|image'
+            // 'images' => 'nullable|array',
+            'images' => 'nullable|image'
         ];
     }
     public function messages()
@@ -50,7 +50,7 @@ class PostProjectRequest extends FormRequest
             'funds.decimal' => 'the decimal value must 0.0 formate',
             'city_id.exists' => 'the citie id not found in the table',
             'worker_id.exists' => 'the worker id not found in the table',
-            'images.images' => 'must array of images'
+            // 'images.image' => 'must array of images'
         ];
     }
 }
