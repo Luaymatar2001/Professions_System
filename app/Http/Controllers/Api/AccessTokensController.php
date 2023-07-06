@@ -26,6 +26,7 @@ class AccessTokensController extends Controller
         if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json([
                 'message' => 'Invalid password combination',
+                'status' => false
                 // 'pass' => $password
             ], 401);
         }
@@ -43,6 +44,7 @@ class AccessTokensController extends Controller
         return response()->json([
             'token' => $token->plainTextToken,
             'message' => "success for login",
+            'status' => true
         ], 201);
     }
     public function destroy($token = null)
