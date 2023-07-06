@@ -264,7 +264,7 @@ class WorkerController extends Controller
     public function profile_gallery($slug)
     {
         $worker = Worker::where('slug', $slug)->first();
-        $gallery = gallery::owner($worker->id)->with('images')->latest('updated_at')->get();
+        $gallery = gallery::owner($worker->id)->images()->latest('updated_at')->get();
         if (count($gallery) > 0) {
             return response()->json(['gallery' => $gallery], 200);
         } else {
