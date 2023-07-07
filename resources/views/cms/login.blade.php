@@ -26,7 +26,7 @@
 <body class="hold-transition login-page">
   <div class="login-box">
     <div class="login-logo">
-      <a href="../../index2.html"><b>Login</b></a>
+      <a href="{{route('admin.login')}}"><b>Professionals</b>System</a>
     </div>
     <!-- /.login-logo -->
     <div class="card">
@@ -37,7 +37,7 @@
 
         </div>
 
-        <p class="login-box-msg">Sign in to start your session</p>
+        <p class="login-box-msg">Sign in to start your session admin</p>
 
         <form action="" method="post">
           <div class="input-group mb-3">
@@ -96,9 +96,7 @@
         </div> --}}
         <!-- /.social-auth-links -->
 
-        <p class="mb-1">
-          <a href="forgot-password.html">I forgot my password</a>
-        </p>
+
         {{-- <p class="mb-0">
           <a href="register.html" class="text-center">Register a new membership</a>
         </p> --}}

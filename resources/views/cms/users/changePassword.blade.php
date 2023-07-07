@@ -32,7 +32,9 @@
                               swal({
                                   icon: "success",
                                   text: "Successful password change !"
-                              })
+                              }).then(function () {
+                                window.location = "{{ route("admin.login") }}";
+                                })
                           });
   </script>
   @else

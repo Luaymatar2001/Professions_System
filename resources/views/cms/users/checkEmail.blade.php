@@ -16,11 +16,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
         integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <title>Document</title>
+    <title>forgin password</title>
 
 </head>
 
 <body class="hold-transition login-page">
+
+    <div class="login-logo">
+        <a href="{{route('admin.login')}}"><b>Professionals</b>System</a>
+    </div>
     @if (session()->has('status'))
     @if (session('status'))
     <script>
@@ -35,7 +39,7 @@
     @endif
     @endif
     <div class="login-box card"
-        style="padding:10px; height:250px; width:500px; border-radius: 25px; background-color: silver ;">
+        style="padding:30px; height:250px; width:500px; border-radius: 25px; background-color: white ;">
         <div class="login-logo">
             <a href="#"><b>forgin password</b></a>
         </div>
