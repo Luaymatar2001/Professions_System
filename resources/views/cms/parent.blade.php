@@ -200,7 +200,7 @@
         </div>
 
         <!-- SidebarSearch Form -->
-        <div class="form-inline">
+        {{-- <div class="form-inline">
           <div class="input-group" data-widget="sidebar-search">
             <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
             <div class="input-group-append">
@@ -209,7 +209,7 @@
               </button>
             </div>
           </div>
-        </div>
+        </div> --}}
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
@@ -220,6 +220,40 @@
 
 
             <li class="nav-header">Content Managment</li>
+
+
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-hammer"></i>
+                <p>
+                  professions
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{route('professional.index')}}" class="nav-link">
+                    <i class="nav-icon fas fa-th-list"></i>
+                    <p>Index</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{route('professional.create')}}" class="nav-link">
+                    <i class="nav-icon fas fa-plus-circle"></i>
+                    <p>Create</p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="{{route('professional.restore')}}" class="nav-link">
+                    <i class="nav-icon fas fa-trash-restore"></i>
+                    <p>Restore</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+
             @canany(['Index-Speciality' , 'Create-Speciality' , 'Restore-Speciality'])
             <li class="nav-item">
               <a href="#" class="nav-link">
@@ -260,38 +294,6 @@
               </ul>
             </li>
             @endcanany
-
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-hammer"></i>
-                <p>
-                  professions
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="{{route('professional.index')}}" class="nav-link">
-                    <i class="nav-icon fas fa-th-list"></i>
-                    <p>Index</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{route('professional.create')}}" class="nav-link">
-                    <i class="nav-icon fas fa-plus-circle"></i>
-                    <p>Create</p>
-                  </a>
-                </li>
-
-                <li class="nav-item">
-                  <a href="{{route('professional.restore')}}" class="nav-link">
-                    <i class="nav-icon fas fa-trash-restore"></i>
-                    <p>Restore</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-
 
             <li class="nav-item">
               <a href="#" class="nav-link">
