@@ -99,7 +99,15 @@ Route::prefix('admin')
         Route::delete('/worker/{slug}', [WorkerController::class, 'destroy_view'])->name('worker.destroy');
         Route::get('/worker', [WorkerController::class, 'index_view'])->name('worker.index');
         // Route::resource('/project', ProjectController::class);
+
     });
+Route::post('/forgin_password/check_email', [UserController::class, 'check_email'])->name('email.check');
+Route::get('/forgin_password/page_change_password', [UserController::class, 'pageChangePassword'])->name('email.pageChange');
+Route::post('/forgin_password/reset_password', [UserController::class, 'reset_password'])->name('user.Changepassword');
+
+Route::get('password/check_email_page', function () {
+    return view('cms.users.checkEmail');
+});
 
 
         // Route::post('/forgin_password/reset_password', [UserController::class, 'reset_password'])->name('email.register');

@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> Log in</title>
+  <title> Change Password </title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet"
@@ -31,7 +31,7 @@
     $(document).ready(function() {
                               swal({
                                   icon: "success",
-                                  text: "the change password process has been success!"
+                                  text: "Successful password change !"
                               })
                           });
   </script>
@@ -47,21 +47,7 @@
   @endif
   @endif
 
-  @if (session()->has('statOld'))
 
-  <script>
-    $(document).ready(function() {
-          swal({
-          title: "Error",
-          text: "The old password is not correct!",
-          type: "error",
-          confirmButtonColor: "#dc3545",
-          });
-                            });
-  </script>
-
-
-  @endif
   <div class="login-box">
     <div class="login-logo">
       <a href="{{route('admin.login')}}"><b>Professionals</b>System</a>
@@ -71,7 +57,7 @@
       <div class="card-body login-card-body">
         <p class="login-box-msg">You are only one step a way from your new password</p>
 
-        <form action="{{route('Admin.change_password')}}" method="post">
+        <form action="{{route('user.Changepassword')}}" method="post">
           @csrf
           @error('email')
           <small class="text-danger">
@@ -79,12 +65,8 @@
           </small>
           @enderror
           <div class="input-group mb-3">
-            <input type="email" class="form-control" value="{{old('email')}}" name="email" placeholder="email">
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-lock "></span>
-              </div>
-            </div>
+
+            <input type="hidden" class="form-control" value="{{session('email_reset')}}" name="email">
 
           </div>
 

@@ -144,6 +144,7 @@ class UserController extends Controller
 
     public function check_email(Request $request)
     {
+        // dd($request);
         $validate = Validator::make(
             $request->all(),
             [
@@ -155,7 +156,7 @@ class UserController extends Controller
             ]
         );
         if ($validate->fails()) {
-            return redirect()->withErrors($validate)->withInput();
+            return redirect()->back()->withErrors($validate)->withInput();
         }
         $email_user = User::where('email', $request->input('email'))->first();
 
@@ -168,7 +169,7 @@ class UserController extends Controller
         } else {
             $image_url = 'http://via.placeholder.com/80x80';
         }
-        $status = Mail::send('emails.ResetPassword', [
+        Mail::send('emails.ResetPassword', [
             'name'          => $email_user->name,
             'email'          => $email_user->email,
             'image_url'          => $image_url,
@@ -179,14 +180,17 @@ class UserController extends Controller
             $message->to($email_user->email, $email_user->name);
             $message->subject('reset the password');
         });
+        session(['email_reset' => $request->input('email')]);
 
-        return view('cms.changePassword')->with('email', $request['email']);
+        return redirect()->back()->with('status', true);
     }
 
-    // public function pageChangePassword(Request $request)
-    // {
-    //     return view('cms.changePassword')->with('email', $request['email']);
-    // }
+    public function pageChangePassword()
+    {
+        return view('cms.users.changePassword');
+    }
+
+
     public function reset_password(Request $request)
     {
 
@@ -208,7 +212,9 @@ class UserController extends Controller
         $user = User::where('email', $request['email'])->first();
         $user->password = $password;
         $status = $user->save();
-
+        if ($status) {
+            session()->forget('email_reset');
+        }
         return redirect()->back()->with('status', $status);
     }
 }

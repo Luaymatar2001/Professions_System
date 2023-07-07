@@ -15,7 +15,8 @@ class cityjson extends JsonResource
     public function toArray($request)
     {
         return [
-            'city' => $this->name,
+            'city id' => $this->id,
+            'city name' => $this->name,
         ];
     }
 }
