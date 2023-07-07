@@ -70,7 +70,7 @@ Route::group(['middleware' => ['XSS', 'lang']], function () {
     // , 'checkOuthViewProject'
     Route::get('/email/register', [WorkerController::class, 'sendEmailRegister'])->middleware(['auth:sanctum'])->name('email.register');
     // , 'checkIfAlreadyWorker'
-    Route::post('/forgin_password/check_email', [UserController::class, 'check_email'])->name('email.register');
+    Route::post('/forgin_password/check_email', [UserController::class, 'check_email'])->name('email.check');
     // Route::post('/forgin_password/reset_password', [UserController::class, 'reset_password'])->name('email.reset');
 
 
@@ -93,6 +93,10 @@ Route::group(['middleware' => ['XSS', 'lang']], function () {
     Route::post('/client', [CustomerController::class, 'store'])->middleware(['auth:sanctum']);
     Route::put('/client/{slug}', [CustomerController::class, 'update'])->middleware(['auth:sanctum']);
     Route::get('/client/data_profile/{slug}', [CustomerController::class, 'data_profile'])->middleware(['auth:sanctum']);
+
+    Route::post('/forgin_password', [CustomerController::class, 'data_profile'])->middleware(['auth:sanctum']);
+
+    
 });
 
 // Route::Post('auth/token', [AccessTokensController::class, 'store']);

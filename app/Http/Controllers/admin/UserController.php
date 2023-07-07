@@ -155,7 +155,7 @@ class UserController extends Controller
             ]
         );
         if ($validate->fails()) {
-            return Response(["errors" =>   $validate->messages()], 400);
+            return redirect()->withErrors($validate)->withInput();
         }
         $email_user = User::where('email', $request->input('email'))->first();
 
@@ -180,23 +180,32 @@ class UserController extends Controller
             $message->subject('reset the password');
         });
 
-        return Response(["message" => 'the email is exists check your email box'], 200);
+        return view('cms.changePassword')->with('email', $request['email']);
     }
-    public function reset_password(Request $request, $email)
+
+    // public function pageChangePassword(Request $request)
+    // {
+    //     return view('cms.changePassword')->with('email', $request['email']);
+    // }
+    public function reset_password(Request $request)
     {
 
         $validate = Validator::make($request->all(), [
-            'password' => ['required', 'min:8', 'confirmed']
+            'password' => ['required', 'min:8', 'confirmed'],
+            'email' => ['required', 'email', 'exists:users,email']
         ], [
             "password.required" => 'the password is required',
             "password.min" => "The Password must be at least :min characters.",
             "password.confirmed" => 'Confirm Password does not match.',
+            "email.required" => 'Email field can\'t empty!',
+            "email.email" => "must email",
+            "email.exists" => 'This Email is not exists!'
         ]);
         if ($validate->fails()) {
             return Response([$validate->messages()], 400);
         }
         $password = Hash::make($request['password']);
-        $user = User::where('email', $email)->first();
+        $user = User::where('email', $request['email'])->first();
         $user->password = $password;
         $status = $user->save();
 
