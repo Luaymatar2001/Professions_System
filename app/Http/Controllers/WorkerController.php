@@ -254,7 +254,6 @@ class WorkerController extends Controller
         } else {
             $image_url = 'http://via.placeholder.com/80x80';
         }
-
         $status = Mail::send('emails.registerWorker', [
             'name' => $name,
             'email' => $email,
